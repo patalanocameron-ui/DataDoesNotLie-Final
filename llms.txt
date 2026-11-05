@@ -15,6 +15,7 @@
 
 - Daybreak AI CRM (key offering): everything above, for stores, restaurants, and service shops.
 - Custom Development: bespoke apps, dashboards, integrations, and AI assistants built on a company's own data.
+- Website Development: fast, hand-built marketing sites with SEO and AEO (answer engine optimization) built in: structured data, FAQ schema, sitemaps, llms.txt, and lead capture.
 
 ## Pages
 
