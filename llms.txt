@@ -20,7 +20,6 @@
 
 - [Home](https://datadoesnotlie.com/): product overview, how it works in five steps, FAQ, and demo request form.
 - [Use cases](https://datadoesnotlie.com/blog.html): case studies.
-- [The Dry Cleaner That Won Its Customers Back](https://datadoesnotlie.com/blog-dry-cleaner-case-study.html): Daybreak use case, anonymized multi-store dry cleaner, SPOT API integration, smart tags, win-back campaigns.
 - [Replacing a Spreadsheet That Ran a Construction Company](https://datadoesnotlie.com/blog-construction-case-study.html): Custom Development case study, Procore integration, AI assistant over a MySQL forecasting database.
 
 ## Contact
