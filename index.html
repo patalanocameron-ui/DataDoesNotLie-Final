@@ -162,6 +162,42 @@
   .maps .mrow{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;font-family:var(--mono);font-size:.64rem;color:var(--text-faint)}
   .maps .mrow .to{color:var(--accent)}
   .maps .mrow b{color:var(--text-dim);font-weight:400}
+  /* chat mock (Talk to your data) */
+  .chat{display:flex;flex-direction:column}
+  .chat-thread{display:flex;flex-direction:column;justify-content:flex-end;gap:10px;min-height:300px}
+  .chat-msg{border-radius:var(--r-md);padding:10px 14px;font-size:.84rem;line-height:1.55;display:none}
+  .chat-msg.on{display:block;animation:chatIn .35s cubic-bezier(.2,.8,.25,1) both}
+  .chat-msg.user{align-self:flex-end;max-width:85%;background:rgba(43,227,155,.13);border:1px solid rgba(43,227,155,.32);color:var(--text)}
+  .chat-msg.bot{align-self:flex-start;width:100%;background:rgba(234,243,249,.04);border:1px solid var(--border);color:var(--text-dim)}
+  .chat-msg.bot p{margin:0 0 12px;font-size:.84rem;color:var(--text-dim)}
+  .chat-msg.bot p b{color:var(--text);font-weight:600}
+  @keyframes chatIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .chat-think{display:none;align-self:flex-start;padding:13px 16px;background:rgba(234,243,249,.04);border:1px solid var(--border);border-radius:var(--r-md)}
+  .chat-think.on{display:flex;gap:5px;animation:chatIn .25s ease both}
+  .chat-think i{width:6px;height:6px;border-radius:50%;background:var(--text-faint);animation:thinkDot 1s ease-in-out infinite}
+  .chat-think i:nth-child(2){animation-delay:.15s}
+  .chat-think i:nth-child(3){animation-delay:.3s}
+  @keyframes thinkDot{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+  .chat-chart{display:flex;gap:14px;align-items:flex-end;height:118px;padding:2px 2px 0}
+  .chat-chart .cbar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;height:100%}
+  .chat-chart .cbar b{font-family:var(--mono);font-size:.6rem;font-weight:500;color:var(--text);font-variant-numeric:tabular-nums}
+  .chat-chart .cbar i{width:100%;flex:none;border-radius:3px 3px 0 0;background:var(--accent);opacity:.9;height:5px;transition:height .7s cubic-bezier(.2,.8,.25,1)}
+  .chat-chart .cbar:nth-child(2) i{transition-delay:.12s}
+  .chat-chart .cbar:nth-child(3) i{transition-delay:.24s}
+  .chat.grown .cbar i{height:var(--h)}
+  .chat-chart .cbar span{font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint)}
+  .chat-src{display:flex;align-items:center;gap:8px;margin-top:12px;padding-top:11px;border-top:1px solid var(--border)}
+  .chat-src .mcpb{font-family:var(--mono);font-size:.55rem;font-weight:700;letter-spacing:.07em;padding:.3em .65em;border-radius:999px;background:rgba(43,227,155,.14);color:var(--accent);flex:none}
+  .chat-src .srcnote{font-family:var(--mono);font-size:.6rem;color:var(--text-faint)}
+  .chat-input{display:flex;align-items:center;margin-top:14px;background:rgba(234,243,249,.05);border:1px solid var(--border-strong);border-radius:var(--r-md);padding:11px 14px;font-size:.82rem}
+  .chat-type{color:var(--text);white-space:nowrap;overflow:hidden}
+  .chat-caret{width:1.5px;height:15px;background:var(--accent);margin-left:1px;opacity:0;flex:none}
+  .chat.typing .chat-caret{opacity:1;animation:caretBlink .9s step-end infinite}
+  @keyframes caretBlink{50%{opacity:0}}
+  .chat-ph{color:var(--text-faint)}
+  .chat-ph.hide{display:none}
+  .chat-send{margin-left:auto;width:24px;height:24px;flex:none;border-radius:7px;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-size:.78rem;font-weight:600}
+
   /* skeleton loader */
   .also{margin-top:12px}
   .also small{font-family:var(--mono);font-size:.56rem;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);display:block;margin-bottom:8px}
@@ -430,6 +466,9 @@
     .svc-main .ss-trend .tline{stroke-dashoffset:0}
     .svc-main .ss-trend .thead{opacity:1}
     .ss-bars i{animation:none !important}
+    .chat-msg.on,.chat-think.on{animation:none}
+    .chat-think i{animation:none}
+    .chat-chart .cbar i{transition:none}
     *{scroll-behavior:auto}
   }
 
@@ -570,6 +609,9 @@
         </div></div>
       </div>
 
+        </div></div>
+      </div>
+
       <div class="how-row flip" data-reveal>
         <div class="how-text">
           <span class="how-num">04</span>
@@ -614,7 +656,7 @@
       <div>
         <span class="label">The AI advisory layer</span>
         <h2 style="margin:.6em 0 .6em">Advice that shows its work</h2>
-        <p class="lede">Not a chatbot bolted on the side. An advisor that reads your real numbers every day and speaks plainly.</p>
+        <p class="lede">Not a dashboard you have to decode. An advisor that reads your real numbers every day, speaks plainly, and answers what you ask.</p>
         <div class="steps" style="margin-top:2em">
           <div class="step"><span class="k">Watch</span><div><h4>It checks your numbers daily</h4><p>Sales, repeat rates, customer activity, by store and channel, against your own history.</p></div></div>
           <div class="step"><span class="k">Explain</span><div><h4>It says what changed and why it matters</h4><p>In plain language, with the dollars at stake. No chart-reading required.</p></div></div>
@@ -636,6 +678,30 @@
         <div class="act"><span class="chip go">Create win-back workflow →</span><span class="chip">Dismiss with reason</span></div>
         <div class="src">grounded in: orders_2026.csv · view: Lapsed VIPs · Downtown · illustrative demo data</div>
       </div>
+    </div>
+    <div class="wrap">
+      <div class="how-row flip" data-reveal>
+        <div class="how-text">
+          <h3>Talk to your data</h3>
+          <p>Advice comes to you daily. Questions work the other way: ask in plain English, the way you would ask an analyst, and Daybreak queries your live numbers over MCP and answers with the chart or table, not a link to go build one.</p>
+          <p class="how-note">Try "What are our Q4 profit projections?" or "Which customers should we win back first?"</p>
+        </div>
+        <div class="how-mock"><div class="ui chat" id="chatMock" aria-label="Example chat: asking Daybreak for Q4 profit projections">
+          <div class="ui-head"><span class="ui-kicker">Ask Daybreak</span><span class="ui-title">Chat</span><span class="ui-right">Live · MCP</span></div>
+          <div class="chat-thread">
+            <div class="chat-msg user">What are our Q4 profit projections?</div>
+            <div class="chat-think" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="chat-msg bot">
+              <p>Based on your 12-month trend and current run rate, Q4 projects <b>$412K profit, up 9% on Q3</b>. Month by month:</p>
+              <div class="chat-chart" aria-hidden="true">
+                <div class="cbar"><b>$128K</b><i style="--h:62px"></i><span>Oct</span></div>
+                <div class="cbar"><b>$134K</b><i style="--h:68px"></i><span>Nov</span></div>
+                <div class="cbar"><b>$150K</b><i style="--h:84px"></i><span>Dec</span></div>
+              </div>
+              <div class="chat-src"><span class="mcpb">VIA MCP</span><span class="srcnote">Built from your Sales Overview · 12-month history</span></div>
+            </div>
+          </div>
+          <div class="chat-input" aria-hidden="true"><span class="chat-type"></span><span class="chat-caret"></span><span class="chat-ph">Ask about your data</span><span class="chat-send">↑</span></div>
     </div>
   </section>
 
@@ -896,6 +962,52 @@
     }else{
       document.querySelectorAll("[data-reveal]").forEach(n=>n.classList.add("revealed"));
     }
+  })();
+
+  (function(){
+    const chat = document.getElementById("chatMock");
+    if(!chat) return;
+    const q = "What are our Q4 profit projections?";
+    const typeEl = chat.querySelector(".chat-type");
+    const ph = chat.querySelector(".chat-ph");
+    const userMsg = chat.querySelector(".chat-msg.user");
+    const think = chat.querySelector(".chat-think");
+    const reply = chat.querySelector(".chat-msg.bot");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function showFinal(){
+      userMsg.classList.add("on"); reply.classList.add("on"); chat.classList.add("grown");
+    }
+    if(reduce || !("IntersectionObserver" in window)){ showFinal(); return; }
+    let timer = null;
+    function run(){
+      userMsg.classList.remove("on"); think.classList.remove("on"); reply.classList.remove("on"); chat.classList.remove("grown");
+      typeEl.textContent = ""; ph.classList.add("hide"); chat.classList.add("typing");
+      let i = 0;
+      timer = setInterval(()=>{
+        i++; typeEl.textContent = q.slice(0, i);
+        if(i >= q.length){
+          clearInterval(timer);
+          setTimeout(()=>{
+            chat.classList.remove("typing"); typeEl.textContent = ""; ph.classList.remove("hide");
+            userMsg.classList.add("on");
+            setTimeout(()=>{
+              think.classList.add("on");
+              setTimeout(()=>{
+                think.classList.remove("on"); reply.classList.add("on");
+                requestAnimationFrame(()=>requestAnimationFrame(()=>chat.classList.add("grown")));
+                timer = setTimeout(run, 9000);
+              }, 1500);
+            }, 400);
+          }, 500);
+        }
+      }, 42);
+    }
+    const io = new IntersectionObserver(es=>{
+      es.forEach(en=>{
+        if(en.isIntersecting){ io.disconnect(); setTimeout(run, 600); }
+      });
+    },{threshold:.35});
+    io.observe(chat);
   })();
 
   const GOOGLE_FORM_ID = "1FAIpQLSfa9CtHvBQI-y2EgTQ2nXJ-xQbM8VJCfgtkZCV927HiXuhjNQ"; // Daybreak Demo Requests
