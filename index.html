@@ -171,7 +171,7 @@
   .chat-who b{font-size:.88rem;font-weight:600;color:var(--text);line-height:1}
   .chat-who span{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:.56rem;letter-spacing:.05em;color:var(--text-faint)}
   .chat-who .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px rgba(43,227,155,.8)}
-  .chat-thread{display:flex;flex-direction:column;justify-content:flex-end;gap:12px;min-height:400px;padding:16px}
+  .chat-thread{display:flex;flex-direction:column;justify-content:flex-end;gap:12px;min-height:552px;padding:16px}
   @keyframes chatIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   .chat-user-row{display:none;flex-direction:column;align-items:flex-end;gap:4px}
   .chat-user-row.on{display:flex;animation:chatIn .35s cubic-bezier(.2,.8,.25,1) both}
@@ -223,9 +223,24 @@
   .chat-src{display:flex;align-items:center;gap:8px;margin-top:12px;padding-top:11px;border-top:1px solid var(--border)}
   .chat-src .mcpb{font-family:var(--mono);font-size:.55rem;font-weight:700;letter-spacing:.07em;padding:.3em .65em;border-radius:999px;background:rgba(43,227,155,.14);color:var(--accent);flex:none}
   .chat-src .srcnote{font-family:var(--mono);font-size:.58rem;color:var(--text-faint)}
-  .chat-chips{display:flex;flex-wrap:wrap;gap:8px;padding-left:31px;opacity:0;transform:translateY(5px);transition:opacity .4s 1.4s,transform .4s 1.4s}
-  .chat.grown .chat-chips{opacity:1;transform:none}
-  .chat-chips span{font-size:.72rem;color:var(--text-dim);border:1px solid var(--border-strong);border-radius:999px;padding:.45em 1em;background:rgba(234,243,249,.03)}
+  .chat-chips{display:flex;flex-wrap:wrap;gap:8px;padding-left:31px;opacity:0;transform:translateY(5px);pointer-events:none;transition:opacity .4s .9s,transform .4s .9s}
+  .chat.grown .chat-chips{opacity:1;transform:none;pointer-events:auto}
+  .chat-chips button{font-family:inherit;font-size:.72rem;color:var(--text-dim);border:1px solid var(--border-strong);border-radius:999px;padding:.45em 1em;background:rgba(234,243,249,.03);cursor:pointer;transition:border-color .15s ease,color .15s ease}
+  .chat-chips button:hover{border-color:rgba(43,227,155,.55);color:var(--text)}
+  .chat-ava svg{width:64%;height:64%}
+  .hbars{display:flex;flex-direction:column;gap:10px;margin:2px 0 2px}
+  .hb{display:grid;grid-template-columns:74px 1fr 52px;gap:10px;align-items:center}
+  .hb.wide{grid-template-columns:118px 1fr 56px}
+  .hb .hl{font-family:var(--mono);font-size:.56rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hb .ht{height:16px;border-radius:4px;background:rgba(234,243,249,.06);overflow:hidden}
+  .hb .ht i{display:block;height:100%;width:0;border-radius:4px;background:rgba(124,224,255,.4);transition:width .65s cubic-bezier(.2,.8,.25,1)}
+  .hb .ht i.p{background:linear-gradient(90deg,#2BE39B,rgba(43,227,155,.5))}
+  .hb:nth-child(2) .ht i{transition-delay:.12s}
+  .hb:nth-child(3) .ht i{transition-delay:.24s}
+  .chat.grown .hb .ht i{width:var(--w)}
+  .hb .hv{font-family:var(--mono);font-size:.6rem;color:var(--text);text-align:right;font-variant-numeric:tabular-nums}
+  .hb .hv.pos{color:var(--accent)}
+  .cc-note{margin-top:10px;font-family:var(--mono);font-size:.54rem;letter-spacing:.04em;color:var(--text-faint)}
   .chat-input{display:flex;align-items:center;margin:0 16px 16px;background:rgba(234,243,249,.05);border:1px solid var(--border-strong);border-radius:12px;padding:11px 14px;font-size:.82rem}
   .chat-type{color:var(--text);white-space:nowrap;overflow:hidden}
   .chat-caret{width:1.5px;height:15px;background:var(--accent);margin-left:1px;opacity:0;flex:none}
@@ -239,11 +254,13 @@
   @media(max-width:620px){
     .cc-bars{gap:5px}
     .ccb b{font-size:.48rem}
-    .chat-thread{min-height:380px;padding:13px}
+    .chat-thread{min-height:600px;padding:13px}
     .cc-title{font-size:.5rem}
     .cc-delta{white-space:nowrap;font-size:.52rem}
     .cc-legend{gap:8px}
     .cc-legend .lg,.cc-total{white-space:nowrap;font-size:.5rem}
+    .hb{grid-template-columns:60px 1fr 46px;gap:7px}
+    .hb.wide{grid-template-columns:94px 1fr 50px;gap:7px}
   }
 
   /* skeleton loader */
@@ -516,7 +533,7 @@
     .ss-bars i{animation:none !important}
     .chat-user-row.on,.chat-bot-row.on{animation:none}
     .chat-think i{animation:none}
-    .ccb i,.ccb b,.cc-dot,.cc-trend path,.chat-chips{transition:none}
+    .ccb i,.ccb b,.cc-dot,.cc-trend path,.chat-chips,.hb .ht i{transition:none}
     *{scroll-behavior:auto}
   }
 
@@ -729,11 +746,11 @@
         <div class="how-text">
           <h3>Talk to your data</h3>
           <p>Advice comes to you daily. Questions work the other way: ask in plain English, the way you would ask an analyst, and Daybreak queries your live numbers over MCP and answers with the chart or table, not a link to go build one.</p>
-          <p class="how-note">Try "What are our Q4 profit projections?" or "Which customers should we win back first?"</p>
+          <p class="how-note">The demo is live: when the follow-up chips appear, click one and it answers that too.</p>
         </div>
         <div class="how-mock"><div class="ui chat" id="chatMock" aria-label="Example chat: asking Daybreak for Q4 profit projections">
           <div class="chat-top">
-            <span class="chat-ava">D</span>
+            <span class="chat-ava"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="#06121F" stroke-width="2" stroke-linecap="round" fill="none"><line x1="12" y1="3.5" x2="12" y2="6.5"/><line x1="5.2" y1="7.2" x2="7.3" y2="9.3"/><line x1="18.8" y1="7.2" x2="16.7" y2="9.3"/></g><path d="M5.5 16.5 a6.5 6.5 0 0 1 13 0 Z" fill="#06121F"/><line x1="3" y1="16.5" x2="21" y2="16.5" stroke="#06121F" stroke-width="2" stroke-linecap="round"/><line x1="7" y1="20" x2="17" y2="20" stroke="#06121F" stroke-width="2" stroke-linecap="round" opacity=".55"/></svg></span>
             <div class="chat-who"><b>Daybreak</b><span><i class="dot"></i>Online · connected over MCP</span></div>
             <span class="ui-right">AI analyst</span>
           </div>
@@ -742,9 +759,9 @@
               <div class="chat-msg user">What are our Q4 profit projections?</div>
               <span class="chat-meta">You · just now</span>
             </div>
-            <div class="chat-bot-row think-row" aria-hidden="true"><span class="chat-ava sm">D</span><div class="chat-think"><i></i><i></i><i></i></div></div>
+            <div class="chat-bot-row think-row" aria-hidden="true"><span class="chat-ava sm"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="#06121F" stroke-width="2" stroke-linecap="round" fill="none"><line x1="12" y1="3.5" x2="12" y2="6.5"/><line x1="5.2" y1="7.2" x2="7.3" y2="9.3"/><line x1="18.8" y1="7.2" x2="16.7" y2="9.3"/></g><path d="M5.5 16.5 a6.5 6.5 0 0 1 13 0 Z" fill="#06121F"/><line x1="3" y1="16.5" x2="21" y2="16.5" stroke="#06121F" stroke-width="2" stroke-linecap="round"/><line x1="7" y1="20" x2="17" y2="20" stroke="#06121F" stroke-width="2" stroke-linecap="round" opacity=".55"/></svg></span><div class="chat-think"><i></i><i></i><i></i></div></div>
             <div class="chat-bot-row reply-row">
-              <span class="chat-ava sm">D</span>
+              <span class="chat-ava sm"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="#06121F" stroke-width="2" stroke-linecap="round" fill="none"><line x1="12" y1="3.5" x2="12" y2="6.5"/><line x1="5.2" y1="7.2" x2="7.3" y2="9.3"/><line x1="18.8" y1="7.2" x2="16.7" y2="9.3"/></g><path d="M5.5 16.5 a6.5 6.5 0 0 1 13 0 Z" fill="#06121F"/><line x1="3" y1="16.5" x2="21" y2="16.5" stroke="#06121F" stroke-width="2" stroke-linecap="round"/><line x1="7" y1="20" x2="17" y2="20" stroke="#06121F" stroke-width="2" stroke-linecap="round" opacity=".55"/></svg></span>
               <div class="chat-msg bot">
                 <span class="bot-name">Daybreak · AI analyst</span>
                 <p>I pulled your Sales Overview and ran the 12-month trend. Q4 projects <b>$412K profit, up 9% on Q3</b>, with December pacing the quarter at $150K.</p>
@@ -770,7 +787,41 @@
                 <div class="chat-src"><span class="mcpb">VIA MCP</span><span class="srcnote">orders_2026.csv · Sales Overview · 12-month history</span></div>
               </div>
             </div>
-            <div class="chat-chips" aria-hidden="true"><span>Break it down by store</span><span>What's driving December?</span></div>
+            <div class="chat-bot-row reply-row">
+              <span class="chat-ava sm"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="#06121F" stroke-width="2" stroke-linecap="round" fill="none"><line x1="12" y1="3.5" x2="12" y2="6.5"/><line x1="5.2" y1="7.2" x2="7.3" y2="9.3"/><line x1="18.8" y1="7.2" x2="16.7" y2="9.3"/></g><path d="M5.5 16.5 a6.5 6.5 0 0 1 13 0 Z" fill="#06121F"/><line x1="3" y1="16.5" x2="21" y2="16.5" stroke="#06121F" stroke-width="2" stroke-linecap="round"/><line x1="7" y1="20" x2="17" y2="20" stroke="#06121F" stroke-width="2" stroke-linecap="round" opacity=".55"/></svg></span>
+              <div class="chat-msg bot">
+                <span class="bot-name">Daybreak · AI analyst</span>
+                <p>Here is Q4 by store. <b>Downtown leads at $176K</b>, about 43% of the quarter, and the mall kiosk is the fastest grower at +12% over Q3.</p>
+                <div class="chat-chart2" aria-hidden="true">
+                  <div class="cc-head"><span class="cc-title">Q4 projected · by store</span><span class="cc-delta">3 stores</span></div>
+                  <div class="hbars">
+                    <div class="hb"><span class="hl">Downtown</span><span class="ht"><i class="p" style="--w:100%"></i></span><span class="hv">$176K</span></div>
+                    <div class="hb"><span class="hl">Westside</span><span class="ht"><i style="--w:76%"></i></span><span class="hv">$134K</span></div>
+                    <div class="hb"><span class="hl">Mall kiosk</span><span class="ht"><i style="--w:58%"></i></span><span class="hv">$102K</span></div>
+                  </div>
+                  <div class="cc-note">Mall kiosk +12% vs Q3, fastest of the three</div>
+                </div>
+                <div class="chat-src"><span class="mcpb">VIA MCP</span><span class="srcnote">orders_2026.csv · by location · Q4 projection</span></div>
+              </div>
+            </div>
+            <div class="chat-bot-row reply-row">
+              <span class="chat-ava sm"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="#06121F" stroke-width="2" stroke-linecap="round" fill="none"><line x1="12" y1="3.5" x2="12" y2="6.5"/><line x1="5.2" y1="7.2" x2="7.3" y2="9.3"/><line x1="18.8" y1="7.2" x2="16.7" y2="9.3"/></g><path d="M5.5 16.5 a6.5 6.5 0 0 1 13 0 Z" fill="#06121F"/><line x1="3" y1="16.5" x2="21" y2="16.5" stroke="#06121F" stroke-width="2" stroke-linecap="round"/><line x1="7" y1="20" x2="17" y2="20" stroke="#06121F" stroke-width="2" stroke-linecap="round" opacity=".55"/></svg></span>
+              <div class="chat-msg bot">
+                <span class="bot-name">Daybreak · AI analyst</span>
+                <p><b>December's $150K</b> is November's $134K plus three pushes. The biggest is holiday gifting, with gift cards running about twice their November pace.</p>
+                <div class="chat-chart2" aria-hidden="true">
+                  <div class="cc-head"><span class="cc-title">December vs November · drivers</span><span class="cc-delta">+$16K</span></div>
+                  <div class="hbars">
+                    <div class="hb wide"><span class="hl">Holiday gifting</span><span class="ht"><i class="p" style="--w:100%"></i></span><span class="hv pos">+$9.8K</span></div>
+                    <div class="hb wide"><span class="hl">Win-backs return</span><span class="ht"><i class="p" style="--w:47%"></i></span><span class="hv pos">+$4.6K</span></div>
+                    <div class="hb wide"><span class="hl">Organic growth</span><span class="ht"><i class="p" style="--w:16%"></i></span><span class="hv pos">+$1.6K</span></div>
+                  </div>
+                  <div class="cc-note">Gift cards at 2.1x their November average</div>
+                </div>
+                <div class="chat-src"><span class="mcpb">VIA MCP</span><span class="srcnote">orders_2026.csv · December cohorts · vs November</span></div>
+              </div>
+            </div>
+            <div class="chat-chips"><button type="button">Q4 profit projections</button><button type="button">Break it down by store</button><button type="button">What's driving December?</button></div>
           </div>
           <div class="chat-input" aria-hidden="true"><span class="chat-type"></span><span class="chat-caret"></span><span class="chat-ph">Ask about your data</span><span class="chat-send">↑</span></div>
         </div></div>
@@ -1040,49 +1091,75 @@
   (function(){
     const chat = document.getElementById("chatMock");
     if(!chat) return;
-    const q = "What are our Q4 profit projections?";
+    const turns = [
+      "What are our Q4 profit projections?",
+      "Break it down by store",
+      "What's driving December?"
+    ];
     const typeEl = chat.querySelector(".chat-type");
     const ph = chat.querySelector(".chat-ph");
     const userRow = chat.querySelector(".chat-user-row");
+    const userMsg = chat.querySelector(".chat-msg.user");
     const thinkRow = chat.querySelector(".think-row");
-    const replyRow = chat.querySelector(".reply-row");
+    const replies = Array.from(chat.querySelectorAll(".reply-row"));
+    const chips = Array.from(chat.querySelectorAll(".chat-chips button"));
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    function showFinal(){
-      userRow.classList.add("on"); replyRow.classList.add("on"); chat.classList.add("grown");
+    let timers = [], current = -1;
+    function clearTimers(){ timers.forEach(t=>{ clearTimeout(t); clearInterval(t); }); timers = []; }
+    function wait(fn, ms){ timers.push(setTimeout(fn, ms)); }
+    function updateChips(idx){ chips.forEach((c,i)=>{ c.style.display = (i===idx) ? "none" : ""; }); }
+    function showTurn(idx){
+      clearTimers(); current = idx;
+      userMsg.textContent = turns[idx];
+      userRow.classList.add("on");
+      replies.forEach((r,i)=>r.classList.toggle("on", i===idx));
+      thinkRow.classList.remove("on");
+      chat.classList.add("grown");
+      updateChips(idx);
     }
-    if(reduce || !("IntersectionObserver" in window)){ showFinal(); return; }
-    let timer = null;
-    function run(){
-      userRow.classList.remove("on"); thinkRow.classList.remove("on"); replyRow.classList.remove("on");
+    if(reduce || !("IntersectionObserver" in window)){
+      showTurn(0);
+      chips.forEach((c,i)=>c.addEventListener("click", ()=>showTurn(i)));
+      return;
+    }
+    function play(idx){
+      clearTimers(); current = idx;
+      userRow.classList.remove("on"); thinkRow.classList.remove("on");
+      replies.forEach(r=>r.classList.remove("on"));
       chat.classList.remove("grown"); chat.classList.remove("sent");
+      updateChips(idx);
+      userMsg.textContent = turns[idx];
       typeEl.textContent = ""; ph.classList.add("hide"); chat.classList.add("typing");
+      const q = turns[idx];
       let i = 0;
-      timer = setInterval(()=>{
+      const t = setInterval(()=>{
         i++; typeEl.textContent = q.slice(0, i);
         if(i >= q.length){
-          clearInterval(timer);
-          setTimeout(()=>{
+          clearInterval(t);
+          wait(()=>{
             chat.classList.add("sent");
-            setTimeout(()=>{
+            wait(()=>{
               chat.classList.remove("typing"); chat.classList.remove("sent");
               typeEl.textContent = ""; ph.classList.remove("hide");
               userRow.classList.add("on");
-              setTimeout(()=>{
+              wait(()=>{
                 thinkRow.classList.add("on");
-                setTimeout(()=>{
-                  thinkRow.classList.remove("on"); replyRow.classList.add("on");
+                wait(()=>{
+                  thinkRow.classList.remove("on"); replies[idx].classList.add("on");
                   requestAnimationFrame(()=>requestAnimationFrame(()=>chat.classList.add("grown")));
-                  timer = setTimeout(run, 11000);
-                }, 1700);
-              }, 450);
-            }, 260);
-          }, 400);
+                  wait(()=>play((idx+1)%turns.length), 6500);
+                }, 1100);
+              }, 350);
+            }, 240);
+          }, 350);
         }
-      }, 42);
+      }, 34);
+      timers.push(t);
     }
+    chips.forEach((c,i)=>c.addEventListener("click", ()=>{ if(i!==current) play(i); }));
     const io = new IntersectionObserver(es=>{
       es.forEach(en=>{
-        if(en.isIntersecting){ io.disconnect(); setTimeout(run, 600); }
+        if(en.isIntersecting){ io.disconnect(); setTimeout(()=>play(0), 400); }
       });
     },{threshold:.35});
     io.observe(chat);
