@@ -20,6 +20,7 @@
 ## Pages
 
 - [Home](https://datadoesnotlie.com/): product overview, how it works in five steps, FAQ, and demo request form.
+- [About the founder](https://datadoesnotlie.com/#about): Data Does Not Lie was founded by Cameron Patalano, author of Radical Transparency, a CRM specialist with experience across HubSpot and GoHighLevel and an AI & Automation advisor at Stature Advisors.
 - [Use cases](https://datadoesnotlie.com/blog.html): case studies.
 - [Replacing a Spreadsheet That Ran a Construction Company](https://datadoesnotlie.com/blog-construction-case-study.html): Custom Development case study, Procore integration, AI assistant over a MySQL forecasting database.
 
