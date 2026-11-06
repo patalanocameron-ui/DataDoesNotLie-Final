@@ -275,7 +275,7 @@
   .svc-main .who{color:var(--accent)}
   .lockup{display:block;font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint);margin-bottom:1.1em}
   .svc-main .btn{margin-top:0;position:relative;z-index:2}
-  .svc-shot{position:absolute;right:-30px;bottom:-24px;width:min(400px,62%);background:var(--bg);border:1px solid var(--border-strong);border-radius:var(--r-lg);padding:16px 18px;box-shadow:0 24px 60px rgba(0,0,0,.5);transform:rotate(-3deg);transform-origin:100% 100%;transition:transform .4s cubic-bezier(.2,.8,.25,1);z-index:1}
+  .svc-shot{position:absolute;right:-28px;bottom:-26px;width:min(500px,84%);background:var(--bg);border:1px solid var(--border-strong);border-radius:var(--r-lg);padding:16px 18px;box-shadow:0 24px 60px rgba(0,0,0,.5);transform:rotate(-3deg);transform-origin:100% 100%;transition:transform .4s cubic-bezier(.2,.8,.25,1);z-index:1}
   .svc-main:hover .svc-shot{transform:rotate(-1deg) translate(-4px,-6px)}
   .ss-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
   .ss-kicker{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
@@ -288,7 +288,26 @@
   .ss-kpi span{font-family:var(--mono);font-size:.5rem;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint);display:block}
   .ss-kpi b{font-weight:600;font-size:.88rem;font-variant-numeric:tabular-nums;color:var(--text)}
   .ss-kpi b.warn{color:var(--amber)}
-  .ss-bars{display:flex;align-items:flex-end;gap:4px;height:52px}
+  .ss-split{display:grid;grid-template-columns:1.35fr 1fr;gap:9px}
+  .ss-panel{background:rgba(234,243,249,.04);border:1px solid var(--border);border-radius:10px;padding:9px 11px}
+  .ss-panel small{font-family:var(--mono);font-size:.52rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);display:block;margin-bottom:6px}
+  .ss-chart{position:relative}
+  .ss-trend{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .ss-trend .tline{stroke-dasharray:320;stroke-dashoffset:320;transition:stroke-dashoffset 1.1s cubic-bezier(.2,.8,.25,1) .35s}
+  .ss-trend .thead{opacity:0;transition:opacity .3s ease 1.3s}
+  .svc-main.revealed .ss-trend .tline{stroke-dashoffset:0}
+  .svc-main.revealed .ss-trend .thead{opacity:1}
+  .ss-col{display:grid;gap:9px}
+  .ss-donut-row{display:flex;align-items:center;gap:10px}
+  .ss-donut-row small{margin-bottom:3px}
+  .ss-donut{width:52px;height:52px;border-radius:50%;flex:none;position:relative;transform:scale(.6);opacity:0;transition:transform .5s cubic-bezier(.2,.8,.25,1) .5s,opacity .4s ease .5s}
+  .svc-main.revealed .ss-donut{transform:scale(1);opacity:1}
+  .ss-donut.d1{background:conic-gradient(var(--accent) 0 46%,#52B9E9 46% 78%,#F2A93B 78% 100%)}
+  .ss-donut.d2{background:conic-gradient(var(--accent) 0 34%,rgba(234,243,249,.28) 34% 100%)}
+  .ss-donut::after{content:"";position:absolute;inset:14px;border-radius:50%;background:#0D2237}
+  .ss-leg{display:grid;gap:2px;font-family:var(--mono);font-size:.5rem;color:var(--text-dim)}
+  .ss-leg i{display:inline-block;width:6px;height:6px;border-radius:2px;margin-right:5px}
+  .ss-bars{display:flex;align-items:flex-end;gap:4px;height:92px}
   .ss-bars i{flex:1;border-radius:2px 2px 0 0;background:var(--accent);opacity:.9;transform:scaleY(0);transform-origin:bottom;transition:transform .7s cubic-bezier(.2,.8,.25,1)}
   .svc-main.revealed .ss-bars i{transform:scaleY(1)}
   .svc-main.revealed .ss-bars i:nth-child(2){transition-delay:.04s}.svc-main.revealed .ss-bars i:nth-child(3){transition-delay:.08s}.svc-main.revealed .ss-bars i:nth-child(4){transition-delay:.12s}.svc-main.revealed .ss-bars i:nth-child(5){transition-delay:.16s}.svc-main.revealed .ss-bars i:nth-child(6){transition-delay:.2s}.svc-main.revealed .ss-bars i:nth-child(7){transition-delay:.24s}.svc-main.revealed .ss-bars i:nth-child(8){transition-delay:.28s}.svc-main.revealed .ss-bars i:nth-child(9){transition-delay:.32s}.svc-main.revealed .ss-bars i:nth-child(10){transition-delay:.36s}.svc-main.revealed .ss-bars i:nth-child(11){transition-delay:.4s}.svc-main.revealed .ss-bars i:nth-child(12){transition-delay:.44s}
@@ -404,8 +423,11 @@
     [data-reveal]{opacity:1;transform:none;transition:none}
     .skel .bar{animation:none}
     .ss-live i{animation:none}
-    .ss-bars i,.svc-shot{transition:none;transform:none}
+    .ss-bars i,.svc-shot,.ss-donut,.ss-trend .tline,.ss-trend .thead{transition:none;transform:none}
     .svc-main .ss-bars i{transform:scaleY(1)}
+    .svc-main .ss-donut{opacity:1;transform:scale(1)}
+    .svc-main .ss-trend .tline{stroke-dashoffset:0}
+    .svc-main .ss-trend .thead{opacity:1}
     *{scroll-behavior:auto}
   }
 
@@ -709,7 +731,28 @@
               <div class="ss-kpi"><span>Orders</span><b>48,212</b></div>
               <div class="ss-kpi"><span>Repeat</span><b class="warn">33.8%</b></div>
             </div>
-            <div class="ss-bars"><i style="height:52%"></i><i style="height:56%"></i><i style="height:61%"></i><i style="height:66%"></i><i style="height:68%"></i><i style="height:72%"></i><i style="height:65%"></i><i style="height:70%"></i><i style="height:63%"></i><i style="height:74%"></i><i style="height:82%"></i><i style="height:76%"></i></div>
+            <div class="ss-split">
+              <div class="ss-panel">
+                <small>Revenue by month</small>
+                <div class="ss-chart">
+                  <div class="ss-bars"><i style="height:38%"></i><i style="height:45%"></i><i style="height:42%"></i><i style="height:52%"></i><i style="height:49%"></i><i style="height:58%"></i><i style="height:55%"></i><i style="height:64%"></i><i style="height:60%"></i><i style="height:70%"></i><i style="height:78%"></i><i style="height:86%"></i></div>
+                  <svg class="ss-trend" viewBox="0 0 232 92" preserveAspectRatio="none">
+                    <path class="tline" d="M8 62 C50 58 80 54 116 44 S190 24 216 14" fill="none" stroke="#7CE0FF" stroke-width="2.6" stroke-linecap="round"/>
+                    <path class="thead" d="M204 10 L218 13 L212 26" fill="none" stroke="#7CE0FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="ss-col">
+                <div class="ss-panel ss-donut-row">
+                  <div class="ss-donut d1"></div>
+                  <div><small>Channel mix</small><div class="ss-leg"><span><i style="background:var(--accent)"></i>In-store 46%</span><span><i style="background:#52B9E9"></i>Online 32%</span><span><i style="background:#F2A93B"></i>Other 22%</span></div></div>
+                </div>
+                <div class="ss-panel ss-donut-row">
+                  <div class="ss-donut d2"></div>
+                  <div><small>Customers</small><div class="ss-leg"><span><i style="background:var(--accent)"></i>Repeat 34%</span><span><i style="background:rgba(234,243,249,.3)"></i>New 66%</span></div></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="svc-col">
