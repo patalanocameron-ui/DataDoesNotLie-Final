@@ -163,40 +163,88 @@
   .maps .mrow .to{color:var(--accent)}
   .maps .mrow b{color:var(--text-dim);font-weight:400}
   /* chat mock (Talk to your data) */
-  .chat{display:flex;flex-direction:column}
-  .chat-thread{display:flex;flex-direction:column;justify-content:flex-end;gap:10px;min-height:300px}
-  .chat-msg{border-radius:var(--r-md);padding:10px 14px;font-size:.84rem;line-height:1.55;display:none}
-  .chat-msg.on{display:block;animation:chatIn .35s cubic-bezier(.2,.8,.25,1) both}
-  .chat-msg.user{align-self:flex-end;max-width:85%;background:rgba(43,227,155,.13);border:1px solid rgba(43,227,155,.32);color:var(--text)}
-  .chat-msg.bot{align-self:flex-start;width:100%;background:rgba(234,243,249,.04);border:1px solid var(--border);color:var(--text-dim)}
-  .chat-msg.bot p{margin:0 0 12px;font-size:.84rem;color:var(--text-dim)}
-  .chat-msg.bot p b{color:var(--text);font-weight:600}
+  .ui.chat{padding:0;display:flex;flex-direction:column;overflow:hidden}
+  .chat-top{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--border);background:rgba(234,243,249,.03)}
+  .chat-ava{width:30px;height:30px;flex:none;border-radius:9px;background:linear-gradient(135deg,#2BE39B,#52B9E9);color:#06121F;font-weight:700;font-size:.85rem;display:grid;place-items:center}
+  .chat-ava.sm{width:22px;height:22px;border-radius:7px;font-size:.62rem;margin-top:3px}
+  .chat-who{display:flex;flex-direction:column;gap:3px}
+  .chat-who b{font-size:.88rem;font-weight:600;color:var(--text);line-height:1}
+  .chat-who span{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:.56rem;letter-spacing:.05em;color:var(--text-faint)}
+  .chat-who .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px rgba(43,227,155,.8)}
+  .chat-thread{display:flex;flex-direction:column;justify-content:flex-end;gap:12px;min-height:400px;padding:16px}
   @keyframes chatIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  .chat-think{display:none;align-self:flex-start;padding:13px 16px;background:rgba(234,243,249,.04);border:1px solid var(--border);border-radius:var(--r-md)}
-  .chat-think.on{display:flex;gap:5px;animation:chatIn .25s ease both}
+  .chat-user-row{display:none;flex-direction:column;align-items:flex-end;gap:4px}
+  .chat-user-row.on{display:flex;animation:chatIn .35s cubic-bezier(.2,.8,.25,1) both}
+  .chat-msg.user{max-width:85%;background:linear-gradient(135deg,rgba(43,227,155,.18),rgba(82,185,233,.12));border:1px solid rgba(43,227,155,.3);color:var(--text);border-radius:14px 14px 4px 14px;padding:10px 14px;font-size:.84rem;line-height:1.5}
+  .chat-meta{font-family:var(--mono);font-size:.54rem;letter-spacing:.05em;color:var(--text-faint);padding-right:2px}
+  .chat-bot-row{display:none;gap:9px;align-items:flex-start}
+  .chat-bot-row.on{display:flex;animation:chatIn .3s cubic-bezier(.2,.8,.25,1) both}
+  .chat-think{display:flex;gap:5px;padding:13px 15px;background:rgba(234,243,249,.045);border:1px solid var(--border);border-radius:4px 14px 14px 14px}
   .chat-think i{width:6px;height:6px;border-radius:50%;background:var(--text-faint);animation:thinkDot 1s ease-in-out infinite}
   .chat-think i:nth-child(2){animation-delay:.15s}
   .chat-think i:nth-child(3){animation-delay:.3s}
   @keyframes thinkDot{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
-  .chat-chart{display:flex;gap:14px;align-items:flex-end;height:118px;padding:2px 2px 0}
-  .chat-chart .cbar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;height:100%}
-  .chat-chart .cbar b{font-family:var(--mono);font-size:.6rem;font-weight:500;color:var(--text);font-variant-numeric:tabular-nums}
-  .chat-chart .cbar i{width:100%;flex:none;border-radius:3px 3px 0 0;background:var(--accent);opacity:.9;height:5px;transition:height .7s cubic-bezier(.2,.8,.25,1)}
-  .chat-chart .cbar:nth-child(2) i{transition-delay:.12s}
-  .chat-chart .cbar:nth-child(3) i{transition-delay:.24s}
-  .chat.grown .cbar i{height:var(--h)}
-  .chat-chart .cbar span{font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint)}
+  .chat-msg.bot{flex:1;min-width:0;background:rgba(234,243,249,.045);border:1px solid var(--border);border-radius:4px 14px 14px 14px;padding:12px 14px;color:var(--text-dim)}
+  .bot-name{display:block;font-family:var(--mono);font-size:.54rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:7px}
+  .chat-msg.bot p{margin:0 0 12px;font-size:.83rem;line-height:1.55;color:var(--text-dim)}
+  .chat-msg.bot p b{color:var(--text);font-weight:600}
+  /* elaborate chart */
+  .chat-chart2{background:rgba(8,28,48,.55);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 12px 10px}
+  .cc-head{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
+  .cc-title{font-family:var(--mono);font-size:.56rem;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint)}
+  .cc-delta{margin-left:auto;font-family:var(--mono);font-size:.58rem;font-weight:700;color:var(--accent);background:rgba(43,227,155,.12);border-radius:999px;padding:.25em .6em}
+  .cc-plot{position:relative;height:132px;margin:4px 0 18px}
+  .cc-area{position:absolute;top:4px;right:2px;bottom:0;left:40px}
+  .cc-gridline{position:absolute;left:0;right:0;border-top:1px dashed rgba(234,243,249,.09)}
+  .cc-gridline span{position:absolute;left:-40px;top:-4px;width:34px;text-align:right;font-family:var(--mono);font-size:.52rem;color:var(--text-faint)}
+  .cc-bars{position:absolute;inset:0;display:flex;align-items:flex-end;gap:9px}
+  .ccb{flex:1;position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end}
+  .ccb i{display:block;width:100%;height:var(--h);border-radius:3px 3px 0 0;transform:scaleY(0);transform-origin:bottom;transition:transform .55s cubic-bezier(.2,.8,.25,1)}
+  .ccb:nth-child(1) i{transition-delay:.05s}.ccb:nth-child(2) i{transition-delay:.12s}.ccb:nth-child(3) i{transition-delay:.19s}.ccb:nth-child(4) i{transition-delay:.26s}.ccb:nth-child(5) i{transition-delay:.33s}.ccb:nth-child(6) i{transition-delay:.4s}
+  .chat.grown .ccb i{transform:scaleY(1)}
+  .ccb.a i{background:rgba(124,224,255,.22);border:1px solid rgba(124,224,255,.28);border-bottom:none}
+  .ccb.p i{background:linear-gradient(180deg,#2BE39B,rgba(43,227,155,.45))}
+  .ccb b{position:absolute;bottom:calc(var(--h) + 9px);left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.54rem;font-weight:500;color:var(--text);white-space:nowrap;opacity:0;transition:opacity .4s .7s}
+  .chat.grown .ccb b{opacity:1}
+  .ccb span{position:absolute;top:100%;margin-top:5px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:.52rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text-faint)}
+  .cc-trend{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+  .cc-trend path{fill:none;stroke:rgba(234,243,249,.75);stroke-width:1.4;vector-effect:non-scaling-stroke;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 1s .45s ease}
+  .chat.grown .cc-trend path{stroke-dashoffset:0}
+  .cc-dot{position:absolute;width:6px;height:6px;border-radius:50%;background:#EAF3F9;border:1.5px solid #0B2540;transform:translate(-50%,50%);opacity:0;transition:opacity .3s}
+  .cc-dot:nth-of-type(1){transition-delay:.55s}.cc-dot:nth-of-type(2){transition-delay:.7s}.cc-dot:nth-of-type(3){transition-delay:.85s}.cc-dot:nth-of-type(4){transition-delay:1s}.cc-dot:nth-of-type(5){transition-delay:1.15s}.cc-dot:nth-of-type(6){transition-delay:1.3s}
+  .cc-dot.end{background:var(--accent);box-shadow:0 0 0 3px rgba(43,227,155,.25),0 0 10px rgba(43,227,155,.6)}
+  .chat.grown .cc-dot{opacity:1}
+  .cc-legend{display:flex;align-items:center;gap:14px;margin-top:2px}
+  .cc-legend .lg{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:.54rem;letter-spacing:.05em;color:var(--text-faint)}
+  .cc-legend .lg i{width:8px;height:8px;border-radius:2px}
+  .cc-legend .lg.a i{background:rgba(124,224,255,.35)}
+  .cc-legend .lg.p i{background:var(--accent)}
+  .cc-total{margin-left:auto;font-family:var(--mono);font-size:.56rem;color:var(--text)}
   .chat-src{display:flex;align-items:center;gap:8px;margin-top:12px;padding-top:11px;border-top:1px solid var(--border)}
   .chat-src .mcpb{font-family:var(--mono);font-size:.55rem;font-weight:700;letter-spacing:.07em;padding:.3em .65em;border-radius:999px;background:rgba(43,227,155,.14);color:var(--accent);flex:none}
-  .chat-src .srcnote{font-family:var(--mono);font-size:.6rem;color:var(--text-faint)}
-  .chat-input{display:flex;align-items:center;margin-top:14px;background:rgba(234,243,249,.05);border:1px solid var(--border-strong);border-radius:var(--r-md);padding:11px 14px;font-size:.82rem}
+  .chat-src .srcnote{font-family:var(--mono);font-size:.58rem;color:var(--text-faint)}
+  .chat-chips{display:flex;flex-wrap:wrap;gap:8px;padding-left:31px;opacity:0;transform:translateY(5px);transition:opacity .4s 1.4s,transform .4s 1.4s}
+  .chat.grown .chat-chips{opacity:1;transform:none}
+  .chat-chips span{font-size:.72rem;color:var(--text-dim);border:1px solid var(--border-strong);border-radius:999px;padding:.45em 1em;background:rgba(234,243,249,.03)}
+  .chat-input{display:flex;align-items:center;margin:0 16px 16px;background:rgba(234,243,249,.05);border:1px solid var(--border-strong);border-radius:12px;padding:11px 14px;font-size:.82rem}
   .chat-type{color:var(--text);white-space:nowrap;overflow:hidden}
   .chat-caret{width:1.5px;height:15px;background:var(--accent);margin-left:1px;opacity:0;flex:none}
   .chat.typing .chat-caret{opacity:1;animation:caretBlink .9s step-end infinite}
   @keyframes caretBlink{50%{opacity:0}}
   .chat-ph{color:var(--text-faint)}
   .chat-ph.hide{display:none}
-  .chat-send{margin-left:auto;width:24px;height:24px;flex:none;border-radius:7px;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-size:.78rem;font-weight:600}
+  .chat-send{margin-left:auto;width:26px;height:26px;flex:none;border-radius:8px;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-size:.8rem;font-weight:600;transition:transform .15s ease,opacity .15s ease;opacity:.55}
+  .chat.typing .chat-send{opacity:1}
+  .chat.sent .chat-send{transform:scale(.82)}
+  @media(max-width:620px){
+    .cc-bars{gap:5px}
+    .ccb b{font-size:.48rem}
+    .chat-thread{min-height:380px;padding:13px}
+    .cc-title{font-size:.5rem}
+    .cc-delta{white-space:nowrap;font-size:.52rem}
+    .cc-legend{gap:8px}
+    .cc-legend .lg,.cc-total{white-space:nowrap;font-size:.5rem}
+  }
 
   /* skeleton loader */
   .also{margin-top:12px}
@@ -466,9 +514,9 @@
     .svc-main .ss-trend .tline{stroke-dashoffset:0}
     .svc-main .ss-trend .thead{opacity:1}
     .ss-bars i{animation:none !important}
-    .chat-msg.on,.chat-think.on{animation:none}
+    .chat-user-row.on,.chat-bot-row.on{animation:none}
     .chat-think i{animation:none}
-    .chat-chart .cbar i{transition:none}
+    .ccb i,.ccb b,.cc-dot,.cc-trend path,.chat-chips{transition:none}
     *{scroll-behavior:auto}
   }
 
@@ -609,9 +657,6 @@
         </div></div>
       </div>
 
-        </div></div>
-      </div>
-
       <div class="how-row flip" data-reveal>
         <div class="how-text">
           <span class="how-num">04</span>
@@ -687,21 +732,49 @@
           <p class="how-note">Try "What are our Q4 profit projections?" or "Which customers should we win back first?"</p>
         </div>
         <div class="how-mock"><div class="ui chat" id="chatMock" aria-label="Example chat: asking Daybreak for Q4 profit projections">
-          <div class="ui-head"><span class="ui-kicker">Ask Daybreak</span><span class="ui-title">Chat</span><span class="ui-right">Live · MCP</span></div>
+          <div class="chat-top">
+            <span class="chat-ava">D</span>
+            <div class="chat-who"><b>Daybreak</b><span><i class="dot"></i>Online · connected over MCP</span></div>
+            <span class="ui-right">AI analyst</span>
+          </div>
           <div class="chat-thread">
-            <div class="chat-msg user">What are our Q4 profit projections?</div>
-            <div class="chat-think" aria-hidden="true"><i></i><i></i><i></i></div>
-            <div class="chat-msg bot">
-              <p>Based on your 12-month trend and current run rate, Q4 projects <b>$412K profit, up 9% on Q3</b>. Month by month:</p>
-              <div class="chat-chart" aria-hidden="true">
-                <div class="cbar"><b>$128K</b><i style="--h:62px"></i><span>Oct</span></div>
-                <div class="cbar"><b>$134K</b><i style="--h:68px"></i><span>Nov</span></div>
-                <div class="cbar"><b>$150K</b><i style="--h:84px"></i><span>Dec</span></div>
-              </div>
-              <div class="chat-src"><span class="mcpb">VIA MCP</span><span class="srcnote">Built from your Sales Overview · 12-month history</span></div>
+            <div class="chat-user-row">
+              <div class="chat-msg user">What are our Q4 profit projections?</div>
+              <span class="chat-meta">You · just now</span>
             </div>
+            <div class="chat-bot-row think-row" aria-hidden="true"><span class="chat-ava sm">D</span><div class="chat-think"><i></i><i></i><i></i></div></div>
+            <div class="chat-bot-row reply-row">
+              <span class="chat-ava sm">D</span>
+              <div class="chat-msg bot">
+                <span class="bot-name">Daybreak · AI analyst</span>
+                <p>I pulled your Sales Overview and ran the 12-month trend. Q4 projects <b>$412K profit, up 9% on Q3</b>, with December pacing the quarter at $150K.</p>
+                <div class="chat-chart2" aria-hidden="true">
+                  <div class="cc-head"><span class="cc-title">Profit by month · Jul–Dec</span><span class="cc-delta">▲ 9% vs Q3</span></div>
+                  <div class="cc-plot"><div class="cc-area">
+                    <div class="cc-gridline" style="bottom:93.75%"><span>$150K</span></div>
+                    <div class="cc-gridline" style="bottom:62.5%"><span>$100K</span></div>
+                    <div class="cc-gridline" style="bottom:31.25%"><span>$50K</span></div>
+                    <div class="cc-bars">
+                      <div class="ccb a" style="--h:73.75%"><i style="--h:73.75%"></i><span>Jul</span></div>
+                      <div class="ccb a" style="--h:77.5%"><i style="--h:77.5%"></i><span>Aug</span></div>
+                      <div class="ccb a" style="--h:85%"><i style="--h:85%"></i><span>Sep</span></div>
+                      <div class="ccb p" style="--h:80%"><b>$128K</b><i style="--h:80%"></i><span>Oct</span></div>
+                      <div class="ccb p" style="--h:83.75%"><b>$134K</b><i style="--h:83.75%"></i><span>Nov</span></div>
+                      <div class="ccb p" style="--h:93.75%"><b>$150K</b><i style="--h:93.75%"></i><span>Dec</span></div>
+                    </div>
+                    <svg class="cc-trend" viewBox="0 0 100 100" preserveAspectRatio="none"><path pathLength="100" d="M8.3,26.3 L25,22.5 L41.7,15 L58.3,20 L75,16.3 L91.7,6.3"/></svg>
+                    <i class="cc-dot" style="left:8.3%;bottom:73.75%"></i><i class="cc-dot" style="left:25%;bottom:77.5%"></i><i class="cc-dot" style="left:41.7%;bottom:85%"></i><i class="cc-dot" style="left:58.3%;bottom:80%"></i><i class="cc-dot" style="left:75%;bottom:83.75%"></i><i class="cc-dot end" style="left:91.7%;bottom:93.75%"></i>
+                  </div></div>
+                  <div class="cc-legend"><span class="lg a"><i></i>Q3 actual</span><span class="lg p"><i></i>Q4 projected</span><span class="cc-total">Q4 total · $412K</span></div>
+                </div>
+                <div class="chat-src"><span class="mcpb">VIA MCP</span><span class="srcnote">orders_2026.csv · Sales Overview · 12-month history</span></div>
+              </div>
+            </div>
+            <div class="chat-chips" aria-hidden="true"><span>Break it down by store</span><span>What's driving December?</span></div>
           </div>
           <div class="chat-input" aria-hidden="true"><span class="chat-type"></span><span class="chat-caret"></span><span class="chat-ph">Ask about your data</span><span class="chat-send">↑</span></div>
+        </div></div>
+      </div>
     </div>
   </section>
 
@@ -970,17 +1043,18 @@
     const q = "What are our Q4 profit projections?";
     const typeEl = chat.querySelector(".chat-type");
     const ph = chat.querySelector(".chat-ph");
-    const userMsg = chat.querySelector(".chat-msg.user");
-    const think = chat.querySelector(".chat-think");
-    const reply = chat.querySelector(".chat-msg.bot");
+    const userRow = chat.querySelector(".chat-user-row");
+    const thinkRow = chat.querySelector(".think-row");
+    const replyRow = chat.querySelector(".reply-row");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     function showFinal(){
-      userMsg.classList.add("on"); reply.classList.add("on"); chat.classList.add("grown");
+      userRow.classList.add("on"); replyRow.classList.add("on"); chat.classList.add("grown");
     }
     if(reduce || !("IntersectionObserver" in window)){ showFinal(); return; }
     let timer = null;
     function run(){
-      userMsg.classList.remove("on"); think.classList.remove("on"); reply.classList.remove("on"); chat.classList.remove("grown");
+      userRow.classList.remove("on"); thinkRow.classList.remove("on"); replyRow.classList.remove("on");
+      chat.classList.remove("grown"); chat.classList.remove("sent");
       typeEl.textContent = ""; ph.classList.add("hide"); chat.classList.add("typing");
       let i = 0;
       timer = setInterval(()=>{
@@ -988,17 +1062,21 @@
         if(i >= q.length){
           clearInterval(timer);
           setTimeout(()=>{
-            chat.classList.remove("typing"); typeEl.textContent = ""; ph.classList.remove("hide");
-            userMsg.classList.add("on");
+            chat.classList.add("sent");
             setTimeout(()=>{
-              think.classList.add("on");
+              chat.classList.remove("typing"); chat.classList.remove("sent");
+              typeEl.textContent = ""; ph.classList.remove("hide");
+              userRow.classList.add("on");
               setTimeout(()=>{
-                think.classList.remove("on"); reply.classList.add("on");
-                requestAnimationFrame(()=>requestAnimationFrame(()=>chat.classList.add("grown")));
-                timer = setTimeout(run, 9000);
-              }, 1500);
-            }, 400);
-          }, 500);
+                thinkRow.classList.add("on");
+                setTimeout(()=>{
+                  thinkRow.classList.remove("on"); replyRow.classList.add("on");
+                  requestAnimationFrame(()=>requestAnimationFrame(()=>chat.classList.add("grown")));
+                  timer = setTimeout(run, 11000);
+                }, 1700);
+              }, 450);
+            }, 260);
+          }, 400);
         }
       }, 42);
     }
