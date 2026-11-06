@@ -162,6 +162,44 @@
   .maps .mrow{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;font-family:var(--mono);font-size:.64rem;color:var(--text-faint)}
   .maps .mrow .to{color:var(--accent)}
   .maps .mrow b{color:var(--text-dim);font-weight:400}
+  /* hero DAYBREAK wordmark */
+  .hero-logo{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:30px}
+  .hl-row{display:flex;align-items:center;justify-content:center;font-size:clamp(2.3rem,6vw,3.6rem);min-height:1.1em}
+  .hl-type{font-family:var(--mono);font-weight:700;letter-spacing:.18em;line-height:1;white-space:nowrap;background:linear-gradient(90deg,#EAF3F9 8%,#2BE39B 58%,#52B9E9 96%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hl-caret{width:.09em;height:.85em;background:var(--accent);margin-left:.1em;flex:none;animation:caretBlink .85s step-end infinite;box-shadow:0 0 10px rgba(43,227,155,.6)}
+  .hl-caret.done{animation:none;opacity:0;transition:opacity .8s ease}
+  .hl-by{font-family:var(--mono);font-size:.64rem;font-weight:600;letter-spacing:.3em;color:var(--text-faint)}
+
+  /* advisory workflow sketch */
+  .narr button.chip{appearance:none;-webkit-appearance:none;font:inherit;cursor:pointer}
+  .wf-sketch{display:none}
+  .narr.sketching .adv-h,.narr.sketching dl,.narr.sketching .act{display:none}
+  .sk-h{display:none}
+  .narr.sketching .sk-h{display:block}
+  .narr.sketching .wf-sketch{display:block;animation:chatIn .3s ease both}
+  .wf-sketch svg{width:100%;height:auto;display:block;margin-top:4px}
+  .wf-sketch rect.nd,.wf-sketch polygon.nd{fill:#FBFDFE;stroke:#0E2A47;stroke-width:1.4}
+  .wf-sketch .goal rect.nd{stroke:#0A7A55;fill:rgba(43,227,155,.09)}
+  .wf-sketch text.k{font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;fill:#0A7A55;font-weight:700}
+  .wf-sketch text.k.amb{fill:#B45309}
+  .wf-sketch text.t{font-size:12px;fill:#0E2A47;font-weight:500}
+  .wf-sketch text.bl{font-family:var(--mono);font-size:9px;font-weight:700}
+  .wf-sketch text.bl.y{fill:#0A7A55}
+  .wf-sketch text.bl.n{fill:#B45309}
+  .wf-sketch path.ln{fill:none;stroke:rgba(14,42,71,.45);stroke-width:1.4}
+  .wf-sketch .wpill rect{fill:#F1F6FA;stroke:rgba(14,42,71,.22);stroke-width:1}
+  .wf-sketch .wpill text{font-family:var(--mono);font-size:8.5px;fill:#486581}
+  .wsk{opacity:0;transition:opacity .25s ease var(--d),transform .35s cubic-bezier(.2,.8,.25,1) var(--d)}
+  g.wsk{transform:translateY(6px)}
+  .narr.drawing .wsk{opacity:1}
+  .narr.drawing g.wsk{transform:translateY(0)}
+  path.wsk{stroke-dasharray:1;stroke-dashoffset:1;transition:opacity .2s ease var(--d),stroke-dashoffset .45s ease var(--d)}
+  .narr.drawing path.wsk{stroke-dashoffset:0}
+  .wf-sketch .skf{display:flex;align-items:center;gap:10px;margin-top:16px;opacity:0;transition:opacity .4s ease 3.5s;font-size:.88rem;color:#0E2A47;font-weight:500}
+  .narr.drawing .skf{opacity:1}
+  .skf .ok{width:20px;height:20px;flex:none;border-radius:50%;background:var(--accent);color:#06121F;display:grid;place-items:center;font-size:.65rem;font-weight:700}
+  .skf .back{margin-left:auto;appearance:none;border:0;background:none;font:inherit;font-size:.8rem;color:#0A7A55;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
   /* chat mock (Talk to your data) */
   .ui.chat{padding:0;display:flex;flex-direction:column;overflow:hidden}
   .chat-top{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--border);background:rgba(234,243,249,.03)}
@@ -534,6 +572,9 @@
     .chat-user-row.on,.chat-bot-row.on{animation:none}
     .chat-think i{animation:none}
     .ccb i,.ccb b,.cc-dot,.cc-trend path,.chat-chips,.hb .ht i{transition:none}
+    .hl-caret{animation:none;opacity:0}
+    .wsk,path.wsk,.wf-sketch .skf{transition:none}
+    .narr.sketching .wf-sketch{animation:none}
     *{scroll-behavior:auto}
   }
 
@@ -574,8 +615,11 @@
   <!-- ============ HERO ============ -->
   <div class="hero">
     <div class="hero-inner">
-      <span class="badge accent"><span class="dot" aria-hidden="true"></span>Daybreak · The AI-powered CRM for retail</span>
-      <h1>Upload your sales data. Know exactly what to do next.</h1>
+      <div class="hero-logo" aria-label="Daybreak by Data Does Not Lie">
+        <span class="hl-row"><span class="hl-type" id="hlType">DAYBREAK</span><span class="hl-caret" id="hlCaret" aria-hidden="true"></span></span>
+        <span class="hl-by">BY DATA DOES NOT LIE</span>
+      </div>
+      <h1>Upload your data. Know exactly what to do next.</h1>
       <p class="sub">Connect Square or Shopify, or upload a CSV. Daybreak turns your sales data into clear reports, plain-language recommendations, and email and SMS follow-up that runs itself.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary btn-lg" href="#demo">Get a demo</a>
@@ -726,18 +770,45 @@
           <div class="step"><span class="k">Prove</span><div><h4>It cites its sources</h4><p>Every number traces back to your data. Agree, act, or dismiss with a reason. You stay in charge.</p></div></div>
         </div>
       </div>
-      <div class="narr" data-reveal aria-label="Example AI recommendation">
+      <div class="narr" id="advCard" data-reveal aria-label="Example AI recommendation">
         <div class="stamp">
           <span class="badges"><span class="nbadge adv">ADVISE</span><span class="nbadge mcp tip" tabindex="0" data-tip="DDNL connects to the tools you already use through MCP, an open standard for linking AI to software.">VIA MCP</span></span>
           <span class="right">Daily run · 06:00</span>
         </div>
-        <h3>Downtown's repeat customers are slipping</h3>
+        <h3 class="adv-h">Downtown's repeat customers are slipping</h3>
+        <h3 class="sk-h">Win-back workflow · Lapsed VIPs</h3>
         <dl>
           <div><dt>What changed</dt><dd>Repeat rate fell to 26.0% over the last 90 days, 8 points under its 12-month average.</dd></div>
           <div><dt>Why it matters</dt><dd>312 high-value customers haven't ordered in 60+ days. At $410 a year each, about $128K is at risk.</dd></div>
           <div><dt>Recommended action</dt><dd>Start a win-back workflow: email today, SMS follow-up in 2 days.</dd></div>
         </dl>
-        <div class="act"><span class="chip go">Create win-back workflow →</span><span class="chip">Dismiss with reason</span></div>
+        <div class="act"><button type="button" class="chip go" id="advGo">Create win-back workflow →</button><span class="chip">Dismiss with reason</span></div>
+        <div class="wf-sketch" aria-label="Win-back workflow being sketched out">
+          <svg viewBox="0 0 520 470" role="img" aria-hidden="true">
+            <defs><marker id="skArr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 Z" fill="rgba(14,42,71,.55)"/></marker></defs>
+            <g class="wsk" style="--d:0s"><rect class="nd" x="20" y="12" width="220" height="44" rx="10"/><text class="k" x="130" y="30" text-anchor="middle">TRIGGER</text><text class="t" x="130" y="46" text-anchor="middle">Tag added: Lapsed VIP</text></g>
+            <path class="wsk ln" pathLength="1" style="--d:.25s" d="M130,56 V84" marker-end="url(#skArr)"/>
+            <g class="wsk" style="--d:.45s"><rect class="nd" x="20" y="84" width="220" height="44" rx="10"/><text class="k" x="130" y="102" text-anchor="middle">EMAIL</text><text class="t" x="130" y="118" text-anchor="middle">We saved your spot</text></g>
+            <path class="wsk ln" pathLength="1" style="--d:.7s" d="M130,128 V156" marker-end="url(#skArr)"/>
+            <g class="wsk wpill" style="--d:.85s"><rect x="158" y="131" width="78" height="19" rx="9.5"/><text x="197" y="144" text-anchor="middle">wait 2 days</text></g>
+            <g class="wsk" style="--d:.95s"><polygon class="nd" points="130,156 215,186 130,216 45,186"/><text class="t" x="130" y="190" text-anchor="middle">Ordered?</text></g>
+            <path class="wsk ln" pathLength="1" style="--d:1.2s" d="M215,186 H300" marker-end="url(#skArr)"/>
+            <text class="wsk bl y" style="--d:1.3s" x="250" y="178" text-anchor="middle">YES</text>
+            <g class="wsk goal" style="--d:1.45s"><rect class="nd" x="300" y="164" width="200" height="44" rx="10"/><text class="k" x="400" y="182" text-anchor="middle">GOAL REACHED</text><text class="t" x="400" y="198" text-anchor="middle">Customer ordered · exit</text></g>
+            <path class="wsk ln" pathLength="1" style="--d:1.65s" d="M130,216 V244" marker-end="url(#skArr)"/>
+            <text class="wsk bl n" style="--d:1.75s" x="146" y="236">NO</text>
+            <g class="wsk" style="--d:1.9s"><rect class="nd" x="20" y="244" width="220" height="44" rx="10"/><text class="k amb" x="130" y="262" text-anchor="middle">SMS</text><text class="t" x="130" y="278" text-anchor="middle">15% code · opt-outs handled</text></g>
+            <path class="wsk ln" pathLength="1" style="--d:2.15s" d="M130,288 V316" marker-end="url(#skArr)"/>
+            <g class="wsk wpill" style="--d:2.3s"><rect x="158" y="291" width="78" height="19" rx="9.5"/><text x="197" y="304" text-anchor="middle">wait 3 days</text></g>
+            <g class="wsk" style="--d:2.4s"><polygon class="nd" points="130,316 215,346 130,376 45,346"/><text class="t" x="130" y="350" text-anchor="middle">Ordered?</text></g>
+            <path class="wsk ln" pathLength="1" style="--d:2.65s" d="M215,346 H400 V208" marker-end="url(#skArr)"/>
+            <text class="wsk bl y" style="--d:2.8s" x="300" y="338" text-anchor="middle">YES</text>
+            <path class="wsk ln" pathLength="1" style="--d:2.95s" d="M130,376 V412" marker-end="url(#skArr)"/>
+            <text class="wsk bl n" style="--d:3.05s" x="146" y="398">NO</text>
+            <g class="wsk" style="--d:3.15s"><rect class="nd" x="20" y="412" width="220" height="44" rx="10"/><text class="k" x="130" y="430" text-anchor="middle">FALLBACK</text><text class="t" x="130" y="446" text-anchor="middle">Pause + flag for review</text></g>
+          </svg>
+          <div class="skf"><span class="ok">✓</span>Workflow live · 312 Lapsed VIPs enrolled<button type="button" class="back" id="advBack">↺ Back to the recommendation</button></div>
+        </div>
         <div class="src">grounded in: orders_2026.csv · view: Lapsed VIPs · Downtown · illustrative demo data</div>
       </div>
     </div>
@@ -1086,6 +1157,33 @@
     }else{
       document.querySelectorAll("[data-reveal]").forEach(n=>n.classList.add("revealed"));
     }
+  })();
+
+  (function(){
+    const el = document.getElementById("hlType"), caret = document.getElementById("hlCaret");
+    if(!el) return;
+    const word = "DAYBREAK";
+    if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+      el.textContent = word; if(caret) caret.style.display = "none"; return;
+    }
+    el.textContent = "";
+    let i = 0;
+    setTimeout(function step(){
+      i++; el.textContent = word.slice(0, i);
+      if(i < word.length) setTimeout(step, 115);
+      else setTimeout(()=>{ if(caret) caret.classList.add("done"); }, 2800);
+    }, 450);
+  })();
+
+  (function(){
+    const card = document.getElementById("advCard");
+    if(!card) return;
+    const go = document.getElementById("advGo"), back = document.getElementById("advBack");
+    if(go) go.addEventListener("click", ()=>{
+      card.classList.add("sketching");
+      requestAnimationFrame(()=>requestAnimationFrame(()=>card.classList.add("drawing")));
+    });
+    if(back) back.addEventListener("click", ()=>{ card.classList.remove("sketching"); card.classList.remove("drawing"); });
   })();
 
   (function(){
