@@ -227,6 +227,9 @@
 
   /* hero DAYBREAK wordmark */
   .hero-logo{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:30px}
+  .hl-mark{width:clamp(58px,8vw,84px);height:auto;margin-bottom:6px;filter:drop-shadow(0 6px 24px rgba(43,227,155,.25))}
+  .svc-logo{position:absolute;top:20px;right:20px;width:44px;height:44px;z-index:2;opacity:.95}
+  @media(max-width:860px){.svc-logo{width:36px;height:36px;top:16px;right:16px}}
   .hl-row{display:flex;align-items:center;justify-content:center;font-size:clamp(2.3rem,6vw,3.6rem);min-height:1.1em}
   .hl-type{font-family:var(--mono);font-weight:700;letter-spacing:.18em;line-height:1;white-space:nowrap;color:#fff}
   .hl-by{font-family:var(--mono);font-size:.64rem;font-weight:600;letter-spacing:.3em;color:var(--text-faint)}
@@ -678,6 +681,7 @@
   <div class="hero">
     <div class="hero-inner">
       <div class="hero-logo" aria-label="Daybreak by Data Does Not Lie">
+        <img class="hl-mark" src="assets/daybreak-logo.png" alt="" width="512" height="512">
         <span class="hl-row"><span class="hl-type" id="hlType">DAYBREAK</span></span>
         <span class="hl-by">BY DATA DOES NOT LIE</span>
       </div>
@@ -1034,6 +1038,7 @@
       </div>
       <div class="svc-grid">
         <div class="svc svc-main" data-reveal>
+          <img class="svc-logo" src="assets/daybreak-logo.png" alt="" width="512" height="512">
           <span class="who">Key offering</span>
           <h3 style="margin-bottom:.1em">Daybreak</h3>
           <span class="lockup">By Data Does Not Lie</span>
