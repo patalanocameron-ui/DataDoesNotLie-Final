@@ -1,10 +1,10 @@
 # Data Does Not Lie
 
-> Data Does Not Lie makes Daybreak, the AI-powered CRM for retail businesses. Connect Square or Shopify, or upload a CSV, and Daybreak turns sales data into clear reports, daily plain-language recommendations, and one-click email and SMS follow-up workflows. Tagline: "Your data already knows. Now it tells you."
+> Data Does Not Lie makes Daybreak, the AI-powered CRM for retail businesses. Connect Square or upload a CSV, and Daybreak turns sales data into clear reports, daily plain-language recommendations, and one-click email and SMS follow-up workflows. Tagline: "Your data already knows. Now it tells you."
 
 ## Product: Daybreak
 
-- Data in: Square and Shopify integrations, CSV upload with automatic column mapping, or API connection to almost any database (such as the SPOT dry cleaning point of sale) for an additional setup charge.
+- Data in: a direct Square integration, CSV upload with automatic column mapping, or API connection to almost any database (such as the SPOT dry cleaning point of sale) for an additional setup charge.
 - Reports build themselves: Sales Overview plus Customers, Locations, and Channels.
 - Filter, tag, and save customer views (smart lists) shared with the whole team.
 - A daily AI advisory layer explains what changed, why it matters in dollars, and the recommended action, with every number traceable to the source data. It connects to other tools over MCP (Model Context Protocol) and can build reports, workflows, smart lists, email templates, and SMS snippets on request.
