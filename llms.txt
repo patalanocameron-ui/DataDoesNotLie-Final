@@ -1,29 +1,62 @@
 # Data Does Not Lie
 
-> Data Does Not Lie makes Daybreak, the AI-powered CRM for retail businesses. Connect Square or upload a CSV, and Daybreak turns sales data into clear reports, daily plain-language recommendations, and one-click email and SMS follow-up workflows. Tagline: "Your data already knows. Now it tells you."
+> Data Does Not Lie makes Daybreak, the AI CRM for retail stores. Connect Square or upload a CSV, and Daybreak builds your sales reports, tells you each morning which customers need attention and why, and runs email and text follow-up that stops when a customer comes back. Tagline: "Your data already knows. Now it tells you."
 
 ## Product: Daybreak
 
-- Data in: a direct Square integration, CSV upload with automatic column mapping, or API connection to almost any database (such as the SPOT dry cleaning point of sale) for an additional setup charge.
-- Reports build themselves: Sales Overview plus Customers, Locations, and Channels.
-- Filter, tag, and save customer views (smart lists) shared with the whole team.
-- A daily AI advisory layer explains what changed, why it matters in dollars, and the recommended action, with every number traceable to the source data. It connects to other tools over MCP (Model Context Protocol) and can build reports, workflows, smart lists, email templates, and SMS snippets on request.
-- One-click CRM workflows send email and SMS sequences with waits and skip rules; customers who return drop out automatically and SMS opt-outs are always honored.
-- Pricing is discussed on a demo call.
+- Connections: Square (live, direct integration). Shopify (coming soon, being built now). CSV upload from any system, with columns matched automatically. A connection to almost any database or point of sale by API, for an added setup fee.
+- Dashboard and reports: revenue, orders, new and returning customers, stores, services and promotions, compared with the same period last year. Every number opens the customers or orders behind it.
+- Insights: every morning Daybreak checks what changed and writes up to three things worth your attention, in plain language, with the dollars at stake and the customers to reach.
+- Customers: every customer with their lifetime spend, visits, usual gap between visits and whether they can be reached by email or text. Saved views and tags shared with the team.
+- Workflows: email and text sequences with waits, if/else branches and A/B splits. Customers who come back drop out on their own. Text opt-outs and email unsubscribes are honored on every send.
+- Ask Daybreak: chat with your own data to get answers, lists and draft campaigns. Also connects to Claude and other AI tools over MCP.
+- Works for stores, dry cleaners, restaurants and service shops with one location or many.
+
+## Pricing (USD)
+
+Every plan starts with 30 days free. Self-serve plans charge the setup fee at signup, then the monthly price after the free period. Month to month, cancel any time.
+
+- Growth: $497 a month plus a $497 one-time setup fee, with the first 30 days free. For retailers with 1 to 4 stores who want setup and support included. 3 stores included; 2,000 texts and 25,000 emails a month; Done-with-you setup; Every feature included.
+- Premier: $997 a month plus a $2,497 one-time setup fee, with the first 30 days free. For retailers with 5 to 20 stores who want it done for them. 10 stores included; 10,000 texts and 100,000 emails a month; Done-for-you setup and data migration; Dedicated support.
+- Enterprise: from $2,500 a month, priced on a call. For chains with 20+ stores and franchise groups. Unlimited stores; Custom text and email volume; Several brands in one account; Dedicated team.
+- Partner: $297 a month plus a $197 one-time setup fee, with the first 30 days free. For agencies and consultants who want to sell an AI CRM under their own brand. Your brand, logo and colors on every screen; 2 client businesses included, $79 per extra client; Resell text credits at your own price; 20% commission on add-ons your clients buy.
+
+More stores: Growth $97 per store a month beyond 3; Premier $49 per store a month beyond 10.
+
+Text credit packs (one time, never expire): 2,500 texts for $99; 10,000 texts for $299; 25,000 texts for $599. Auto-recharge is optional.
+
+Add-ons: AI Marketing Assistant $197 a month (Writes and launches campaigns from your insights, and answers customer texts); Managed campaigns $297 a month (We plan, write and run your monthly promotions, with a monthly results video); White label $199 a month (Your own brand and web address (Premier)); Custom data connection $99 a month plus $1,500 setup (Connect a database or a POS we don't support yet); Extra emails $10 a month (10,000 more emails a month).
+
+How to buy: Growth and Premier start online at https://datadoesnotlie.com/pricing.html (Stripe checkout). Enterprise is priced on a call: https://datadoesnotlie.com/index.html#demo. Partners apply at https://datadoesnotlie.com/partners.html#apply.
+
+## Partner program
+
+- For agencies, consultants and marketers who want to sell an AI CRM to local businesses under their own brand.
+- Partner plan: $297 a month plus $197 setup, 30 days free. Includes 2 client businesses; each extra client is $79 a month ($59 from the 11th).
+- Your logo, colors and web address. You set your own prices and bill your clients.
+- Text credits at 2 cents a text to resell at your own price.
+- 20% commission on add-ons your clients buy directly.
+- Applications are open now: https://datadoesnotlie.com/partners.html#apply
 
 ## Services
 
-- Daybreak AI CRM (key offering): everything above, for stores, restaurants, and service shops.
-- Custom Development: bespoke apps, dashboards, integrations, and AI assistants built on a company's own data.
-- Website Development: fast, hand-built marketing sites with SEO and AEO (answer engine optimization) built in: structured data, FAQ schema, sitemaps, llms.txt, and lead capture.
+- Daybreak AI CRM (key offering): everything above.
+- Custom Development: bespoke apps, dashboards, integrations and AI assistants built on a company's own data.
+- Website Development: fast, hand-built marketing sites with SEO and AEO (answer engine optimization) built in: structured data, FAQ schema, sitemaps, llms.txt and lead capture.
+
+## About
+
+Data Does Not Lie was founded by Cameron Patalano, author of Radical Transparency, a CRM specialist with years of hands-on HubSpot and GoHighLevel experience and an AI & Automation advisor at Stature Advisors, where he develops custom software and helps businesses implement AI systems at scale.
 
 ## Pages
 
-- [Home](https://datadoesnotlie.com/): product overview, how it works in five steps, FAQ, and demo request form.
-- [About the founder](https://datadoesnotlie.com/#about): Data Does Not Lie was founded by Cameron Patalano, author of Radical Transparency, a CRM specialist with experience across HubSpot and GoHighLevel and an AI & Automation advisor at Stature Advisors, where he develops custom software and helps businesses implement AI systems at scale.
+- [Home](https://datadoesnotlie.com/): what Daybreak does, connections, how it works, services, founder, FAQ and demo form.
+- [Pricing](https://datadoesnotlie.com/pricing.html): all plans, setup fees, the free month, add-ons, text packs and pricing FAQ.
+- [Partner program](https://datadoesnotlie.com/partners.html): reselling Daybreak under your own brand, and the application form.
 - [Use cases](https://datadoesnotlie.com/blog.html): case studies.
-- [Replacing a Spreadsheet That Ran a Construction Company](https://datadoesnotlie.com/blog-construction-case-study.html): Custom Development case study, Procore integration, AI assistant over a MySQL forecasting database.
+- [Replacing a Spreadsheet That Ran a Construction Company](https://datadoesnotlie.com/blog-construction-case-study.html): Custom Development case study.
+- [Sign in](https://datadoesnotlie.com/sign-in.html): sign in to Daybreak.
 
 ## Contact
 
-Request a demo at https://datadoesnotlie.com/#demo
+Book a demo at https://datadoesnotlie.com/index.html#demo

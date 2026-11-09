@@ -1,0 +1,144 @@
+{
+  "plans": [
+    {
+      "id": "partner",
+      "name": "Partner",
+      "tagline": "For agencies and consultants who want to sell an AI CRM under their own brand",
+      "monthlyCents": 29700,
+      "setupCents": 19700,
+      "freeDays": 30,
+      "storesIncluded": null,
+      "extraStoreCents": null,
+      "textsIncluded": 0,
+      "emailsIncluded": 10000,
+      "clientsIncluded": 2,
+      "extraClientCents": 7900,
+      "extraClientCentsFrom11": 5900,
+      "whiteLabel": "included",
+      "support": "Email support for the partner",
+      "salesLed": false,
+      "highlights": [
+        "Your brand, logo and colors on every screen",
+        "2 client businesses included, $79 per extra client",
+        "Resell text credits at your own price",
+        "20% commission on add-ons your clients buy"
+      ]
+    },
+    {
+      "id": "growth",
+      "name": "Growth",
+      "tagline": "For retailers with 1 to 4 stores who want setup and support included",
+      "monthlyCents": 49700,
+      "setupCents": 49700,
+      "freeDays": 30,
+      "storesIncluded": 3,
+      "extraStoreCents": 9700,
+      "textsIncluded": 2000,
+      "emailsIncluded": 25000,
+      "whiteLabel": "no",
+      "support": "Email and chat, business hours",
+      "salesLed": false,
+      "highlights": [
+        "3 stores included",
+        "2,000 texts and 25,000 emails a month",
+        "Done-with-you setup",
+        "Every feature included"
+      ]
+    },
+    {
+      "id": "premier",
+      "name": "Premier",
+      "tagline": "For retailers with 5 to 20 stores who want it done for them",
+      "monthlyCents": 99700,
+      "setupCents": 249700,
+      "freeDays": 30,
+      "storesIncluded": 10,
+      "extraStoreCents": 4900,
+      "textsIncluded": 10000,
+      "emailsIncluded": 100000,
+      "whiteLabel": "add-on",
+      "support": "Dedicated contact and a monthly review",
+      "salesLed": false,
+      "highlights": [
+        "10 stores included",
+        "10,000 texts and 100,000 emails a month",
+        "Done-for-you setup and data migration",
+        "Dedicated support"
+      ]
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "tagline": "For chains with 20+ stores and franchise groups",
+      "monthlyCents": 250000,
+      "setupCents": 0,
+      "freeDays": 30,
+      "storesIncluded": null,
+      "extraStoreCents": null,
+      "textsIncluded": null,
+      "emailsIncluded": null,
+      "whiteLabel": "included",
+      "support": "Dedicated team",
+      "salesLed": true,
+      "highlights": [
+        "Unlimited stores",
+        "Custom text and email volume",
+        "Several brands in one account",
+        "Dedicated team"
+      ]
+    }
+  ],
+  "addOns": [
+    {
+      "id": "ai-assistant",
+      "name": "AI Marketing Assistant",
+      "monthlyCents": 19700,
+      "blurb": "Writes and launches campaigns from your insights, and answers customer texts"
+    },
+    {
+      "id": "managed-campaigns",
+      "name": "Managed campaigns",
+      "monthlyCents": 29700,
+      "blurb": "We plan, write and run your monthly promotions, with a monthly results video"
+    },
+    {
+      "id": "premier-white-label",
+      "name": "White label",
+      "monthlyCents": 19900,
+      "blurb": "Your own brand and web address (Premier)"
+    },
+    {
+      "id": "custom-connection",
+      "name": "Custom data connection",
+      "monthlyCents": 9900,
+      "setupCents": 150000,
+      "blurb": "Connect a database or a POS we don't support yet"
+    },
+    {
+      "id": "extra-emails",
+      "name": "Extra emails",
+      "monthlyCents": 1000,
+      "blurb": "10,000 more emails a month"
+    }
+  ],
+  "creditPacks": [
+    {
+      "id": "texts-2500",
+      "credits": 2500,
+      "cents": 9900
+    },
+    {
+      "id": "texts-10000",
+      "credits": 10000,
+      "cents": 29900
+    },
+    {
+      "id": "texts-25000",
+      "credits": 25000,
+      "cents": 59900
+    }
+  ],
+  "partnerTextCents": 2,
+  "pastDueGraceDays": 7,
+  "cancelledReadDays": 30
+}
