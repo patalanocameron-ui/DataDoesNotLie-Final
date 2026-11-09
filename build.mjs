@@ -355,6 +355,7 @@ const PAGES = {
   "blog.html": { active: "blog" },
   "blog-construction-case-study.html": { active: "blog" },
   "blog-online-store-playbook.html": { active: "blog" },
+  "review.html": { active: "" },
   "privacy.html": { active: "" },
   "terms.html": { active: "" },
   "sign-in.html": { active: "" },

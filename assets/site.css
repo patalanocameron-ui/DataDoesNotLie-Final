@@ -1368,7 +1368,6 @@ main > article .fig-live figcaption{margin-top:10px}
   .plan + .plan{border-top:1px solid var(--paper-line)}
   .compare td,.compare th{padding:9px 12px!important;font-size:.88rem}
   /* partner band: facts, no mockup */
-  .partner-band .wl,.partner-band .wl + .fig{display:none}
   .partner-band .facts{grid-template-columns:1fr 1fr!important}
   .partner-band .facts b{font-size:1.15rem}
   .partner-band .facts > div{padding:14px!important}

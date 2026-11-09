@@ -377,8 +377,8 @@
       var data = Object.fromEntries(new FormData(form).entries());
       var kind = form.getAttribute("data-lead");
       var extra = [];
-      ["clients", "website", "plan"].forEach(function (k) { if (data[k]) extra.push(k + ": " + data[k]); });
-      var message = (kind === "partner" ? "Partner application: " : "") + (data.message || "") + (extra.length ? "\n" + extra.join("\n") : "");
+      ["clients", "website", "plan", "role", "permission"].forEach(function (k) { if (data[k]) extra.push(k + ": " + data[k]); });
+      var message = (kind === "partner" ? "Partner application: " : kind === "testimonial" ? "Testimonial: " : "") + (data.message || "") + (extra.length ? "\n" + extra.join("\n") : "");
       var params = new URLSearchParams();
       params.append(ENTRY_IDS.name, data.name || "");
       params.append(ENTRY_IDS.email, data.email || "");
