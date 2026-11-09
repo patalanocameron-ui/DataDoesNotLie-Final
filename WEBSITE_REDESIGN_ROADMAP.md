@@ -110,3 +110,10 @@ Priority order.
 8. (Done) Share images.
 9. Consider porting the site to Next.js with the app's actual MUI components if Cam wants literal component reuse (today it is a faithful CSS reproduction).
 10. Analytics: no analytics were present before; add privacy-friendly analytics (e.g. Plausible or Netlify Analytics) if wanted, plus conversion events on Start free month and the demo form.
+
+## Update, November 9 2026
+- Public live demo is on: https://daybreak.datadoesnotlie.com/demo (sample business Seaside Cleaners, read-only, Ask Daybreak answers with per-visitor and daily caps). Reseeded weekly by the app's "Refresh public demo" workflow. Linked from the hero, Ask section, closing CTA, menu card, mobile bar, mobile nav and footer.
+- "Illustrative demo data" label now appears only under the hero showcase.
+- GA4: build.mjs has `GA_ID` (empty, so no tag ships). site.js sends begin_checkout, start_free_month_click, open_demo, watch_tour and generate_lead when the tag is present. When Cam sends the G- ID: set GA_ID, add a Google Analytics paragraph to privacy.html, rebuild, publish.
+- New: blog-online-store-playbook.html, a walkthrough with a placeholder online shop. Written as "how it would work", with no invented results, quotes or metrics.
+- Testimonials: not added. Invented quotes presented as real customers are off the table; real quotes go in when customers give them.

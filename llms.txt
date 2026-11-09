@@ -56,6 +56,7 @@ Data Does Not Lie was founded by Cameron Patalano, author of Radical Transparenc
 - [Partner program](https://datadoesnotlie.com/partners.html): reselling Daybreak under your own brand, and the application form.
 - [Use cases](https://datadoesnotlie.com/blog.html): case studies.
 - [Replacing a Spreadsheet That Ran a Construction Company](https://datadoesnotlie.com/blog-construction-case-study.html): Custom Development case study.
+- [How an Online Store Would Run on Daybreak](https://datadoesnotlie.com/blog-online-store-playbook.html): walkthrough with a placeholder online shop.
 - [Sign in](https://datadoesnotlie.com/sign-in.html): sign in to Daybreak.
 
 ## Contact

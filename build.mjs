@@ -319,6 +319,7 @@ Data Does Not Lie was founded by Cameron Patalano, author of Radical Transparenc
 - [Partner program](${SITE}/partners.html): reselling Daybreak under your own brand, and the application form.
 - [Use cases](${SITE}/blog.html): case studies.
 - [Replacing a Spreadsheet That Ran a Construction Company](${SITE}/blog-construction-case-study.html): Custom Development case study.
+- [How an Online Store Would Run on Daybreak](${SITE}/blog-online-store-playbook.html): walkthrough with a placeholder online shop.
 - [Sign in](${SITE}/sign-in.html): sign in to Daybreak.
 
 ## Contact
@@ -333,6 +334,7 @@ function sitemap() {
     ["partners.html", "0.8", "monthly"],
     ["blog.html", "0.6", "monthly"],
     ["blog-construction-case-study.html", "0.6", "yearly"],
+    ["blog-online-store-playbook.html", "0.6", "yearly"],
     ["sign-in.html", "0.3", "yearly"],
     ["privacy.html", "0.2", "yearly"],
     ["terms.html", "0.2", "yearly"],
@@ -352,6 +354,7 @@ const PAGES = {
   "partners.html": { active: "partners", ld: (h) => [ORG, faqLd(h), crumbs([["Home", `${SITE}/`], ["Partner program", `${SITE}/partners.html`]])] },
   "blog.html": { active: "blog" },
   "blog-construction-case-study.html": { active: "blog" },
+  "blog-online-store-playbook.html": { active: "blog" },
   "privacy.html": { active: "" },
   "terms.html": { active: "" },
   "sign-in.html": { active: "" },
