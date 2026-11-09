@@ -453,8 +453,8 @@ p{margin:0}
 .kpi .d.down{color:var(--coral)}
 .charts2{display:grid;grid-template-columns:1.6fr 1fr;gap:12px;margin-top:12px}
 .chart-box{padding:14px;border-radius:12px;border:1px solid var(--line);background:rgba(6,18,31,.45)}
-.chart-box h5{margin:0;font-size:.82rem;font-weight:600}
-.chart-box h5 + small{display:block;font-size:.7rem;color:var(--faint);margin-bottom:10px}
+.chart-box .t5{margin:0;font-size:.82rem;font-weight:600}
+.chart-box .t5 + small{display:block;font-size:.7rem;color:var(--faint);margin-bottom:10px}
 .wk{position:relative;height:150px}
 .wk svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .wk .area{fill:url(#wkFill);opacity:0;transition:opacity 1s var(--ease) .9s}
@@ -500,7 +500,7 @@ p{margin:0}
 .m-act{display:grid;grid-template-columns:1fr 1.1fr;gap:16px;align-items:start}
 .flow{position:relative;border-radius:14px;background:#fff;color:var(--paper-ink);padding:16px 16px 12px;box-shadow:0 30px 70px -30px rgba(0,0,0,.7)}
 .flow-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.flow-top h5{margin:0;font-size:.92rem;font-weight:600}
+.flow-top .t5{margin:0;font-size:.92rem;font-weight:600}
 .flow-top .nb{margin-left:auto}
 .flow svg{width:100%;height:auto}
 .flow .nd{fill:#fff;stroke:rgba(11,34,54,.55);stroke-width:1.3}
@@ -680,7 +680,7 @@ p{margin:0}
 .p-card{margin-top:10px;padding:12px;border-radius:14px;border:1px solid var(--line);background:rgba(11,37,64,.5)}
 .p-card .pk{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);display:flex;justify-content:space-between}
 .p-card .pk span{color:var(--faint)}
-.p-card h6{margin:6px 0 4px;font-size:13.5px;font-weight:600;line-height:1.3}
+.p-card .t6{margin:6px 0 4px;font-size:13.5px;font-weight:600;line-height:1.3}
 .p-card p{font-size:11px;line-height:1.45;color:var(--dim)}
 .p-btns{display:flex;gap:6px;margin-top:10px}
 .p-btns span{flex:1;display:grid;place-items:center;height:30px;border-radius:9px;font-size:11px;font-weight:600;border:1px solid var(--line-2)}
@@ -697,7 +697,7 @@ p{margin:0}
 .sheet{position:absolute;left:8px;right:8px;bottom:8px;padding:14px 14px 16px;border-radius:26px 26px 34px 34px;background:#0D2338;border:1px solid var(--line-2);box-shadow:0 -20px 50px rgba(0,0,0,.5);transform:translateY(110%);transition:transform .6s var(--ease)}
 .scene.on .sheet.up{transform:none}
 .sheet .grab{width:36px;height:4px;border-radius:2px;background:var(--line-3);margin:0 auto 12px}
-.sheet h6{margin:0;font-size:14px}
+.sheet .t6{margin:0;font-size:14px}
 .sheet .steps-m{margin:10px 0 12px;display:grid;gap:6px}
 .sheet .steps-m div{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--dim);padding:7px 9px;border-radius:9px;background:rgba(234,243,249,.04)}
 .sheet .steps-m i{font-style:normal;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mint);width:38px}
@@ -825,7 +825,7 @@ p{margin:0}
 .wl-side span{height:26px;border-radius:7px;display:flex;align-items:center;padding:0 9px;font-size:.72rem;color:var(--faint)}
 .wl-side span.on{background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--text);box-shadow:inset 2px 0 0 var(--accent);transition:background-color .6s,box-shadow .6s}
 .wl-main{padding:16px}
-.wl-main h5{margin:0 0 10px;font-size:1rem}
+.wl-main .t5{margin:0 0 10px;font-size:1rem}
 .wl-k{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .wl-k div{padding:10px;border-radius:10px;border:1px solid var(--line);background:rgba(11,37,64,.5)}
 .wl-k small{display:block;font-size:.66rem;color:var(--faint)}
@@ -1141,7 +1141,6 @@ h1,h2,h3,h4,.h1,.h2,.h3,.display{font-family:var(--sans);font-weight:600}
 
 /* ---------- use cases, case study, legal, sign-in ---------- */
 .post-hero{position:relative;overflow:hidden;padding:calc(68px + clamp(56px,8vw,100px)) 0 clamp(48px,6vw,72px);background:radial-gradient(1000px 420px at 75% -10%,rgba(79,178,255,.12),transparent 70%),radial-gradient(800px 380px at 5% -10%,rgba(43,227,155,.08),transparent 70%),var(--deep);border-bottom:1px solid var(--line)}
-main:has(> .post-hero),main:has(> .legal),main:has(> .signin){padding-top:0}
 .post-hero h1{font-size:clamp(2.3rem,4.6vw,3.8rem);letter-spacing:-.04em;line-height:1.04;max-width:20ch;margin:.4em 0 .4em}
 .post-hero .label{font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--sky)}
 .post-hero .byline{font-size:1.08rem;color:var(--faint);max-width:62ch;line-height:1.6}
@@ -1196,3 +1195,59 @@ main > article .narr dl{margin:0;display:grid;gap:8px}
 main > article .narr dt{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#08734d}
 main > article .narr dd{margin:2px 0 0;padding-left:10px;border-left:2px solid #e3eaf0;color:#2f4558}
 main > article .fig-live figcaption{margin-top:10px}
+
+/* ---------- mobile pass ---------- */
+@media (max-width:1000px){.rail-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.rail-grid{grid-template-columns:1fr}.rail-grid > *{padding:16px 0}.rail-item .top .status{order:0;margin-left:auto}}
+.show-tabs,.more-tabs{max-width:100%;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;flex-wrap:nowrap}
+.show-tabs::-webkit-scrollbar,.more-tabs::-webkit-scrollbar{display:none}
+.show-tabs button,.more-tabs button{flex:none;white-space:nowrap}
+@media (max-width:640px){
+  .hero .pill{font-size:.78rem;height:auto;min-height:32px;padding:4px 12px 4px 5px;text-align:left}
+  .hero .pill .arrow{display:none}
+  .hero-ctas{flex-direction:column;align-items:stretch;gap:10px}
+  .hero-ctas .btn{width:100%}
+  .hero-ctas .btn-quiet{justify-content:center;margin:0}
+  .hero-proof{gap:8px 18px}
+  .show-tabs{justify-content:flex-start;margin-left:0}
+  .show-tabs button{padding:0 11px;font-size:.84rem}
+  .show-tabs button svg{display:none}
+  .ui-head{flex-wrap:wrap;gap:4px 10px;padding:12px 14px}
+  .ui-head .r{display:none}
+  .ui-body{padding:14px}
+  .chapter{padding:48px 0}
+  .ch-head p{font-size:1rem}
+  .closing-sky .hero-ctas,.partner-band .hero-ctas{align-items:stretch}
+  .partner-band .hero-ctas{flex-direction:column}
+  .section-head{margin-bottom:36px}
+}
+/* sticky conversion bar on phones, shown after the hero */
+.m-cta{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:90;display:none;gap:8px;padding:8px;border-radius:14px;border:1px solid rgba(26,42,66,.8);background:rgba(10,19,34,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 18px 40px rgb(0 0 0 / .5);transform:translateY(140%);transition:transform .45s var(--ease)}
+.m-cta .btn{flex:1;height:44px}
+.m-cta.show{transform:none}
+@media (max-width:640px){.m-cta{display:flex}}
+.chart-box .t5,.flow-top .t5,.wl-main .t5{font-weight:600}
+.chart-box .t5{font-size:.82rem}.flow-top .t5{font-size:.92rem}.wl-main .t5{font-size:1rem;margin:0 0 10px}
+.p-card .t6{margin:6px 0 4px;font-size:13.5px;font-weight:600;line-height:1.3}
+.sheet .t6{font-size:14px;font-weight:600}
+.foot-mark::before{content:"DAYBREAK"}
+/* hero copy animates on load (CSS only) so it paints immediately */
+.load{animation:loadIn .9s var(--ease) both;animation-delay:var(--d,0s)}
+.load .split-line > span{transform:none;animation:lineUp 1s var(--ease) both;animation-delay:var(--d,.05s)}
+@keyframes loadIn{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:none}}
+@keyframes lineUp{from{transform:translateY(105%)}to{transform:none}}
+.rise{animation-delay:.25s;animation-duration:1.1s}
+/* perf: the lights are soft radial gradients already; no filter blur, composite-only motion */
+.sky-layer .light{filter:none;opacity:.42;will-change:transform;contain:strict}
+.sky-layer .l1{background:radial-gradient(circle,rgba(43,227,155,.5),rgba(43,227,155,.12) 40%,transparent 68%)}
+.sky-layer .l2{background:radial-gradient(circle,rgba(79,178,255,.38),rgba(79,178,255,.1) 40%,transparent 68%)}
+.sky-layer .l3{background:radial-gradient(circle,rgba(16,185,129,.26),transparent 66%)}
+.sky-layer .sun{filter:none}
+.stage-glow{filter:none;background:radial-gradient(50% 60% at 50% 50%,rgba(43,227,155,.22),transparent 72%)}
+.phone-stage::before{filter:none}
+
+/* progress on the hero tabs is a CSS animation (no per-frame JS style writes) */
+.show-tabs button .bar-p i{transform:scaleX(0)}
+.show-tabs button[aria-selected="true"] .bar-p i.run{animation:tabProg var(--dur,6.5s) linear forwards}
+.show-tabs.paused button .bar-p i.run{animation-play-state:paused}
+@keyframes tabProg{to{transform:scaleX(1)}}

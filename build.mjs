@@ -197,7 +197,7 @@ function header(active) {
 <header class="site-header">
   <div class="wrap bar">
     <a class="brand" href="index.html" aria-label="Daybreak by Data Does Not Lie, home">
-      <img src="assets/daybreak-logo.png" alt="" width="30" height="30">
+      <img src="assets/daybreak-mark-96.png" alt="" width="30" height="30">
       <span class="words"><span class="name">Daybreak</span><span class="by">by Data Does Not Lie</span></span>
     </a>
     <nav class="nav" aria-label="Main">
@@ -237,7 +237,7 @@ function footer() {
     <div class="foot-grid">
       <div>
         <a class="brand" href="index.html" aria-label="Daybreak by Data Does Not Lie, home">
-          <img src="assets/daybreak-logo.png" alt="" width="30" height="30">
+          <img src="assets/daybreak-mark-96.png" alt="" width="30" height="30">
           <span class="words"><span class="name">Daybreak</span><span class="by">by Data Does Not Lie</span></span>
         </a>
         <p class="tag">Your data already knows. Now it tells you.</p>
@@ -247,10 +247,11 @@ function footer() {
       <div><h4>Company</h4><ul><li><a href="index.html#about">About</a></li><li><a href="partners.html">Partner program</a></li><li><a href="index.html#services">Services</a></li><li><a href="blog.html">Use cases</a></li></ul></div>
       <div><h4>Get in touch</h4><ul><li><a href="index.html#demo">Book a demo</a></li><li><a href="partners.html#apply">Apply to partner</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li></ul></div>
     </div>
-    <div class="foot-mark" aria-hidden="true">DAYBREAK</div>
+    <div class="foot-mark" aria-hidden="true"></div>
     <div class="foot-base"><span>&copy; 2026 Data Does Not Lie</span><span>Product screens show illustrative demo data.</span></div>
   </div>
-</footer>`;
+</footer>
+<div class="m-cta" data-mcta><a class="btn btn-ghost" href="index.html#demo">Book a demo</a><a class="btn btn-primary" href="pricing.html">Start free month</a></div>`;
 }
 
 // ---------- llms.txt and sitemap ----------

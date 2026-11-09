@@ -98,29 +98,25 @@
   if (show) {
     var tabs = $$("[data-tab]", show), imgs = $$(".screens img", show), floats = $$("[data-for]", show);
     var stage = $("[data-stage]", show);
-    var cur = 0, DUR = 6500, t0 = 0, raf = 0, running = false, pausedAt = 0;
-    var select = function (i, user) {
+    var cur = 0, DUR = 6500, timer = 0, running = false, left = DUR, startedAt = 0;
+    var tablist = $(".show-tabs", show);
+    var arm = function (ms) { clearTimeout(timer); startedAt = performance.now(); left = ms; timer = setTimeout(function () { select((cur + 1) % tabs.length); }, ms); };
+    var select = function (i) {
       cur = i;
-      tabs.forEach(function (b, k) { b.setAttribute("aria-selected", k === i ? "true" : "false"); var bar = $(".bar-p i", b); if (bar) bar.style.transform = "scaleX(0)"; });
+      tabs.forEach(function (b, k) {
+        b.setAttribute("aria-selected", k === i ? "true" : "false");
+        var bar = $(".bar-p i", b); if (bar) { bar.classList.remove("run"); if (k === i && !reduce) { void bar.offsetWidth; bar.classList.add("run"); } }
+      });
       imgs.forEach(function (im, k) { im.classList.toggle("on", k === i); if (k === i && im.loading === "lazy") im.loading = "eager"; });
       floats.forEach(function (f) { f.classList.remove("on"); });
-      var mine = floats.filter(function (f) { return +f.dataset.for === i; });
-      mine.forEach(function (f, k) { setTimeout(function () { if (cur === i) f.classList.add("on"); }, reduce ? 0 : 450 + k * 260); });
-      t0 = performance.now(); pausedAt = 0;
-      if (user) running = !reduce;
-    };
-    var loop = function (now) {
-      if (!running) return;
-      var p = Math.min(1, (now - t0) / DUR);
-      var bar = $("[aria-selected=true] .bar-p i", show); if (bar) bar.style.transform = "scaleX(" + p + ")";
-      if (p >= 1) select((cur + 1) % tabs.length);
-      raf = requestAnimationFrame(loop);
+      floats.filter(function (f) { return +f.dataset.for === i; }).forEach(function (f, k) { setTimeout(function () { if (cur === i) f.classList.add("on"); }, reduce ? 0 : 450 + k * 260); });
+      if (running) arm(DUR);
     };
     tabs.forEach(function (b, i) {
-      b.addEventListener("click", function () { select(i, true); });
+      b.addEventListener("click", function () { select(i); });
       b.addEventListener("keydown", function (e) {
         var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
-        if (d) { e.preventDefault(); var n = (i + d + tabs.length) % tabs.length; tabs[n].focus(); select(n, true); }
+        if (d) { e.preventDefault(); var n = (i + d + tabs.length) % tabs.length; tabs[n].focus(); select(n); }
       });
     });
     // preload the other screens after first paint
@@ -128,19 +124,16 @@
     select(0);
     if (!reduce) {
       onView(show, function (vis) {
-        if (vis) { if (!running) { running = true; t0 = performance.now() - pausedAt; raf = requestAnimationFrame(loop); } }
-        else if (running) { running = false; pausedAt = performance.now() - t0; cancelAnimationFrame(raf); }
+        if (vis && !running) { running = true; tablist.classList.remove("paused"); arm(left); }
+        else if (!vis && running) { running = false; clearTimeout(timer); left = Math.max(400, left - (performance.now() - startedAt)); tablist.classList.add("paused"); }
       }, { keep: true, threshold: 0.15 });
       // tilt flattens as you scroll into the product, a slight lean follows the pointer
-      var heroEl = $("[data-hero]"), lean = 0;
+      var sunEl = $("[data-hero] .sun"), lean = 0;
       var applyTilt = function () {
         var r = show.getBoundingClientRect(), vh = window.innerHeight;
         var p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.9)));
-        stage.style.setProperty("--tilt", (14 * (1 - p)).toFixed(2) + "deg");
-        stage.style.setProperty("--scale", (0.96 + 0.04 * p).toFixed(4));
-        stage.style.setProperty("--lift", (-10 * p).toFixed(1) + "px");
         stage.style.transform = "rotateX(" + (14 * (1 - p)).toFixed(2) + "deg) rotateY(" + lean.toFixed(2) + "deg) translateY(" + (-10 * p).toFixed(1) + "px) scale(" + (0.96 + 0.04 * p).toFixed(4) + ")";
-        if (heroEl) heroEl.style.setProperty("--sun", (0.75 + p * 0.25).toFixed(3));
+        if (sunEl) sunEl.style.opacity = (0.75 + p * 0.25).toFixed(3);
       };
       var ticking = false;
       var req = function () { if (!ticking) { ticking = true; requestAnimationFrame(function () { applyTilt(); ticking = false; }); } };
@@ -382,4 +375,18 @@
   var planQ = new URLSearchParams(location.search).get("plan");
   var sel = $("select[name=plan]");
   if (planQ && sel) for (var i = 0; i < sel.options.length; i++) if (sel.options[i].value === planQ) sel.selectedIndex = i;
+})();
+
+// Phone conversion bar: appears once the first screen has scrolled away, hides near the footer.
+(function () {
+  var bar = document.querySelector("[data-mcta]");
+  if (!bar) return;
+  var foot = document.querySelector(".site-footer");
+  var tick = function () {
+    var past = window.scrollY > window.innerHeight * 0.9;
+    var nearFoot = foot && foot.getBoundingClientRect().top < window.innerHeight;
+    bar.classList.toggle("show", past && !nearFoot);
+  };
+  window.addEventListener("scroll", tick, { passive: true });
+  tick();
 })();
