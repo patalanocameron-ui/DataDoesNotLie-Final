@@ -1307,3 +1307,13 @@ main > article .fig-live figcaption{margin-top:10px}
 .post-card.feature .more{padding-bottom:28px}
 .more-note{font-size:.9rem;color:var(--faint)}
 @media (max-width:760px){.post-card.feature{grid-template-columns:1fr}.post-card.feature .card-img{grid-row:auto;min-height:0;aspect-ratio:16/9}.post-card.feature > :not(img){padding:0 20px}.post-card.feature .more{padding-bottom:22px}}
+
+/* Cam, Nov 9: no neon pills. Statuses read as plain text. */
+.status,.status.live,.status.soon,.status.fee{height:auto;padding:0;border:0;background:none;border-radius:0;font-size:.78rem;font-weight:500;color:var(--faint)}
+.status.live::before{display:none}
+.rail-item .top{flex-wrap:wrap;column-gap:10px}
+.rail-item .top .status{flex-basis:100%;order:3;margin:0}
+.pill .tag{background:none;color:var(--mint);padding:0 4px 0 6px;font-weight:600}
+/* the Ask Daybreak mark sits on the app's navy, like the product */
+.chat-ava{background:#0a1322;border:1px solid rgba(26,42,66,.8)}
+.c-src .nb{background:none;padding:0;color:var(--faint);font-weight:600}
