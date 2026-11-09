@@ -1317,3 +1317,6 @@ main > article .fig-live figcaption{margin-top:10px}
 /* the Ask Daybreak mark sits on the app's navy, like the product */
 .chat-ava{background:#0a1322;border:1px solid rgba(26,42,66,.8)}
 .c-src .nb{background:none;padding:0;color:var(--faint);font-weight:600}
+/* perf: grain is a tiny pre-rendered tile, no SVG filter, no blend mode */
+.sky-layer .grain,.partner-band::after,.cat-banner::after{background:url(grain.png) repeat;background-size:80px 80px;mix-blend-mode:normal;opacity:1;inset:0}
+@media (max-width:760px){.sky-layer .light{animation:none}}

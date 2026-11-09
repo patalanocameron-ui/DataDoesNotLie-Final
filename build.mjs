@@ -379,6 +379,18 @@ for (const [file, cfg] of Object.entries(PAGES)) {
   if (/[—·]/.test(html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, ""))) console.warn(`! ${file} has an em dash or middle dot`);
   fs.writeFileSync(path, html);
 }
+// Minified stylesheet for production (pages link site.min.css; edit site.css).
+{
+  const src = fs.readFileSync(new URL("./assets/site.css", import.meta.url), "utf8");
+  const min = src
+    .replace(/\/\*[\s\S]*?\*\//g, "")
+    .replace(/\s+/g, " ")
+    .replace(/\s*([{};,>])\s*/g, "$1").replace(/:\s+/g, ":")
+    .replace(/;}/g, "}")
+    .replace(/\(\s+/g, "(")
+    .trim();
+  fs.writeFileSync(new URL("./assets/site.min.css", import.meta.url), min);
+}
 fs.writeFileSync(new URL("./llms.txt", import.meta.url), llms());
 fs.writeFileSync(new URL("./sitemap.xml", import.meta.url), sitemap());
 console.log("built", Object.keys(PAGES).length, "pages, llms.txt, sitemap.xml");

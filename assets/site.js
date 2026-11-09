@@ -416,3 +416,35 @@
   window.addEventListener("scroll", tick, { passive: true });
   tick();
 })();
+
+// Sections below the fold render lazily (content-visibility), so their heights settle on approach.
+// Jump links aim again once the target's real layout is known, so they land on the right section.
+(function () {
+  var cancelled = false;
+  ["wheel", "touchstart", "keydown"].forEach(function (ev) { window.addEventListener(ev, function () { cancelled = true; }, { passive: true }); });
+  var land = function (id, smooth) {
+    var el = id && document.getElementById(id);
+    if (!el) return;
+    cancelled = false;
+    el.scrollIntoView({ behavior: smooth ? "smooth" : "auto" });
+    [200, 500, 900, 1400, 2100, 3000].forEach(function (ms) {
+      setTimeout(function () {
+        if (cancelled) return;
+        var top = el.getBoundingClientRect().top;
+        if (Math.abs(top - 88) > 6) window.scrollTo({ top: window.scrollY + top - 88, behavior: "auto" });
+      }, ms);
+    });
+  };
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="#"]');
+    if (!a) return;
+    var url = new URL(a.href, location.href);
+    if (url.pathname !== location.pathname || !url.hash || url.hash === "#") return;
+    var id = decodeURIComponent(url.hash.slice(1));
+    if (!document.getElementById(id)) return;
+    e.preventDefault();
+    history.pushState(null, "", url.hash);
+    land(id, false);
+  });
+  if (location.hash) window.addEventListener("load", function () { land(decodeURIComponent(location.hash.slice(1)), false); });
+})();
