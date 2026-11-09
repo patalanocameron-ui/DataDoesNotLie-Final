@@ -448,3 +448,22 @@
   });
   if (location.hash) window.addEventListener("load", function () { land(decodeURIComponent(location.hash.slice(1)), false); });
 })();
+
+// Conversion events for Google Analytics 4 (only when the GA tag is on the page).
+(function () {
+  var send = function (name, params) { if (typeof window.gtag === "function") window.gtag("event", name, params || {}); };
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a, button");
+    if (!a) return;
+    var href = a.getAttribute("href") || "";
+    var text = (a.textContent || "").trim().slice(0, 60);
+    var plan = (href.match(/checkout\?plan=([a-z]+)/) || [])[1];
+    if (plan) send("begin_checkout", { plan: plan, link_text: text });
+    else if (/Start (your )?free month/i.test(text)) send("start_free_month_click", { link_text: text, page: location.pathname });
+    if (a.getAttribute("data-track") === "open_demo" || /\/demo$/.test(href)) send("open_demo", { link_text: text, page: location.pathname });
+    if (a.hasAttribute("data-video-open")) send("watch_tour", {});
+  });
+  document.querySelectorAll("form[data-lead]").forEach(function (f) {
+    f.addEventListener("submit", function () { if (f.checkValidity()) send("generate_lead", { form: f.getAttribute("data-lead") }); });
+  });
+})();

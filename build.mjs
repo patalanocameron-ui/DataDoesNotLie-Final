@@ -11,6 +11,8 @@
 import fs from "node:fs";
 
 const SITE = "https://datadoesnotlie.com";
+/** Google Analytics 4 Measurement ID (G-XXXXXXX). Empty means no analytics tag is added. */
+const GA_ID = "";
 const APP = "https://daybreak.datadoesnotlie.com";
 const TODAY = new Date().toISOString().slice(0, 10);
 const data = JSON.parse(fs.readFileSync(new URL("./data/plans.json", import.meta.url)));
@@ -207,7 +209,7 @@ function header(active) {
         <div class="menu" id="menu-product">
           <div class="menu-grid">
             <div class="menu-links">${links(PRODUCT)}</div>
-            <a class="menu-feature" href="index.html#how"><img src="assets/app-dashboard.webp" alt="" width="320" height="200" loading="lazy"><b>See it work</b><span>One morning with Daybreak, start to finish</span></a>
+            <a class="menu-feature" href="https://daybreak.datadoesnotlie.com/demo" data-track="open_demo"><img src="assets/app-dashboard.webp" alt="" width="320" height="200" loading="lazy"><b>Try the live demo</b><span>Explore a sample business, no sign-up</span></a>
           </div>
         </div>
       </div>
@@ -226,7 +228,7 @@ function header(active) {
     <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav"><span></span></button>
   </div>
   <div class="mobile-nav" id="mobile-nav">
-    <div class="group"><span>Daybreak</span>${PRODUCT.map(([h, b]) => `<a href="${h}">${b}</a>`).join("")}<a href="pricing.html">Pricing</a><a href="partners.html">Partner program</a></div>
+    <div class="group"><span>Daybreak</span><a href="https://daybreak.datadoesnotlie.com/demo">Try the live demo</a>${PRODUCT.map(([h, b]) => `<a href="${h}">${b}</a>`).join("")}<a href="pricing.html">Pricing</a><a href="partners.html">Partner program</a></div>
     <div class="group"><span>Data Does Not Lie</span><a href="index.html#about">About</a><a href="blog.html">Use cases</a><a href="index.html#services">Services</a><a href="sign-in.html">Sign in</a></div>
     <div class="cta-row"><a class="btn btn-ghost" href="index.html#demo">Book a demo</a><a class="btn btn-primary" href="pricing.html">Start free month</a></div>
   </div>
@@ -244,15 +246,15 @@ function footer() {
         <p class="tag">Your data already knows. Now it tells you.</p>
         <div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-primary btn-sm" href="pricing.html">Start free month</a><a class="btn btn-ghost btn-sm" href="index.html#demo">Book a demo</a></div>
       </div>
-      <div><h4>Daybreak</h4><ul><li><a href="index.html#how">How it works</a></li><li><a href="index.html#ask">Ask Daybreak</a></li><li><a href="index.html#integrations">Connections</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="sign-in.html">Sign in</a></li></ul></div>
+      <div><h4>Daybreak</h4><ul><li><a href="index.html#how">How it works</a></li><li><a href="https://daybreak.datadoesnotlie.com/demo">Live demo</a></li><li><a href="index.html#ask">Ask Daybreak</a></li><li><a href="index.html#integrations">Connections</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="sign-in.html">Sign in</a></li></ul></div>
       <div><h4>Company</h4><ul><li><a href="index.html#about">About</a></li><li><a href="partners.html">Partner program</a></li><li><a href="index.html#services">Services</a></li><li><a href="blog.html">Use cases</a></li></ul></div>
       <div><h4>Get in touch</h4><ul><li><a href="index.html#demo">Book a demo</a></li><li><a href="partners.html">Partner program</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li></ul></div>
     </div>
     <div class="foot-mark" aria-hidden="true"></div>
-    <div class="foot-base"><span>&copy; 2026 Data Does Not Lie</span><span>Product screens show illustrative demo data.</span></div>
+    <div class="foot-base"><span>&copy; 2026 Data Does Not Lie</span></div>
   </div>
 </footer>
-<div class="m-cta" data-mcta><a class="btn btn-ghost" href="index.html#demo">Book a demo</a><a class="btn btn-primary" href="pricing.html">Start free month</a></div>`;
+<div class="m-cta" data-mcta><a class="btn btn-ghost" href="https://daybreak.datadoesnotlie.com/demo" data-track="open_demo">Try the demo</a><a class="btn btn-primary" href="pricing.html">Start free month</a></div>`;
 }
 
 // ---------- llms.txt and sitemap ----------
@@ -359,6 +361,7 @@ for (const [file, cfg] of Object.entries(PAGES)) {
   const path = new URL(`./${file}`, import.meta.url);
   if (!fs.existsSync(path)) continue;
   let html = fs.readFileSync(path, "utf8");
+  html = fill(html, "analytics", GA_ID ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${GA_ID}");</script>` : "");
   html = fill(html, "header", header(cfg.active));
   html = fill(html, "footer", footer());
   html = fill(html, "plans-full", plansFull());
