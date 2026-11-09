@@ -630,17 +630,17 @@ p{margin:0}
 .phone-sec{overflow:hidden}
 .phone-grid{display:grid;grid-template-columns:1fr auto;gap:clamp(40px,8vw,120px);align-items:center}
 .p-steps{list-style:none;margin:34px 0 0;padding:0;display:grid;gap:4px;counter-reset:p}
-.p-steps li{position:relative;counter-increment:p;padding:14px 16px 14px 56px;border-radius:14px;cursor:pointer;transition:background-color .3s}
-.p-steps li::before{content:counter(p,decimal-leading-zero);position:absolute;left:16px;top:15px;font-family:var(--mono);font-size:.7rem;color:var(--faint);transition:color .3s}
-.p-steps li b{display:block;font-size:1rem;font-weight:600;color:var(--faint);transition:color .3s}
-.p-steps li span{display:block;font-size:.88rem;color:var(--faint);opacity:.0;max-height:0;overflow:hidden;transition:opacity .4s,max-height .5s var(--ease)}
-.p-steps li .pb{position:absolute;left:16px;right:16px;bottom:0;height:1.5px;border-radius:2px;background:transparent;overflow:hidden}
-.p-steps li .pb i{display:block;height:100%;background:var(--mint);transform:scaleX(0);transform-origin:left}
-.p-steps li.on{background:rgba(234,243,249,.04)}
-.p-steps li.on::before{color:var(--mint)}
-.p-steps li.on b{color:var(--text)}
-.p-steps li.on span{opacity:1;max-height:4em;color:var(--dim);margin-top:3px}
-.p-steps li:hover b{color:var(--dim)}
+.p-steps .pst{position:relative;counter-increment:p;padding:14px 16px 14px 56px;border-radius:14px;cursor:pointer;transition:background-color .3s}
+.p-steps .pst::before{content:counter(p,decimal-leading-zero);position:absolute;left:16px;top:15px;font-family:var(--mono);font-size:.7rem;color:var(--faint);transition:color .3s}
+.p-steps .pst b{display:block;font-size:1rem;font-weight:600;color:var(--faint);transition:color .3s}
+.p-steps .pst span{display:block;font-size:.88rem;color:var(--faint);opacity:.0;max-height:0;overflow:hidden;transition:opacity .4s,max-height .5s var(--ease)}
+.p-steps .pst .pb{position:absolute;left:16px;right:16px;bottom:0;height:1.5px;border-radius:2px;background:transparent;overflow:hidden}
+.p-steps .pst .pb i{display:block;height:100%;background:var(--mint);transform:scaleX(0);transform-origin:left}
+.p-steps .pst.on{background:rgba(234,243,249,.04)}
+.p-steps .pst.on::before{color:var(--mint)}
+.p-steps .pst.on b{color:var(--text)}
+.p-steps .pst.on span{opacity:1;max-height:4em;color:var(--dim);margin-top:3px}
+.p-steps .pst:hover b{color:var(--dim)}
 .phone-stage{position:relative;justify-self:center}
 .phone-stage::before{content:"";position:absolute;inset:8% -30% 0;background:radial-gradient(50% 45% at 50% 55%,rgba(43,227,155,.28),transparent 70%),radial-gradient(40% 40% at 70% 30%,rgba(82,185,233,.22),transparent 70%);filter:blur(30px);z-index:0}
 .phone{position:relative;z-index:1;width:330px;height:676px;border-radius:54px;padding:11px;background:linear-gradient(145deg,#2A3A4A,#0E1822 40%,#1B2733 70%,#3A4A5A);box-shadow:0 0 0 1px rgba(255,255,255,.08),inset 0 0 0 1px rgba(255,255,255,.12),inset 0 0 6px 2px rgba(0,0,0,.6),0 50px 100px -30px rgba(0,0,0,.9),0 30px 60px -30px rgba(43,227,155,.25)}
@@ -715,7 +715,7 @@ p{margin:0}
 .later .lr{display:flex;gap:12px;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--dim)}
 .later .lr b{color:var(--text);font-weight:500}
 .home-ind{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:110px;height:4px;border-radius:3px;background:rgba(255,255,255,.55);z-index:20}
-@media (max-width:900px){.phone-grid{grid-template-columns:1fr}.phone-stage{order:-1}.p-steps li span{opacity:1;max-height:none;color:var(--faint)}}
+@media (max-width:900px){.phone-grid{grid-template-columns:1fr}.phone-stage{order:-1}.p-steps .pst span{opacity:1;max-height:none;color:var(--faint)}}
 @media (max-width:400px){.phone{width:300px;height:614px;border-radius:50px}.screen{border-radius:40px}.scene{transform-origin:top center}}
 
 /* ---------- also in Daybreak (tabs) ---------- */
@@ -1278,7 +1278,7 @@ main > article .fig-live figcaption{margin-top:10px}
 .page-sky h1 span,.partner-hero h1 span{color:inherit!important}
 /* visible focus on inputs */
 .field input:focus,.field select:focus,.field textarea:focus{box-shadow:0 0 0 3px rgba(43,227,155,.22)}
-.pain .now:focus-within,.p-steps li:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.pain .now:focus-within,.p-steps .pst:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
 /* pains: the problem stays readable, the answer carries the color */
 .pain .was{color:var(--text);font-weight:500}
 .pain .was s{background:none;text-decoration:none}
@@ -1320,3 +1320,7 @@ main > article .fig-live figcaption{margin-top:10px}
 /* perf: grain is a tiny pre-rendered tile, no SVG filter, no blend mode */
 .sky-layer .grain,.partner-band::after,.cat-banner::after{background:url(grain.png) repeat;background-size:80px 80px;mix-blend-mode:normal;opacity:1;inset:0}
 @media (max-width:760px){.sky-layer .light{animation:none}}
+
+.p-steps .pst{display:block;width:100%;text-align:left;border:0;background:none;font:inherit;color:inherit;cursor:pointer}
+.p-steps .pst.on{background:rgba(234,243,249,.04)}
+.p-steps .pst:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
