@@ -10,16 +10,16 @@ The working record for the datadoesnotlie.com redesign. Read this first when pic
 
 ## Standing priorities (from the brief)
 
-- [ ] Recover the original website's best animations
-- [ ] Reuse or improve the original Daybreak background
-- [ ] Combine the strongest elements of the older and newer websites
-- [ ] Preserve and enhance the dashboard presentation
-- [ ] Replace the awkward mobile screen with a convincing motion demonstration
-- [ ] Develop stronger animated product storytelling
-- [ ] Improve the overall premium SaaS aesthetic
-- [ ] Refine conversion flows and marketing copy
-- [ ] Make the entire website visually consistent
-- [ ] Continue polishing mobile responsiveness and performance
+- [x] Recover the original website's best animations
+- [x] Reuse or improve the original Daybreak background
+- [x] Combine the strongest elements of the older and newer websites
+- [x] Preserve and enhance the dashboard presentation
+- [x] Replace the awkward mobile screen with a convincing motion demonstration
+- [x] Develop stronger animated product storytelling
+- [~] Improve the overall premium SaaS aesthetic (first full pass done; keep polishing)
+- [~] Refine conversion flows and marketing copy (CTAs unified: Start free month, Book a demo, Apply to partner)
+- [x] Make the entire website visually consistent
+- [~] Continue polishing mobile responsiveness and performance (see backlog 1)
 
 (Ticked as each lands; see "Completed" below for detail.)
 
@@ -51,8 +51,10 @@ Daybreak is named for the moment the sky turns. The site is built around that id
 
 - **Background system.** The July aurora sky, rebuilt: ink navy, a horizon of light low in the hero that the product rises out of, two slow drifting lights (mint, sky), a fading measurement grid, fine grain. As the visitor scrolls the story, the sky warms from night to dawn, so the background tells time. Light paper sections arrive at pricing ("full daylight").
 - **The story is one morning.** The five steps (Connect, Understand, Discover, Act, Measure) are told as one owner's morning, with a clock in the sticky chapter rail: overnight sync, 6:00 daily run, 7:12 insight, 7:15 workflow live, two weeks later results. One customer (Maria Chen, illustrative) is carried through every chapter so the steps read as one connected thread.
-- **Type.** Bricolage Grotesque for display (the July personality, at weight 600 with tight tracking), Instrument Sans for text (Nov 5), JetBrains Mono for numbers and labels in mocks. Two-tone headlines (bright phrase, then a dimmer continuation) borrowed in spirit from Attio and Linear. Fonts self-hosted in `fonts/`.
-- **Color.** Ink `#081C30`, deep `#06121F`, surface `#0B2540`, mint `#2BE39B` (the Daybreak accent), sky `#7CE0FF` and `#52B9E9`, amber `#F2A93B` for warnings, coral `#E85D75` sparingly, paper `#F5F8FA`.
+- **Type (Cam, Nov 9: same font and Material UI elements as the product).** Inter variable everywhere, exactly like the app (`fonts/inter-latin-wght-normal.woff2`, copied from the app's @fontsource-variable/inter). Tabular numbers for data. Two-tone headlines (bright phrase, then a dimmer continuation). Section labels look like the app's section headers: small uppercase sky blue.
+- **No gradient text, ever** (Cam, Nov 9). The dark Daybreak sky gradient behind content is wanted; colored text gradients are not.
+- **Color = the app's palette** (`daybreak/src/theme/theme.tsx`): navy 950 `#03070d`, 900 `#060c16` (page), 850 `#0a1322` (tiles), 800 `#0f1b2e`, 700 `#1a2a42` (hairlines), 600 `#253a57`; ink `#e9eff6`, muted `#8797ab`, faint `#56667b`; mint `#2be39b`, sky `#4fb2ff`, amber `#ffbe55`, coral `#ff6b88`, violet `#9f8cff`. Hero sky base `#071120`. Paper `#F4F7F9` for daylight sections.
+- **Components = the app's MUI theme**, reproduced in CSS: contained mint button with a soft glow, outlined navy-600 button that turns mint on hover, text tabs with a 2px mint indicator, outlined inputs on navy 900 with mint focus, navy 850 menus (radius 12), pill chips, tiles with the lit top edge, ExpandMore accordions, Material rounded icons (paths copied from @mui/icons-material).
 - **Product presentation.** Real screenshots in a precise browser frame with layered live HTML elements on top (insight card, toast, cursor) that animate between real product states (Dashboard, Insights, Customers, Workflows tabs). HTML mocks reuse the app's real vocabulary and data ("See them", saved views, tags, workflow steps) in a refined presentation.
 - **Do not use `assets/app-insights.webp`** (Cam, Nov 9: he doesn't like the UI on that screen). Don't imitate its card grid in mocks either; show insights with the Advise-card treatment instead.
 - **Motion principles.** Every motion explains something the product does. Eases `cubic-bezier(.2,.8,.25,1)` for moves and `cubic-bezier(.34,1.56,.64,1)` for pops. Fire once on scroll; loops only where the loop is the demo (phone, chat). All of it off under `prefers-reduced-motion`, with final states shown. Vanilla JS and CSS, no animation library.
@@ -67,10 +69,28 @@ References studied (screens in `docs/references/`): Attio (sticky chapter rail, 
 - Google Search Console file `google7bffc4ca45ad5fa4.html` must stay at the root.
 - Lead forms post to the existing Google Form (ids in `assets/site.js`).
 
-## Completed
+## Completed (Nov 9, branch `redesign`, draft PR #1)
 
-(updated as work lands)
+Preview: https://deploy-preview-1--endearing-lebkuchen-8762b8.netlify.app (Netlify deploy preview; production untouched).
+
+- Design system rebuilt in `assets/site.css` on the app's theme (see above). Header with Product and Company dropdowns, Data Does Not Lie vs Daybreak made explicit, mobile menu grouped by product and company, footer with the DAYBREAK wordmark, sticky phone CTA bar.
+- Recovered background: the July sky (drifting mint and sky light, fading grid, grain) in the hero and closing, with a horizon line the product rises out of; pricing transitions from the dark sky to a light "daylight" section across a horizon.
+- Homepage: hero with real app screens in a browser frame (Dashboard, Reports, Customers, Workflows tabs that auto-advance with a progress indicator), layered live elements per screen, tilt that flattens on scroll; source rail with honest statuses; ticker of a sample morning (recovered from July); pains that strike through into answers; the five-step story as "one morning with Daybreak" with a sticky clock and chapter rail, one customer (Maria Chen) carried through every chapter, the sky warming toward dawn; Ask Daybreak chat demo rewritten to real capabilities (find, compare, propose a workflow you approve); phone demo, a 5-scene loop in HTML/CSS with synced captions and clickable steps; tabbed extras (many stores, promotions, texting, MCP); audiences; pricing preview; partner band with a live brand-swap demo of white label; company section (founder plus services); FAQ; closing; demo form.
+- Pricing and partners rebuilt (partners now covers custom web addresses and client payments on the partner's own Stripe). Use cases, case study, privacy, terms and sign-in restyled on the shared system; old 30 KB inline style blocks removed.
+- Removed: the Insights screenshot (`assets/app-insights.webp`) and the insights video loop are no longer used. Bricolage, Instrument Sans and JetBrains Mono removed in favor of Inter.
+- Quality: no JS errors; reduced motion shows every demo's final state; Lighthouse accessibility 100 locally; desktop performance 94 on the preview; CLS 0.
 
 ## Remaining work and ideas backlog
 
-(updated as work lands)
+Priority order.
+
+1. Mobile performance: the preview's throttled mobile run shows high main-thread time (part of it is Netlify's preview toolbar). Next steps: split `site.css` (it carries pass-by-pass overrides; consolidate and minify in `build.mjs`), lazy-render below-fold mocks with `content-visibility:auto`, and re-measure on production.
+2. Re-record the 45-second tour video: it predates the redesign and shows Shopify as connected. Record from the real app with the Daybreak demo tenant.
+3. Replace HTML mocks with exact app renders where Cam prefers them (the app could export its own components to static images or an embeddable demo route).
+4. A real interactive "try it on sample data" demo that runs the actual app against the demo tenant.
+5. Customer proof: add real testimonials and logos once customers agree. Nothing invented until then.
+6. Use cases: write the Daybreak retail case study (the placeholder card is still there).
+7. Partner sign-in on custom domains depends on Clerk satellite domains (purchase pending) and VERCEL_TOKEN; until then the partner page promises branded sign-in that works on storeportal.app subdomains only after DNS is live.
+8. OG images: new share images for home, pricing and partners in the new look.
+9. Consider porting the site to Next.js with the app's actual MUI components if Cam wants literal component reuse (today it is a faithful CSS reproduction).
+10. Analytics: no analytics were present before; add privacy-friendly analytics (e.g. Plausible or Netlify Analytics) if wanted, plus conversion events on Start free month and the demo form.

@@ -1251,3 +1251,5 @@ main > article .fig-live figcaption{margin-top:10px}
 .show-tabs button[aria-selected="true"] .bar-p i.run{animation:tabProg var(--dur,6.5s) linear forwards}
 .show-tabs.paused button .bar-p i.run{animation-play-state:paused}
 @keyframes tabProg{to{transform:scaleX(1)}}
+/* skip rendering work for far-below-the-fold sections until they approach the viewport */
+#ask,#mobile,#features,#pricing,#partners,#about,#faq,#demo,.closing-sky,section[aria-labelledby="aud-title"],section[aria-labelledby="pains-title"]{content-visibility:auto;contain-intrinsic-size:auto 900px}

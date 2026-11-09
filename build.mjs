@@ -351,6 +351,7 @@ const PAGES = {
   "privacy.html": { active: "" },
   "terms.html": { active: "" },
   "sign-in.html": { active: "" },
+  "404.html": { active: "" },
 };
 for (const [file, cfg] of Object.entries(PAGES)) {
   const path = new URL(`./${file}`, import.meta.url);
