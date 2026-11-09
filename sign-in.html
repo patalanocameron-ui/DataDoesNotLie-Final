@@ -106,11 +106,12 @@
     var APP = "https://daybreak.datadoesnotlie.com";
     var box = document.getElementById("sign-in");
     var status = document.getElementById("signInStatus");
-    var fail = function(){ status.innerHTML = 'Sign in isn\'t available right now. <a href="' + APP + '/sign-in" style="color:var(--accent)">Sign in on Daybreak</a>.'; };
+    // If the sign-in form can't load here (slow connection, private browsing, a blocker), go to the app's own sign-in.
+    var fail = function(){ location.replace(APP + "/sign-in"); };
     window.addEventListener("load", async function(){
       try {
         var tries = 0;
-        while ((!window.Clerk || !window.__internal_ClerkUICtor) && tries++ < 50) await new Promise(function(r){ setTimeout(r, 100); });
+        while ((!window.Clerk || !window.__internal_ClerkUICtor) && tries++ < 150) await new Promise(function(r){ setTimeout(r, 100); });
         if (!window.Clerk) return fail();
         await Clerk.load({
           ui: { ClerkUI: window.__internal_ClerkUICtor },
