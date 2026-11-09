@@ -449,9 +449,12 @@
   if (location.hash) window.addEventListener("load", function () { land(decodeURIComponent(location.hash.slice(1)), false); });
 })();
 
-// Conversion events for Google Analytics 4 (only when the GA tag is on the page).
+// Conversion events for Google Analytics and Tag Manager (only when the tags are on the page).
 (function () {
-  var send = function (name, params) { if (typeof window.gtag === "function") window.gtag("event", name, params || {}); };
+  var send = function (name, params) {
+    if (typeof window.gtag === "function") window.gtag("event", name, params || {}); // Google Analytics
+    if (window.dataLayer) { var o = { event: name }; for (var k in params || {}) o[k] = params[k]; window.dataLayer.push(o); } // Tag Manager triggers
+  };
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest("a, button");
     if (!a) return;

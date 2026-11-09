@@ -117,3 +117,4 @@ Priority order.
 - GA4: build.mjs has `GA_ID` (empty, so no tag ships). site.js sends begin_checkout, start_free_month_click, open_demo, watch_tour and generate_lead when the tag is present. When Cam sends the G- ID: set GA_ID, add a Google Analytics paragraph to privacy.html, rebuild, publish.
 - New: blog-online-store-playbook.html, a walkthrough with a placeholder online shop. Written as "how it would work", with no invented results, quotes or metrics.
 - Testimonials: not added. Invented quotes presented as real customers are off the table; real quotes go in when customers give them.
+- Analytics live Nov 9: GA4 G-PTXCDJXPX8 sent directly with gtag, plus Tag Manager GTM-N2T4PVSG for other tags. Don't add a GA4 tag for the same ID inside Tag Manager (double counting). Events: open_demo, begin_checkout, start_free_month_click, watch_tour, generate_lead. Privacy page updated.

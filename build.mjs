@@ -11,8 +11,10 @@
 import fs from "node:fs";
 
 const SITE = "https://datadoesnotlie.com";
-/** Google Analytics 4 Measurement ID (G-XXXXXXX). Empty means no analytics tag is added. */
-const GA_ID = "";
+/** Google Analytics 4 (sent directly with gtag) and Google Tag Manager (for any other tags). Empty means not added.
+ *  Don't also add a GA4 tag for the same ID inside Tag Manager, or every visit is counted twice. */
+const GA_ID = "G-PTXCDJXPX8";
+const GTM_ID = "GTM-N2T4PVSG";
 const APP = "https://daybreak.datadoesnotlie.com";
 const TODAY = new Date().toISOString().slice(0, 10);
 const data = JSON.parse(fs.readFileSync(new URL("./data/plans.json", import.meta.url)));
@@ -365,7 +367,10 @@ for (const [file, cfg] of Object.entries(PAGES)) {
   const path = new URL(`./${file}`, import.meta.url);
   if (!fs.existsSync(path)) continue;
   let html = fs.readFileSync(path, "utf8");
-  html = fill(html, "analytics", GA_ID ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${GA_ID}");</script>` : "");
+  html = fill(html, "analytics", [
+    GA_ID && `<script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>`,
+    `<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}${GA_ID ? `gtag("js",new Date());gtag("config","${GA_ID}");` : ""}${GTM_ID ? `(function(w,d,s,l,i){w[l].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src="https://www.googletagmanager.com/gtm.js?id="+i;f.parentNode.insertBefore(j,f)})(window,document,"script","dataLayer","${GTM_ID}");` : ""}</script>`,
+  ].filter(Boolean).join("\n"));
   html = fill(html, "header", header(cfg.active));
   html = fill(html, "footer", footer());
   html = fill(html, "plans-full", plansFull());
