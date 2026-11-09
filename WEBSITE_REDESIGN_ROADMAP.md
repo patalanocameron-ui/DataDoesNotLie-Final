@@ -80,6 +80,11 @@ Preview: https://deploy-preview-1--endearing-lebkuchen-8762b8.netlify.app (Netli
 - Removed: the Insights screenshot (`assets/app-insights.webp`) and the insights video loop are no longer used. Bricolage, Instrument Sans and JetBrains Mono removed in favor of Inter.
 - Quality: no JS errors; reduced motion shows every demo's final state; Lighthouse accessibility 100 locally; desktop performance 94 on the preview; CLS 0.
 
+### Independent review (Nov 9) and what was fixed
+Fixed: unreadable add-on cards on pricing; video modal focus and Tab trap; phone steps keyboard support; mobile menu returns focus; hero tabs roving tabindex; pause button and pause on hover/focus for the screen tour and phone demo; chat starts with an answer showing and stops after one pass; white-label swap stops after two rounds; removed aria-live on the auto-rotating panel; chat region role; heading order in mocks; AEO badge moved out of its heading; contrast on muted headline text, alt text, light-section labels and captions; visible focus ring on inputs; MCP copy corrected to read-only (src/mcp/server.ts exposes read-only tools); "every core feature" instead of "every feature"; coupon comparison attributed to Insights (src/insights/recommend.ts), not the promotions report; illustrative labels on the hero, phone and partner mocks; "Seen in 6 months" vs "Active" no longer conflict; demo business named Seaside Cleaners to match the real screenshots; mechanical comma separators rewritten; figure rules replaced with slashes; en dash in the case study; two-tone headings kept only in the hero; pains no longer struck through; hero layers moved off the headers they covered; pricing card prices aligned; phones show a readable crop of the screens; blog features the real case study and drops the placeholder.
+
+Open from the review: consolidate the layered overrides in `assets/site.css` (backlog 1); merge the closing call to action and the demo form into one ending (kept separate for now so the form isn't cut by the horizon); the AI Marketing Assistant add-on copy (from the app's plans data) says it "launches campaigns and answers customer texts", which Cam should confirm matches how it works.
+
 ## Remaining work and ideas backlog
 
 Priority order.

@@ -61,7 +61,7 @@
     };
     mbtn.addEventListener("click", function () { setMenu(!mnav.classList.contains("open")); });
     mnav.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
-    doc.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
+    doc.addEventListener("keydown", function (e) { if (e.key === "Escape" && mnav.classList.contains("open")) { setMenu(false); mbtn.focus(); } });
   }
 
   /* ---------------- reveals ---------------- */
@@ -104,7 +104,7 @@
     var select = function (i) {
       cur = i;
       tabs.forEach(function (b, k) {
-        b.setAttribute("aria-selected", k === i ? "true" : "false");
+        b.setAttribute("aria-selected", k === i ? "true" : "false"); b.tabIndex = k === i ? 0 : -1;
         var bar = $(".bar-p i", b); if (bar) { bar.classList.remove("run"); if (k === i && !reduce) { void bar.offsetWidth; bar.classList.add("run"); } }
       });
       imgs.forEach(function (im, k) { im.classList.toggle("on", k === i); if (k === i && im.loading === "lazy") im.loading = "eager"; });
@@ -123,10 +123,19 @@
     window.addEventListener("load", function () { imgs.forEach(function (im) { im.loading = "eager"; }); });
     select(0);
     if (!reduce) {
-      onView(show, function (vis) {
-        if (vis && !running) { running = true; tablist.classList.remove("paused"); arm(left); }
-        else if (!vis && running) { running = false; clearTimeout(timer); left = Math.max(400, left - (performance.now() - startedAt)); tablist.classList.add("paused"); }
-      }, { keep: true, threshold: 0.15 });
+      var userPaused = false, hold = false, visible = false;
+      var sync = function () {
+        var want = visible && !userPaused && !hold;
+        if (want && !running) { running = true; tablist.classList.remove("paused"); arm(left); }
+        else if (!want && running) { running = false; clearTimeout(timer); left = Math.max(400, left - (performance.now() - startedAt)); tablist.classList.add("paused"); }
+      };
+      var pbtn = $("[data-pause-show]", show);
+      if (pbtn) pbtn.addEventListener("click", function () { userPaused = !userPaused; pbtn.setAttribute("aria-pressed", userPaused ? "true" : "false"); pbtn.setAttribute("aria-label", userPaused ? "Play the screen tour" : "Pause the screen tour"); sync(); });
+      show.addEventListener("pointerenter", function () { hold = true; sync(); });
+      show.addEventListener("pointerleave", function () { hold = false; sync(); });
+      show.addEventListener("focusin", function () { hold = true; sync(); });
+      show.addEventListener("focusout", function (e) { if (!show.contains(e.relatedTarget)) { hold = false; sync(); } });
+      onView(show, function (vis) { visible = vis; sync(); }, { keep: true, threshold: 0.15 });
       // tilt flattens as you scroll into the product, a slight lean follows the pointer
       var sunEl = $("[data-hero] .sun"), lean = 0;
       var applyTilt = function () {
@@ -179,7 +188,7 @@
     var turns = ["Which VIPs haven't been back since summer?", "How did October do against last year, by store?", "Draft a win-back for them"];
     var typed = $("[data-typed]", chat), umsg = $("[data-umsg]", chat), urow = $(".u-row", chat);
     var think = $(".think-row", chat), replies = $$(".reply", chat), chipsWrap = $("[data-chips]", chat), chips = $$("[data-chips] button", chat);
-    var timers = [], curT = -1;
+    var timers = [], curT = -1, auto = true;
     var clear = function () { timers.forEach(function (t) { clearTimeout(t); clearInterval(t); }); timers = []; };
     var later = function (fn, ms) { timers.push(setTimeout(fn, ms)); };
     var showChips = function (i) { chips.forEach(function (c, k) { c.hidden = k === i; }); chipsWrap.classList.add("on"); };
@@ -209,7 +218,8 @@
                   think.classList.remove("on"); replies[i].classList.add("on");
                   requestAnimationFrame(function () { requestAnimationFrame(function () { replies[i].classList.add("grown"); }); });
                   later(function () { showChips(i); }, 900);
-                  later(function () { play((i + 1) % turns.length); }, 8000);
+                  if (auto && i < turns.length - 1) later(function () { play(i + 1); }, 8000);
+                  else auto = false;
                 }, 1100);
               }, 320);
             }, 220);
@@ -218,14 +228,11 @@
       }, 32);
       timers.push(iv);
     };
-    chips.forEach(function (c) { c.addEventListener("click", function () { var i = +c.dataset.q; reduce ? final(i) : play(i); }); });
-    if (reduce || !hasIO) final(0);
-    else {
-      var started = false;
-      onView(chat, function (vis) {
-        if (vis && !started) { started = true; later(function () { play(0); }, 300); }
-        else if (!vis && started) { clear(); started = false; final(curT < 0 ? 0 : curT); started = false; }
-      }, { keep: true, threshold: 0.35 });
+    chips.forEach(function (c) { c.addEventListener("click", function () { auto = false; var i = +c.dataset.q; reduce ? final(i) : play(i); }); });
+    final(0);
+    if (!reduce && hasIO) {
+      onView(chat, function () { later(function () { if (auto) play(1); }, 3500); }, { threshold: 0.4 });
+      chat.addEventListener("focusin", function () { if (auto) { auto = false; clear(); final(curT < 0 ? 0 : curT); } });
     }
   }
 
@@ -265,12 +272,22 @@
       var tick = function (now) { var q = Math.min(1, (now - pStart) / p.ms); if (bar) bar.style.transform = "scaleX(" + q + ")"; if (q < 1 && prun) praf = requestAnimationFrame(tick); };
       praf = requestAnimationFrame(tick);
     };
-    steps.forEach(function (s, k) { s.addEventListener("click", function () { if (reduce) { setScene(k); if (k === 3 && sheet) sheet.classList.add("up"); } else run(k); }); });
-    if (reduce || !hasIO) { setScene(2); }
-    else onView(phone, function (vis) {
-      if (vis && !prun) { prun = true; run(si); }
-      else if (!vis && prun) { prun = false; pclear(); }
-    }, { keep: true, threshold: 0.3 });
+    var pick = function (k) { if (reduce || pPaused) { pclear(); setScene(k); if (k === 3 && sheet) sheet.classList.add("up"); } else run(k); };
+    steps.forEach(function (s, k) {
+      s.addEventListener("click", function () { pick(k); });
+      s.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(k); } });
+    });
+    var pPaused = false, pHold = false, pVis = false, pStage = phone.closest(".phone-grid");
+    var psync = function () {
+      var want = pVis && !pPaused && !pHold;
+      if (want && !prun) { prun = true; run(si); }
+      else if (!want && prun) { prun = false; pclear(); }
+    };
+    var ppb = $("[data-pause-phone]");
+    if (ppb) ppb.addEventListener("click", function () { pPaused = !pPaused; ppb.setAttribute("aria-pressed", pPaused ? "true" : "false"); ppb.textContent = pPaused ? "Play demo" : "Pause demo"; psync(); });
+    if (pStage) { pStage.addEventListener("pointerenter", function () { pHold = true; psync(); }); pStage.addEventListener("pointerleave", function () { pHold = false; psync(); }); }
+    if (reduce || !hasIO) { setScene(2); if (ppb) ppb.hidden = true; }
+    else onView(phone, function (vis) { pVis = vis; psync(); }, { keep: true, threshold: 0.3 });
   }
 
   /* ---------------- tabs (Also in Daybreak) ---------------- */
@@ -296,7 +313,7 @@
   var wl = $("[data-wl]");
   if (wl && !reduce) {
     var brands = [
-      { name: "Daybreak", url: "daybreak.datadoesnotlie.com", accent: "#2BE39B", letter: "D", client: "Seaside, 3 stores" },
+      { name: "Daybreak", url: "daybreak.datadoesnotlie.com", accent: "#2BE39B", letter: "D", client: "Seaside Cleaners, 3 stores" },
       { name: "Northwind Insights", url: "app.northwindinsights.com", accent: "#9B8CFF", letter: "N", client: "Corner Bakery, 2 stores" },
       { name: "Harbor Local", url: "portal.harborlocal.co", accent: "#F2A93B", letter: "H", client: "Bayside Florist" }
     ];
@@ -310,7 +327,8 @@
         wl.style.setProperty("--accent", b.accent); wl.classList.remove("swap");
       }, 300);
     };
-    onView(wl, function (vis) { clearInterval(wt); if (vis) wt = setInterval(swapBrand, 3200); }, { keep: true, threshold: 0.4 });
+    var rounds = 0;
+    onView(wl, function (vis) { clearInterval(wt); if (vis && rounds < brands.length * 2) wt = setInterval(function () { swapBrand(); if (++rounds >= brands.length * 2) clearInterval(wt); }, 3200); }, { keep: true, threshold: 0.4 });
   }
 
   /* ---------------- tour video modal ---------------- */
@@ -320,10 +338,10 @@
     var openV = function () {
       lastFocus = doc.activeElement;
       if (!vid.src) vid.src = vid.dataset.src;
-      modal.hidden = false; requestAnimationFrame(function () { modal.classList.add("open"); });
+      modal.hidden = false;
+      requestAnimationFrame(function () { modal.classList.add("open"); setTimeout(function () { $("[data-video-close]", modal).focus(); }, 60); });
       doc.body.style.overflow = "hidden";
       var p = vid.play(); if (p && p.catch) p.catch(function () {});
-      $("[data-video-close]", modal).focus();
     };
     var closeV = function () {
       modal.classList.remove("open"); vid.pause(); doc.body.style.overflow = "";
@@ -333,7 +351,15 @@
     $$("[data-video-open]").forEach(function (b) { b.addEventListener("click", openV); });
     $("[data-video-close]", modal).addEventListener("click", closeV);
     modal.addEventListener("click", function (e) { if (e.target === modal) closeV(); });
-    doc.addEventListener("keydown", function (e) { if (e.key === "Escape" && modal.classList.contains("open")) closeV(); });
+    doc.addEventListener("keydown", function (e) {
+      if (!modal.classList.contains("open")) return;
+      if (e.key === "Escape") closeV();
+      if (e.key === "Tab") {
+        var f = [$("[data-video-close]", modal), vid];
+        var i = f.indexOf(doc.activeElement);
+        e.preventDefault(); f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
+      }
+    });
   }
 
   /* ---------------- product videos on other pages ---------------- */

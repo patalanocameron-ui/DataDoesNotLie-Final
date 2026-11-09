@@ -91,7 +91,7 @@ function compareTable() {
 function addOns() {
   return `<div class="addons">\n        ${data.addOns
     .map(
-      (a) => `<div class="addon"><div><h4>${esc(a.name)}</h4><p>${esc(a.blurb)}</p></div><div class="cost">${$(a.monthlyCents)} / mo${a.setupCents ? `<small>plus ${$(a.setupCents)} setup</small>` : ""}</div></div>`,
+      (a) => `<div class="addon"><div><h3>${esc(a.name)}</h3><p>${esc(a.blurb)}</p></div><div class="cost">${$(a.monthlyCents)} / mo${a.setupCents ? `<small>plus ${$(a.setupCents)} setup</small>` : ""}</div></div>`,
     )
     .join("\n        ")}\n      </div>`;
 }

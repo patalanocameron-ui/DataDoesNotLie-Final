@@ -1253,3 +1253,57 @@ main > article .fig-live figcaption{margin-top:10px}
 @keyframes tabProg{to{transform:scaleX(1)}}
 /* skip rendering work for far-below-the-fold sections until they approach the viewport */
 #ask,#mobile,#features,#pricing,#partners,#about,#faq,#demo,.closing-sky,section[aria-labelledby="aud-title"],section[aria-labelledby="pains-title"]{content-visibility:auto;contain-intrinsic-size:auto 900px}
+@media (max-width:1180px){.f-advise{right:1%;top:16%;width:min(320px,36%)}.f-sync,.f-live,.f-repeat{left:1%}.f-view{right:1%}}
+
+/* ---------- review fixes ---------- */
+.show-bar{display:flex;align-items:flex-end;justify-content:center;gap:10px;margin:0 auto 22px;max-width:100%}
+.show-bar .show-tabs{margin:0}
+.pause-btn{width:36px;height:36px;flex:none;border-radius:10px;border:1px solid #253a57;background:transparent;color:var(--faint);display:grid;place-items:center;cursor:pointer;margin-bottom:4px}
+.pause-btn:hover{color:var(--text);border-color:var(--mint)}
+.pause-btn .pl{display:none}.pause-btn[aria-pressed="true"] .pl{display:block}.pause-btn[aria-pressed="true"] .ps{display:none}
+.pause-phone{margin:14px 0 0 6px;height:34px}
+.show-cap{position:absolute;left:0;right:0;bottom:-30px;text-align:center;font-size:.72rem;color:var(--faint);letter-spacing:.02em}
+.adv .t4{font-size:1.02rem;font-weight:600;letter-spacing:-.01em;line-height:1.3}
+/* add-ons and packs on paper */
+.paper .addon,.paper .pack{background-color:#fff;color:var(--paper-ink)}
+.addon h3{font-size:.98rem;letter-spacing:-.01em}
+/* contrast */
+.paper .two-tone .rest,[style*="color:#8a9aaa"]{color:#5f7182!important}
+.plan .alt.muted{color:#5f7182}
+.paper .kicker{color:#0d63a8}
+.fig{font-size:.7rem;color:#8797ab}
+.two-tone .rest{color:#7d8da1}
+/* one-tone headings: the two-tone treatment stays only in the hero */
+.section .two-tone .rest,.story .two-tone .rest,.sky:not(.hero) .two-tone .rest{color:inherit}
+.page-sky h1 span,.partner-hero h1 span{color:inherit!important}
+/* visible focus on inputs */
+.field input:focus,.field select:focus,.field textarea:focus{box-shadow:0 0 0 3px rgba(43,227,155,.22)}
+.pain .now:focus-within,.p-steps li:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+/* pains: the problem stays readable, the answer carries the color */
+.pain .was{color:var(--text);font-weight:500}
+.pain .was s{background:none;text-decoration:none}
+.pain.in .was{color:var(--dim)}
+.pain .now .arrowc{background:var(--mint);color:#03070d}
+.pain .now b{color:var(--mint)}
+/* hero layers sit off the headers they used to cover */
+.f-sync{left:-4%;top:auto;bottom:30%}
+.f-advise{right:-4%;top:46%}
+@media (max-width:1180px){.f-sync{left:1%}.f-advise{right:1%}}
+/* pricing cards line up their prices */
+@media (min-width:1081px){.plan .for{min-height:5.4em}}
+/* phones: show a readable crop of the screen, not a thumbnail */
+@media (max-width:640px){
+  .screens{aspect-ratio:4/3.6}
+  .screens img{object-position:22% 0;transform:none}
+  .stage{transform:none!important}
+  .show-cap{position:static;margin-top:12px}
+  .facts{grid-template-columns:1fr}
+}
+.posts.one{grid-template-columns:1fr}
+.post-card.feature{display:grid;grid-template-columns:1.1fr 1fr;gap:10px 32px;align-items:center;padding:0;overflow:hidden}
+.post-card.feature .card-img{grid-row:1/span 5;width:100%;height:100%;margin:0;border-radius:0;aspect-ratio:auto;min-height:320px}
+.post-card.feature > :not(img){padding-right:32px}
+.post-card.feature .post-meta{padding-top:28px}
+.post-card.feature .more{padding-bottom:28px}
+.more-note{font-size:.9rem;color:var(--faint)}
+@media (max-width:760px){.post-card.feature{grid-template-columns:1fr}.post-card.feature .card-img{grid-row:auto;min-height:0;aspect-ratio:16/9}.post-card.feature > :not(img){padding:0 20px}.post-card.feature .more{padding-bottom:22px}}
