@@ -472,11 +472,12 @@
           signUpForceRedirectUrl: APP,
           appearance: {
             variables: {
-              colorPrimary: "#2BE39B", colorTextOnPrimaryBackground: "#04241E",
-              colorBackground: "#0B2540", colorInputBackground: "#081C30",
-              colorText: "#EAF3F9", colorTextSecondary: "rgba(234,243,249,.64)", colorInputText: "#EAF3F9",
-              colorNeutral: "#EAF3F9", borderRadius: "10px", fontFamily: "'Instrument Sans', system-ui, sans-serif"
-            }
+              colorPrimary: "#2BE39B", colorPrimaryForeground: "#04241E",
+              colorBackground: "#0B2540", colorForeground: "#EAF3F9", colorMutedForeground: "rgba(234,243,249,.64)",
+              colorInput: "#081C30", colorInputForeground: "#EAF3F9", colorNeutral: "white",
+              borderRadius: "10px", fontFamily: "'Instrument Sans', system-ui, sans-serif"
+            },
+            elements: { providerIcon__apple: { filter: "invert(1)" }, providerIcon__github: { filter: "invert(1)" } }
           }
         });
         // Already signed in: skip the form.
