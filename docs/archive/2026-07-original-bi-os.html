@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Does Not Lie — The AI-powered BI operating system</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22mg%22%20x1%3D%220%22%20y1%3D%221%22%20x2%3D%221%22%20y2%3D%220%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232BE39B%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237CE0FF%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%2242%22%20height%3D%2242%22%20rx%3D%2212%22%20fill%3D%22%230B2540%22%20stroke%3D%22url(%23mg)%22%20stroke-width%3D%222.5%22%2F%3E%3Cg%20transform%3D%22translate(10.5%2030.5)%20scale(0.55%200.325)%22%20fill%3D%22%23FFFFFF%22%20opacity%3D%220.45%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M0%200%20L5%200%20C9%200%2010%204%2010%2010%20C10%2016%209%2020%205%2020%20L0%2020%20Z%20M3%203%20L5%203%20C6.6%203%207%206%207%2010%20C7%2014%206.6%2017%205%2017%20L3%2017%20Z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(18.5%2028)%20scale(0.55%200.450)%22%20fill%3D%22%23FFFFFF%22%20opacity%3D%220.62%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M0%200%20L5%200%20C9%200%2010%204%2010%2010%20C10%2016%209%2020%205%2020%20L0%2020%20Z%20M3%203%20L5%203%20C6.6%203%207%206%207%2010%20C7%2014%206.6%2017%205%2017%20L3%2017%20Z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(26.5%2023)%20scale(0.55%200.700)%22%20fill%3D%22%23FFFFFF%22%20opacity%3D%220.8%22%3E%3Cpath%20d%3D%22M0%2020%20V0%20H3%20L7%2012%20V0%20H10%20V20%20H7%20L3%208%20V20%20Z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(34.5%2017)%20scale(0.55%201.000)%22%20fill%3D%22%23FFFFFF%22%20opacity%3D%221%22%3E%3Cpath%20d%3D%22M0%200%20H3%20V17%20H10%20V20%20H0%20Z%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M10.5%2027.5%20L18%2022.5%20L24%2025%20L36.5%2012%22%20fill%3D%22none%22%20stroke%3D%22%230B2540%22%20stroke-width%3D%226.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M10.5%2027.5%20L18%2022.5%20L24%2025%20L36.5%2012%22%20fill%3D%22none%22%20stroke%3D%22url(%23mg)%22%20stroke-width%3D%223.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M29.5%2011.5%20H37%20V19%22%20fill%3D%22none%22%20stroke%3D%22url(%23mg)%22%20stroke-width%3D%223.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+<meta name="description" content="Data Does Not Lie turns your operational data into decisions. Dashboards, reports, exploration, and an AI advisory layer that tells you what changed, why it matters, and what to do next.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#081C30;
+    --navy:#0E2A47;
+    --navy-2:#123456;
+    --teal:#2BE39B;
+    --teal-deep:#0E9D6C;
+    --amber:#F2A93B;
+    --coral:#E85D75;
+    --violet:#8B7CF6;
+    --paper:#F5F8FA;
+    --card:#FFFFFF;
+    --mist:rgba(255,255,255,.62);
+    --line:rgba(14,42,71,.12);
+    --line-dark:rgba(255,255,255,.10);
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --body:'Instrument Sans',system-ui,sans-serif;
+    --disp:'Bricolage Grotesque',var(--body);
+    --max:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16.5px}
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}
+  h1,h2,h3{font-family:var(--disp);line-height:1.06;letter-spacing:-.015em}
+  h2{font-size:clamp(1.85rem,3.6vw,2.7rem);font-weight:700}
+  .lede{font-size:1.08rem;color:rgba(8,28,48,.72);max-width:56ch}
+  .dark .lede{color:rgba(235,244,250,.72)}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:.65em;font-size:.95rem;font-weight:600;letter-spacing:.01em;color:var(--ink);padding-bottom:.6em;margin-bottom:1em;border-bottom:2px solid;border-image:linear-gradient(90deg,#2BE39B,#7CE0FF 70%,transparent) 1}
+  .eyebrow svg{width:23px;height:23px;stroke:var(--teal-deep);flex:none}
+  .dark .eyebrow{color:#EAF3F9}
+  .dark .eyebrow svg{stroke:var(--teal)}
+
+  /* ---------- buttons ---------- */
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-size:.95rem;border-radius:10px;padding:.78em 1.35em;border:1px solid transparent;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,background .15s ease}
+  .btn-primary{background:linear-gradient(115deg,#3DF0AC,#2BE39B 45%,#0FA97C);background-size:200% 100%;background-position:0 0;color:#04241E;box-shadow:0 8px 24px rgba(43,227,155,.28);transition:background-position .45s ease,transform .15s ease,box-shadow .15s ease}
+  .btn-primary:hover{transform:translateY(-2px);background-position:100% 0;box-shadow:0 12px 30px rgba(43,227,155,.4)}
+  .btn-ghost{border-color:var(--line-dark);color:#EAF3F9}
+  .btn-ghost:hover{background:rgba(255,255,255,.06)}
+  .btn:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+
+  /* ---------- nav ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(8,28,48,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-dark)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px;color:#EAF3F9}
+  .logo{display:flex;align-items:center;gap:.6em;font-family:var(--disp);font-weight:800;font-size:1.05rem;letter-spacing:-.01em}
+  .logo-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--teal),#0FA97C);display:grid;place-items:center;font-family:var(--mono);font-size:.66rem;font-weight:700;color:#04241E}
+  .nav-links{display:flex;gap:1.8em;font-size:.92rem;color:rgba(234,243,249,.78)}
+  .nav-links a:hover{color:#fff}
+  .nav .btn{padding:.55em 1.1em;font-size:.88rem}
+  @media(max-width:820px){.nav-links{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{background:
+    radial-gradient(1100px 520px at 82% -10%,rgba(43,227,155,.16),transparent 60%),
+    radial-gradient(800px 420px at -8% 110%,rgba(53,198,255,.12),transparent 60%),
+    var(--ink);
+    color:#EAF3F9;overflow:hidden;position:relative}
+  .hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(900px 600px at 70% 20%,black,transparent 75%);pointer-events:none}
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding-top:88px;padding-bottom:110px}
+  .hero h1{font-size:clamp(2.6rem,5.4vw,4.1rem);font-weight:800}
+  .hero h1 .truth{color:var(--teal);white-space:nowrap}
+  .hero p.sub{margin:1.2em 0 1.8em;font-size:1.12rem;color:rgba(235,244,250,.75);max-width:50ch}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-proof{margin-top:2.4em;display:flex;gap:2.2em;flex-wrap:wrap}
+  .proof b{display:block;font-family:var(--disp);font-size:1.5rem;font-weight:700;color:#fff}
+  .proof span{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(235,244,250,.55)}
+
+  /* hero product mock */
+  .mock{position:relative}
+  .dash{background:linear-gradient(180deg,#10314F,#0C2740);border:1px solid var(--line-dark);border-radius:16px;padding:18px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+  .dash-top{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+  .dot{width:9px;height:9px;border-radius:50%}
+  .dash-title{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(235,244,250,.5);margin-left:auto}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+  .kpi{background:rgba(255,255,255,.05);border:1px solid var(--line-dark);border-radius:10px;padding:10px 12px}
+  .kpi span{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(235,244,250,.5)}
+  .kpi b{display:block;font-family:var(--disp);font-size:1.25rem;font-weight:700}
+  .kpi b.warn{color:var(--amber)}
+  .kpi b.good{color:var(--teal)}
+  .charts{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+  .panel{background:rgba(255,255,255,.05);border:1px solid var(--line-dark);border-radius:10px;padding:12px}
+  .panel small{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(235,244,250,.5);display:block;margin-bottom:8px}
+  .bars{display:flex;align-items:flex-end;gap:8px;height:86px}
+  .bars i{flex:1;border-radius:4px 4px 0 0;background:var(--teal);opacity:.9;animation:grow 1s ease both}
+  .bars i:nth-child(2){background:#2E5E8A;animation-delay:.08s}
+  .bars i:nth-child(3){background:var(--amber);animation-delay:.16s}
+  .bars i:nth-child(4){background:var(--violet);animation-delay:.24s}
+  .bars i:nth-child(5){background:var(--coral);animation-delay:.32s}
+  .bars i:nth-child(6){background:var(--teal);animation-delay:.4s}
+  @keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+  .bars i{transform-origin:bottom}
+  .donut{width:96px;height:96px;border-radius:50%;margin:4px auto;background:conic-gradient(var(--teal) 0 41%,#2E5E8A 41% 68%,var(--amber) 68% 87%,var(--violet) 87% 100%);position:relative}
+  .donut::after{content:"";position:absolute;inset:26px;border-radius:50%;background:#0E2A47}
+
+  /* recommendation card — the signature */
+  .reco{position:absolute;left:-34px;bottom:-42px;width:min(430px,92%);background:var(--card);color:var(--ink);border-radius:14px;border:1px solid var(--line);border-left:4px solid var(--coral);box-shadow:0 24px 70px rgba(0,0,0,.5);padding:16px 18px}
+  .reco-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .badge{font-family:var(--mono);font-size:.6rem;font-weight:700;letter-spacing:.1em;padding:.35em .7em;border-radius:6px}
+  .badge.crit{background:rgba(232,93,117,.14);color:#C4304F}
+  .badge.cat{background:rgba(14,42,71,.07);color:rgba(8,28,48,.6)}
+  .reco-id{font-family:var(--mono);font-size:.78rem;font-weight:700;margin-left:auto}
+  .reco-body{font-size:.9rem;line-height:1.55;color:rgba(8,28,48,.85);min-height:5.6em}
+  .reco-meta{display:flex;gap:1.4em;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+  .reco-meta div{font-family:var(--mono);font-size:.62rem;letter-spacing:.04em;color:rgba(8,28,48,.55)}
+  .reco-meta b{color:var(--teal-deep)}
+  .reco-cta{margin-top:12px;display:flex;gap:8px}
+  .chip{font-size:.78rem;font-weight:600;border-radius:8px;padding:.45em .9em;border:1px solid var(--line);background:#fff;cursor:default}
+  .chip.go{background:var(--teal);border-color:var(--teal);color:#04241E}
+  .reco-dots{position:absolute;top:14px;right:16px;display:flex;gap:5px}
+  .reco-dots i{width:6px;height:6px;border-radius:50%;background:rgba(8,28,48,.18);transition:background .3s}
+  .reco-dots i.on{background:var(--teal)}
+  @media(max-width:960px){
+    .hero-grid{grid-template-columns:1fr;padding-top:64px;padding-bottom:90px}
+    .mock{margin-top:8px}
+    .reco{position:relative;left:0;bottom:0;margin-top:-30px;width:100%}
+  }
+
+  /* ---------- ticker ---------- */
+  .ticker{background:var(--navy);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);overflow:hidden}
+  .ticker-inner{display:flex;gap:3.5em;white-space:nowrap;padding:.85em 0;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(235,244,250,.6);animation:slide 34s linear infinite;width:max-content}
+  .ticker-inner b{color:var(--teal);font-weight:700}
+  @keyframes slide{to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){
+    .ticker-inner{animation:none}
+    .bars i{animation:none}
+    *{scroll-behavior:auto}
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:96px 0}
+  .sec-head{max-width:720px;margin-bottom:52px}
+  .sec-head h2{margin:.5em 0 .55em}
+
+  /* shift section */
+  .shift{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .vs > div{padding:36px 38px}
+  .vs .was{background:var(--paper)}
+  .vs .now{background:var(--ink);color:#EAF3F9}
+  .vs h3{font-size:1.25rem;margin-bottom:.9em;font-weight:700}
+  .vs ul{list-style:none;display:grid;gap:.75em;font-size:.95rem}
+  .vs .was ul li{color:rgba(8,28,48,.6)}
+  .vs li{padding-left:1.6em;position:relative}
+  .vs .was li::before{content:"•";position:absolute;left:0;color:rgba(8,28,48,.35)}
+  .vs .now li::before{content:"→";position:absolute;left:0;color:var(--teal);font-weight:700}
+  .vs .tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;display:inline-block;margin-bottom:1.2em;padding:.4em .8em;border-radius:6px}
+  .vs .was .tag{background:rgba(8,28,48,.06);color:rgba(8,28,48,.55)}
+  .vs .now .tag{background:rgba(43,227,155,.15);color:var(--teal)}
+  @media(max-width:820px){.vs{grid-template-columns:1fr}}
+
+  /* modules */
+  .mods{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .mod{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px;transition:transform .18s ease,box-shadow .18s ease}
+  .mod:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(14,42,71,.12)}
+  .mod .glyph{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;margin-bottom:18px;font-family:var(--mono);font-weight:700;font-size:.8rem}
+  .g1{background:rgba(43,227,155,.14);color:var(--teal-deep)}
+  .g2{background:rgba(139,124,246,.16);color:#5D4DE0}
+  .g3{background:rgba(242,169,59,.18);color:#B36F0E}
+  .g4{background:rgba(232,93,117,.14);color:#C4304F}
+  .mod h3{font-size:1.18rem;margin-bottom:.5em;font-weight:700}
+  .mod p{font-size:.94rem;color:rgba(8,28,48,.66)}
+  .mod .mono-note{margin-top:16px;font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;color:rgba(8,28,48,.42)}
+  @media(max-width:820px){.mods{grid-template-columns:1fr}}
+
+  /* advise section */
+  .advise{background:var(--ink);color:#EAF3F9}
+  .advise-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+  .steps{display:grid;gap:0;margin-top:8px}
+  .step{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--line-dark)}
+  .step:last-child{border-bottom:0}
+  .step .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--teal);padding-top:.3em;text-transform:uppercase}
+  .step h4{font-family:var(--disp);font-size:1.06rem;font-weight:700;margin-bottom:.25em}
+  .step p{font-size:.92rem;color:rgba(235,244,250,.66)}
+  .narr{background:linear-gradient(180deg,#10314F,#0C2740);border:1px solid var(--line-dark);border-radius:16px;padding:26px;box-shadow:0 24px 70px rgba(0,0,0,.4)}
+  .narr .stamp{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(235,244,250,.45);display:flex;justify-content:space-between;margin-bottom:18px}
+  .narr .stamp b{color:var(--teal)}
+  .narr dl{display:grid;gap:16px}
+  .narr dt{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:.3em}
+  .narr dd{font-size:.94rem;color:rgba(235,244,250,.85);border-left:2px solid rgba(255,255,255,.12);padding-left:14px}
+  .narr .act{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+  .narr .act .chip{background:rgba(255,255,255,.06);border-color:var(--line-dark);color:#EAF3F9}
+  .narr .act .chip.go{background:var(--teal);border-color:var(--teal);color:#04241E}
+  @media(max-width:960px){.advise-grid{grid-template-columns:1fr}}
+
+  /* personas */
+  .personas{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .persona{border:1px solid var(--line);border-radius:16px;padding:28px;background:var(--card)}
+  .persona .who{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.9em;display:block}
+  .persona p{font-size:.93rem;color:rgba(8,28,48,.68)}
+  .persona strong{display:block;font-family:var(--disp);font-size:1.08rem;margin-bottom:.4em}
+  @media(max-width:820px){.personas{grid-template-columns:1fr}}
+
+  /* lead form */
+  .lead{background:
+    radial-gradient(700px 380px at 15% 0%,rgba(43,227,155,.14),transparent 60%),
+    var(--ink);color:#EAF3F9}
+  .lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+  .lead form{background:rgba(255,255,255,.045);border:1px solid var(--line-dark);border-radius:16px;padding:32px;display:grid;gap:16px}
+  .field label{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(235,244,250,.6);margin-bottom:.5em}
+  .field input,.field select,.field textarea{width:100%;background:rgba(8,28,48,.55);border:1px solid var(--line-dark);border-radius:10px;color:#EAF3F9;padding:.8em 1em;font:inherit;font-size:.95rem}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--teal);border-color:transparent}
+  .field textarea{resize:vertical;min-height:96px}
+  .form-note{font-family:var(--mono);font-size:.66rem;color:rgba(235,244,250,.4);letter-spacing:.04em}
+  .success{display:none;background:rgba(43,227,155,.12);border:1px solid rgba(43,227,155,.4);border-radius:12px;padding:20px;font-size:.95rem}
+  .lead .checks{list-style:none;display:grid;gap:.9em;margin-top:1.6em;font-size:.97rem}
+  .lead .checks li{padding-left:1.8em;position:relative;color:rgba(235,244,250,.8)}
+  .lead .checks li::before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:700}
+  @media(max-width:900px){.lead-grid{grid-template-columns:1fr}}
+
+  footer{background:var(--ink);color:rgba(235,244,250,.5);border-top:1px solid var(--line-dark);padding:34px 0;font-size:.85rem}
+  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  .foot .mono{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase}
+
+  /* ---------- brand logo ---------- */45%{background-position:-30% 0}100%{background-position:-30% 0}}
+  @keyframes logoIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+  .hero-tag{font-family:var(--disp);font-size:min(1.65rem,calc((100vw - 52px)/21.5));white-space:nowrap;font-weight:700;letter-spacing:-.01em;color:#fff;animation:logoIn .9s cubic-bezier(.2,.8,.25,1) .15s both}
+  .hero .truth{background:linear-gradient(92deg,var(--teal),#7CE0FF 75%,#FFFFFF);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:normal}
+
+  /* ---------- aurora gradients ---------- */
+  .aurora{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;pointer-events:none;z-index:0}
+  .aurora.a1{width:440px;height:440px;background:radial-gradient(circle,rgba(43,227,155,.55),transparent 65%);top:-130px;right:6%;animation:drift 14s ease-in-out infinite alternate}
+  .aurora.a2{width:380px;height:380px;background:radial-gradient(circle,rgba(53,198,255,.42),transparent 65%);bottom:-150px;left:-70px;animation:drift 18s ease-in-out -6s infinite alternate-reverse}
+  .aurora.a3{width:300px;height:300px;background:radial-gradient(circle,rgba(16,185,129,.35),transparent 65%);top:38%;left:42%;animation:drift 22s ease-in-out -11s infinite alternate}
+  @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(60px,40px) scale(1.18)}}
+
+  /* ---------- gradient headings & cards ---------- */
+  .dark h2{background:linear-gradient(95deg,#FFFFFF 25%,#8CF5C8 68%,#7CE0FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .mod{position:relative;overflow:hidden}
+  .mod::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),#35D6FF,#8CF5C8);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+  .mod:hover::before{transform:scaleX(1)}
+  .persona{transition:transform .18s ease,box-shadow .18s ease}
+  .persona:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(14,42,71,.12)}
+
+  /* ---------- scroll reveal ---------- */
+  [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.25,1)}
+  [data-reveal].revealed{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .wordmark span,.hero-tag,.aurora,.msg.show,.msg.show .mini-bars .bar,.typing i{animation:none}
+    [data-reveal]{opacity:1;transform:none;transition:none}
+    .rc-block{opacity:1;transform:none;transition:none}
+  }
+
+
+  /* ---------- DDNL brand (text wordmark + monogram) ---------- */
+  .wordmark{font-family:var(--disp);font-weight:800;font-size:min(3.05rem,calc((100vw - 52px)/12));white-space:nowrap;line-height:1.04;letter-spacing:-.02em;text-transform:uppercase;margin:.3em 0 .25em;display:flex;flex-wrap:nowrap;gap:0 .26em}
+  .wordmark span{color:transparent;background-image:linear-gradient(110deg,transparent 30%,rgba(43,227,155,.95) 48%,rgba(124,224,255,.95) 56%,transparent 72%),linear-gradient(#FFFFFF,#E8F6EF);background-size:260% 100%,100% 100%;background-position:0 0,0 0;-webkit-background-clip:text;background-clip:text;animation:wordIn .7s cubic-bezier(.2,.8,.25,1) both,shineText 6.5s ease-in-out infinite;filter:drop-shadow(0 10px 26px rgba(0,0,0,.4))}
+  .wordmark span:nth-child(1){animation-delay:.05s}
+  .wordmark span:nth-child(2){animation-delay:.16s}
+  .wordmark span:nth-child(3){animation-delay:.27s}
+  .wordmark span:nth-child(4){animation-delay:.38s}
+  .wordmark span.g{background-image:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.95) 48%,rgba(255,255,255,.9) 56%,transparent 72%),var(--wg)}
+  .wordmark span.g1{--wg:linear-gradient(100deg,#3DF0AC,#2BE39B)}
+  .wordmark span.g2{--wg:linear-gradient(100deg,#2BE39B,#4FDCD0)}
+  .wordmark span.g3{--wg:linear-gradient(100deg,#4FDCD0,#7CE0FF)}
+  .mark-d{display:block;filter:drop-shadow(0 3px 12px rgba(43,227,155,.35));transition:transform .2s ease}
+  .logo:hover .mark-d{transform:translateY(-1px) scale(1.04)}
+  @keyframes wordIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  @keyframes shineText{0%,18%{background-position:135% 0,0 0}55%,100%{background-position:-65% 0,0 0}}
+  .wordmark-sm{font-family:var(--disp);font-weight:800;font-size:1.02rem;letter-spacing:.02em;text-transform:uppercase;color:#EAF3F9}
+  .wordmark-sm .grad3{background:linear-gradient(100deg,#3DF0AC,#7CE0FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ---------- textures ---------- */
+  :root{--noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")}
+  .hero .grain{position:absolute;inset:0;background:var(--noise);opacity:.07;mix-blend-mode:overlay;pointer-events:none;z-index:0}
+  .tex-dots{position:relative}
+  .tex-dots::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(8,28,48,.14) 1px,transparent 1.4px);background-size:22px 22px;pointer-events:none;mask-image:linear-gradient(180deg,black,transparent 55%);-webkit-mask-image:linear-gradient(180deg,black,transparent 55%)}
+  .tex-dots > .wrap{position:relative}
+  .tex-dots-dark{position:relative}
+  .tex-dots-dark::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(140,245,200,.13) 1px,transparent 1.4px);background-size:24px 24px;pointer-events:none;mask-image:linear-gradient(180deg,black,transparent 50%);-webkit-mask-image:linear-gradient(180deg,black,transparent 50%)}
+  .tex-dots-dark > .wrap{position:relative}
+  .vs .was{background-image:repeating-linear-gradient(-45deg,rgba(8,28,48,.03) 0 2px,transparent 2px 9px)}
+
+  /* ---------- AI chat showcase ---------- */
+  .chat-sec{background:
+    radial-gradient(900px 460px at 85% 0%,rgba(43,227,155,.12),transparent 60%),
+    radial-gradient(700px 400px at 0% 100%,rgba(53,198,255,.1),transparent 60%),
+    linear-gradient(180deg,#081C30,#0A2138)}
+  .chat-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:30px;align-items:start}
+  .chat-shell{background:linear-gradient(180deg,#10314F,#0C2740);border:1px solid var(--line-dark);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+  .chat-bar{display:flex;align-items:center;gap:8px;padding:13px 16px;border-bottom:1px solid var(--line-dark)}
+  .chat-bar .title{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(235,244,250,.55);margin-left:auto}
+  .chat-log{padding:20px;display:flex;flex-direction:column;gap:13px;min-height:430px}
+  .msg{display:none;max-width:88%;border-radius:14px;padding:12px 15px;font-size:.9rem;line-height:1.55}
+  .msg.show{display:block;animation:msgIn .5s cubic-bezier(.2,.8,.25,1) both}
+  @keyframes msgIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .msg.user{align-self:flex-end;background:linear-gradient(120deg,#3DF0AC,#1CC98F);color:#04241E;font-weight:500;border-bottom-right-radius:4px}
+  .msg.ai{align-self:flex-start;background:rgba(255,255,255,.055);border:1px solid var(--line-dark);border-bottom-left-radius:4px;color:rgba(235,244,250,.9)}
+  .msg .src{margin-top:10px;padding-top:8px;border-top:1px dashed var(--line-dark);font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;color:rgba(140,245,200,.65)}
+  .msg .chips{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .msg .chips span{font-size:.74rem;font-weight:600;padding:.4em .85em;border-radius:8px;border:1px solid var(--line-dark);background:rgba(255,255,255,.05)}
+  .msg .chips span.go{background:var(--teal);border-color:var(--teal);color:#04241E}
+  .mini-bars{display:grid;gap:7px;margin:12px 0 2px}
+  .mini-bars .row{display:grid;grid-template-columns:74px 1fr 40px;gap:10px;align-items:center;font-family:var(--mono);font-size:.62rem;color:rgba(235,244,250,.6)}
+  .mini-bars .bar{height:9px;border-radius:5px;background:linear-gradient(90deg,#2BE39B,#18C98F);transform-origin:left}
+  .mini-bars .bar.low{background:linear-gradient(90deg,var(--amber),#D98B1F)}
+  .msg.show .mini-bars .bar{animation:growX .8s cubic-bezier(.2,.8,.25,1) .25s both}
+  @keyframes growX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .typing{align-self:flex-start;display:none;gap:5px;padding:13px 16px;background:rgba(255,255,255,.055);border:1px solid var(--line-dark);border-radius:14px;border-bottom-left-radius:4px}
+  .typing.on{display:flex}
+  .typing i{width:6px;height:6px;border-radius:50%;background:rgba(235,244,250,.6);animation:blink 1s ease infinite}
+  .typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+  @keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+
+  /* generated report card */
+  .report-wrap{position:relative}
+  .report-wrap::before{content:"";position:absolute;inset:-14px;border-radius:22px;background:conic-gradient(from 140deg,rgba(43,227,155,.5),rgba(53,214,255,.35),rgba(43,227,155,.08),rgba(43,227,155,.5));filter:blur(26px);opacity:.55;z-index:0}
+  .report-card{position:relative;z-index:1;background:linear-gradient(180deg,#FFFFFF,#F2FBF7);color:var(--ink);border:1px solid rgba(43,227,155,.4);border-radius:18px;padding:22px;box-shadow:0 30px 70px rgba(0,0,0,.4)}
+  .rc-block{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.25,1)}
+  .rc-block.built{opacity:1;transform:none}
+  .rc-stamp{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(8,28,48,.45);margin-bottom:8px}
+  .rc-stamp b{color:var(--teal-deep)}
+  .rc-title{font-family:var(--disp);font-size:1.3rem;font-weight:800;margin-bottom:14px}
+  .rc-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:14px}
+  .rc-kpi{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+  .rc-kpi span{font-family:var(--mono);font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(8,28,48,.5);display:block}
+  .rc-kpi b{font-family:var(--disp);font-size:1.02rem;font-weight:700}
+  .rc-kpi b.up{color:var(--teal-deep)} .rc-kpi b.dn{color:#C4304F}
+  .rc-two{display:grid;grid-template-columns:1.15fr .85fr;gap:10px;margin-bottom:14px}
+  .rc-panel{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px}
+  .rc-panel small{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(8,28,48,.5);display:block;margin-bottom:8px}
+  .rc-cust{display:grid;gap:6px}
+  .rc-cust .row{display:grid;grid-template-columns:96px 1fr 44px;gap:8px;align-items:center;font-family:var(--mono);font-size:.58rem;color:rgba(8,28,48,.6)}
+  .rc-cust .bar{height:8px;border-radius:5px;background:linear-gradient(90deg,#2BE39B,#0FA97C)}
+  .rc-donut{width:86px;height:86px;border-radius:50%;margin:2px auto;background:conic-gradient(#2BE39B 0 44%,#123456 44% 71%,#35D6FF 71% 89%,#9FB4C4 89% 100%);position:relative}
+  .rc-donut::after{content:"";position:absolute;inset:24px;border-radius:50%;background:#fff}
+  .rc-legend{display:flex;justify-content:center;gap:.8em;margin-top:8px;font-family:var(--mono);font-size:.53rem;color:rgba(8,28,48,.55)}
+  .rc-legend i{display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:.35em}
+  .rc-actions{display:flex;gap:8px;flex-wrap:wrap}
+  .rc-actions .chip{font-size:.76rem}
+  .rc-actions .chip.go{box-shadow:0 6px 16px rgba(43,227,155,.35)}
+  @media(max-width:960px){.chat-grid{grid-template-columns:1fr}.chat-log{min-height:0}}
+
+  /* ---------- competitive positioning ---------- */
+  .lane-grid{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:18px;align-items:stretch;margin-bottom:16px}
+  .lane-card{border:1px solid var(--line);border-radius:14px;padding:22px;background:#fff}
+  .lane-card.ddnl{background:linear-gradient(160deg,#081C30,#0E3A2E);color:#EAF3F9;border:1px solid rgba(43,227,155,.5);box-shadow:0 18px 50px rgba(8,28,48,.25);position:relative;overflow:hidden}
+  .lane-card.ddnl::after{content:"";position:absolute;inset:0;background:radial-gradient(320px 160px at 85% 0%,rgba(43,227,155,.25),transparent 70%);pointer-events:none}
+  .lane-card .who{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(8,28,48,.5);display:block;margin-bottom:.8em}
+  .lane-card.ddnl .who{color:var(--teal)}
+  .lane-card strong{font-family:var(--disp);font-size:1.04rem;font-weight:700;display:block;margin-bottom:.45em}
+  .lane-card p{font-size:.88rem;color:rgba(8,28,48,.62)}
+  .lane-card.ddnl p{color:rgba(235,244,250,.78)}
+  .lane-rail{height:10px;border-radius:999px;background:linear-gradient(90deg,rgba(8,28,48,.12),#2BE39B 50%,rgba(8,28,48,.12));margin:6px 4px 44px;position:relative}
+  .lane-rail::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:#2BE39B;box-shadow:0 0 0 6px rgba(43,227,155,.25),0 0 24px rgba(43,227,155,.7)}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 14px 40px rgba(8,28,48,.06)}
+  table.cmp{width:100%;border-collapse:collapse;min-width:640px}
+  .cmp th,.cmp td{padding:14px 18px;text-align:center;font-size:.9rem;border-bottom:1px solid var(--line)}
+  .cmp tr:last-child td{border-bottom:0}
+  .cmp th{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(8,28,48,.55);background:var(--paper)}
+  .cmp td:first-child,.cmp th:first-child{text-align:left;font-weight:600;font-size:.88rem}
+  .cmp .col-ddnl{background:linear-gradient(180deg,rgba(43,227,155,.14),rgba(43,227,155,.05));font-weight:700}
+  .cmp th.col-ddnl{color:var(--teal-deep)}
+  .cmp .yes{color:var(--teal-deep);font-weight:800;font-size:1rem}
+  .cmp .part{display:inline-block;font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;padding:.35em .7em;border-radius:6px;background:rgba(242,169,59,.16);color:#B36F0E}
+  .cmp .no{color:rgba(8,28,48,.3);font-weight:700}
+  .cmp-note{font-family:var(--mono);font-size:.62rem;color:rgba(8,28,48,.45);margin-top:12px;letter-spacing:.04em}
+  .switch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
+  .switch-card{position:relative;border-radius:14px;padding:1px;background:linear-gradient(150deg,rgba(43,227,155,.6),rgba(53,214,255,.25) 45%,rgba(8,28,48,.1))}
+  .switch-card > div{background:#fff;border-radius:13px;padding:20px;height:100%}
+  .switch-card p{font-family:var(--disp);font-size:.98rem;font-weight:600;line-height:1.4}
+  .switch-card .k{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep);display:block;margin-bottom:.7em}
+  .cat-banner{margin:0 0 46px;border-radius:16px;padding:26px 30px;background:linear-gradient(120deg,#081C30,#0C3A2F);color:#EAF3F9;border:1px solid rgba(43,227,155,.35);font-family:var(--disp);font-size:clamp(1.05rem,1.9vw,1.3rem);font-weight:600;line-height:1.5;position:relative;overflow:hidden}
+  .cat-banner::after{content:"";position:absolute;inset:0;background:var(--noise);opacity:.06;mix-blend-mode:overlay;pointer-events:none}
+  .cat-banner b{color:var(--teal)}
+  @media(max-width:900px){.lane-grid{grid-template-columns:1fr}.switch-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.switch-grid{grid-template-columns:1fr}.rc-kpis{grid-template-columns:repeat(2,1fr)}.rc-two{grid-template-columns:1fr}}
+
+  /* ---------- mobile guards ---------- */
+  .hero-grid>*,.chat-grid>*,.advise-grid>*,.lead-grid>*,.mods>*,.lane-grid>*,.rc-two>*,.rc-kpis>*,.charts>*{min-width:0}
+  @media(max-width:640px){
+    section{padding:68px 0}
+    .hero-grid{padding-top:52px;padding-bottom:68px;gap:40px}
+    .charts{grid-template-columns:1fr}
+    .vs > div{padding:28px 22px}
+    .narr{padding:20px}
+    .lead form{padding:24px 20px}
+    .cat-banner{padding:20px 22px}
+    .chat-log{padding:14px}
+    .reco{padding:14px}
+    .cmp th,.cmp td{padding:12px 12px}
+  }
+  @media(min-width:961px){
+    .wordmark{font-size:min(3.05rem,calc((min(100vw,1160px)*0.525 - 53px)/12))}
+    .hero-tag{font-size:min(1.65rem,calc((min(100vw,1160px)*0.525 - 53px)/21.5))}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Data Does Not Lie home">
+      <svg class="mark-d" width="38" height="38" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="mg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2BE39B"/><stop offset="1" stop-color="#7CE0FF"/></linearGradient></defs><rect x="3" y="3" width="42" height="42" rx="12" fill="#0B2540" stroke="url(#mg)" stroke-width="2.5"/><g transform="translate(10.5 30.5) scale(0.55 0.325)" fill="#FFFFFF" opacity="0.45"><path fill-rule="evenodd" d="M0 0 L5 0 C9 0 10 4 10 10 C10 16 9 20 5 20 L0 20 Z M3 3 L5 3 C6.6 3 7 6 7 10 C7 14 6.6 17 5 17 L3 17 Z"/></g><g transform="translate(18.5 28) scale(0.55 0.450)" fill="#FFFFFF" opacity="0.62"><path fill-rule="evenodd" d="M0 0 L5 0 C9 0 10 4 10 10 C10 16 9 20 5 20 L0 20 Z M3 3 L5 3 C6.6 3 7 6 7 10 C7 14 6.6 17 5 17 L3 17 Z"/></g><g transform="translate(26.5 23) scale(0.55 0.700)" fill="#FFFFFF" opacity="0.8"><path d="M0 20 V0 H3 L7 12 V0 H10 V20 H7 L3 8 V20 Z"/></g><g transform="translate(34.5 17) scale(0.55 1.000)" fill="#FFFFFF" opacity="1"><path d="M0 0 H3 V17 H10 V20 H0 Z"/></g><path d="M10.5 27.5 L18 22.5 L24 25 L36.5 12" fill="none" stroke="#0B2540" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.5 27.5 L18 22.5 L24 25 L36.5 12" fill="none" stroke="url(#mg)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M29.5 11.5 H37 V19" fill="none" stroke="url(#mg)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#shift">Why DDNL</a>
+      <a href="#modules">Platform</a>
+      <a href="#chat">AI Chat</a>
+      <a href="#compare">Compare</a>
+      <a href="#teams">Teams</a>
+    </nav>
+    <a class="btn btn-primary" href="#demo">Get a demo</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <div class="hero dark">
+    <div class="grain" aria-hidden="true"></div>
+    <div class="aurora a1" aria-hidden="true"></div>
+    <div class="aurora a2" aria-hidden="true"></div>
+    <div class="aurora a3" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>The BI Operating System</span>
+        <div class="wordmark" role="heading" aria-level="1" aria-label="Data Does Not Lie">
+          <span>DATA</span> <span class="g g1">DOES</span> <span class="g g2">NOT</span> <span class="g g3">LIE</span>
+        </div>
+        <p class="hero-tag">Your data already knows. <span class="truth">Now it tells you.</span></p>
+        <p class="sub">Data Does Not Lie unifies dashboards, reports, and raw exploration under an AI advisory layer that explains what changed, why it matters, and what to do next. Not another dashboard. A decision system.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#demo">Get a demo</a>
+          <a class="btn btn-ghost" href="#advise">See the AI layer</a>
+        </div>
+        <div class="hero-proof">
+          <div class="proof"><b>1 platform</b><span>Explore → Report → Act</span></div>
+          <div class="proof"><b>Every metric</b><span>Drills to raw rows</span></div>
+          <div class="proof"><b>Zero digging</b><span>Recommendations find you</span></div>
+        </div>
+      </div>
+
+      <div class="mock" aria-hidden="true">
+        <div class="dash">
+          <div class="dash-top">
+            <span class="dot" style="background:var(--coral)"></span>
+            <span class="dot" style="background:var(--amber)"></span>
+            <span class="dot" style="background:var(--teal)"></span>
+            <span class="dash-title">Q2C Executive · All dates</span>
+          </div>
+          <div class="kpis">
+            <div class="kpi"><span>Backlog value</span><b class="good">$64.7M</b></div>
+            <div class="kpi"><span>Avg util %</span><b class="warn">57.0%</b></div>
+            <div class="kpi"><span>DSO</span><b>46.9d</b></div>
+          </div>
+          <div class="charts">
+            <div class="panel">
+              <small>Awarded value by yard</small>
+              <div class="bars">
+                <i style="height:92%"></i><i style="height:74%"></i><i style="height:58%"></i><i style="height:66%"></i><i style="height:49%"></i><i style="height:81%"></i>
+              </div>
+            </div>
+            <div class="panel">
+              <small>Revenue by billing type</small>
+              <div class="donut"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- signature: live AI recommendation card -->
+        <div class="reco" id="reco">
+          <div class="reco-dots" id="recoDots"><i class="on"></i><i></i><i></i></div>
+          <div class="reco-head">
+            <span class="badge crit" id="recoSev">CRITICAL</span>
+            <span class="badge cat" id="recoCat">EQUIPMENT</span>
+            <span class="reco-id" id="recoId">FCC-004</span>
+          </div>
+          <p class="reco-body" id="recoBody">Flat Top Tower crane idle 117 days in Portland. Relocate to Seattle where demand is 3.2× supply, or release at a discounted rate. Estimated recovery: $18.4K/mo against $260K book value.</p>
+          <div class="reco-meta" id="recoMeta">
+            <div>yard: <b>Portland</b></div>
+            <div>idle: <b>117d</b></div>
+            <div>status: <b>parked</b></div>
+          </div>
+          <div class="reco-cta">
+            <span class="chip go">Open filtered view</span>
+            <span class="chip">Dismiss with reason</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TICKER ============ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-inner">
+      <span>Utilization <b>57.0%</b> vs 65% target</span>
+      <span>Days to invoice <b>16.28</b> avg</span>
+      <span>AR past terms <b>7.6%</b></span>
+      <span>Backlog <b>$64.77M</b></span>
+      <span>Advise run <b>daily 06:00</b></span>
+      <span>22,753 rows <b>queryable in 22ms</b></span>
+      <span>Utilization <b>57.0%</b> vs 65% target</span>
+      <span>Days to invoice <b>16.28</b> avg</span>
+      <span>AR past terms <b>7.6%</b></span>
+      <span>Backlog <b>$64.77M</b></span>
+      <span>Advise run <b>daily 06:00</b></span>
+      <span>22,753 rows <b>queryable in 22ms</b></span>
+    </div>
+  </div>
+
+  <!-- ============ THE SHIFT ============ -->
+  <section id="shift" class="shift">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 18h5M10.5 21h3"/><path d="M12 3a6 6 0 0 1 4 10.5c-.8.7-1 1.5-1 2.5h-6c0-1-.2-1.8-1-2.5A6 6 0 0 1 12 3z"/></svg>Why We Built This</span>
+        <h2>Dashboards show. An operating system decides.</h2>
+        <p class="lede">Most BI tools stop at charts and leave the thinking to you. DDNL closes the loop between seeing performance, understanding priority, and executing action.</p>
+      </div>
+      <div class="vs" data-reveal>
+        <div class="was">
+          <span class="tag">Traditional BI</span>
+          <h3>You hunt for the problem</h3>
+          <ul>
+            <li>Forty charts competing for attention</li>
+            <li>Insight lives in whoever built the dashboard</li>
+            <li>Anomalies found weeks later, in a meeting</li>
+            <li>"Interesting" is where the workflow ends</li>
+          </ul>
+        </div>
+        <div class="now dark">
+          <span class="tag">Data Does Not Lie</span>
+          <h3>The problem finds you</h3>
+          <ul>
+            <li>AI narratives on every dashboard: what changed, why, what next</li>
+            <li>Severity-ranked recommendations, not raw alerts</li>
+            <li>One click from insight to the filtered rows behind it</li>
+            <li>Every recommendation ends in an action, an owner, or a reason</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MODULES ============ -->
+  <section id="modules" class="tex-dots">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>One Platform, Four Surfaces</span>
+        <h2>From raw rows to executive answers</h2>
+        <p class="lede">One consistent model across the whole system: filters up top, KPIs first, evidence below. Learn it once, use it everywhere.</p>
+      </div>
+      <div class="mods">
+        <div class="mod" data-reveal>
+          <div class="glyph g1">EX</div>
+          <h3>Explorer</h3>
+          <p>Query millions of billing lines, job costs, invoices, and e-tickets with sub-second response. Save views, share them, export anywhere. The raw truth is always one click away.</p>
+          <div class="mono-note">22,753 rows · 22ms · CSV export</div>
+        </div>
+        <div class="mod" data-reveal>
+          <div class="glyph g2">DB</div>
+          <h3>Dashboards</h3>
+          <p>Purpose-built views for Quote to Cash, Equipment Utilization, Days to Invoice, Job Scheduling, and more. Every KPI drills through to the records behind it. Nothing is a dead end.</p>
+          <div class="mono-note">Q2C · DTI · Utilization · Scheduler</div>
+        </div>
+        <div class="mod" data-reveal>
+          <div class="glyph g3">RP</div>
+          <h3>Reports</h3>
+          <p>Saved configurations with live parameters, ownership, and schedules. Run a Job P&amp;L, an invoice audit, or an equipment revenue report on demand, and know who owns it and when it last ran.</p>
+          <div class="mono-note">Run · Schedule · Own · Audit</div>
+        </div>
+        <div class="mod" data-reveal>
+          <div class="glyph g4">AI</div>
+          <h3>Intelligence</h3>
+          <p>The advisory layer that reads everything above it. Severity-labeled recommendations with full context, an AI chat grounded in your data, and daily Advise runs that surface what deserves attention today.</p>
+          <div class="mono-note">Advise · Recommend · Chat</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ AI CHAT SHOWCASE ============ -->
+  <section id="chat" class="chat-sec dark">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg>AI Chat, Grounded in Your Data</span>
+        <h2>Ask in plain language. Get answers with receipts.</h2>
+        <p class="lede">Every answer cites the tables, rows, and filters behind it. Ask a question, get the evidence. Ask for a report, get one you can save, schedule, and rerun.</p>
+      </div>
+      <div class="chat-grid">
+        <div class="chat-shell" id="chatShell">
+          <div class="chat-bar" aria-hidden="true">
+            <span class="dot" style="background:var(--coral)"></span>
+            <span class="dot" style="background:var(--amber)"></span>
+            <span class="dot" style="background:var(--teal)"></span>
+            <span class="title">Intelligence · AI Chat</span>
+          </div>
+          <div class="chat-log">
+            <div class="msg user" id="cm1">Which yards are dragging utilization down this quarter?</div>
+            <div class="msg ai" id="cm2">
+              Fleet average is <b>57.0%</b>, 8 points under target. Two yards account for most of the gap:
+              <div class="mini-bars" aria-hidden="true">
+                <div class="row"><span>Portland</span><span class="bar low" style="width:41%"></span><span>41%</span></div>
+                <div class="row"><span>Detroit</span><span class="bar low" style="width:52%"></span><span>52%</span></div>
+                <div class="row"><span>Spokane</span><span class="bar" style="width:63%"></span><span>63%</span></div>
+                <div class="row"><span>Seattle</span><span class="bar" style="width:71%"></span><span>71%</span></div>
+              </div>
+              Portland's tower cranes alone add 117 idle days. Want the unit-level breakdown?
+              <div class="chips"><span class="go">Open filtered view</span><span>Show idle units</span></div>
+              <div class="src">grounded in: equipment_utilization · 22,753 rows · 22ms</div>
+            </div>
+            <div class="msg user" id="cm3">Build me a Q2 revenue report with margin, DSO, top customers, and billing mix.</div>
+            <div class="msg ai" id="cm4">
+              Done. Your <b>Q2 Revenue Report</b> is assembling on the right, with invoiced revenue, gross margin, DSO, AR past terms, top customers, and billing mix. Save it to Reports and it reruns with live parameters any time.
+              <div class="chips"><span class="go">Save to Reports</span><span>Schedule monthly</span></div>
+              <div class="src">grounded in: job_billing_lines + invoices · Q2 2026</div>
+            </div>
+            <div class="typing" id="chatTyping" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+        </div>
+
+        <div class="report-wrap">
+          <div class="report-card" id="reportCard" aria-label="Example AI-generated revenue report">
+            <div class="rc-block">
+              <div class="rc-stamp"><span>Generated by AI Chat</span><b>Q2 2026</b></div>
+              <div class="rc-title">Q2 Revenue Report</div>
+            </div>
+            <div class="rc-kpis">
+              <div class="rc-kpi rc-block"><span>Invoiced</span><b>$45.40M</b></div>
+              <div class="rc-kpi rc-block"><span>Gross margin</span><b class="dn">-2.1%</b></div>
+              <div class="rc-kpi rc-block"><span>DSO</span><b>46.9d</b></div>
+              <div class="rc-kpi rc-block"><span>Backlog</span><b class="up">$64.77M</b></div>
+              <div class="rc-kpi rc-block"><span>AR past terms</span><b>7.6%</b></div>
+              <div class="rc-kpi rc-block"><span>Avg deal (won)</span><b>$164.0K</b></div>
+            </div>
+            <div class="rc-panel rc-block" style="margin-bottom:14px">
+              <small>Invoice revenue by month</small>
+              <svg viewBox="0 0 320 64" preserveAspectRatio="none" style="width:100%;height:64px" aria-hidden="true">
+                <defs><linearGradient id="rcg" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#2BE39B" stop-opacity=".35"/><stop offset="1" stop-color="#2BE39B" stop-opacity="0"/>
+                </linearGradient></defs>
+                <path d="M0,50 C30,44 45,30 70,32 S120,46 150,38 S200,14 235,20 S290,34 320,26 L320,64 L0,64 Z" fill="url(#rcg)"/>
+                <path d="M0,50 C30,44 45,30 70,32 S120,46 150,38 S200,14 235,20 S290,34 320,26" fill="none" stroke="#0FA97C" stroke-width="2.5"/>
+              </svg>
+            </div>
+            <div class="rc-two">
+              <div class="rc-panel rc-block">
+                <small>Top customers by revenue</small>
+                <div class="rc-cust">
+                  <div class="row"><span>Archaea Energy</span><span class="bar" style="width:92%"></span><span>$6.4M</span></div>
+                  <div class="row"><span>Carmeuse Lime</span><span class="bar" style="width:71%"></span><span>$4.9M</span></div>
+                  <div class="row"><span>GNS N America</span><span class="bar" style="width:55%"></span><span>$3.8M</span></div>
+                  <div class="row"><span>St. Marys Cement</span><span class="bar" style="width:43%"></span><span>$3.0M</span></div>
+                  <div class="row"><span>Sav's Welding</span><span class="bar" style="width:34%"></span><span>$2.4M</span></div>
+                </div>
+              </div>
+              <div class="rc-panel rc-block">
+                <small>Billing mix</small>
+                <div class="rc-donut" aria-hidden="true"></div>
+                <div class="rc-legend"><span><i style="background:#2BE39B"></i>Rental</span><span><i style="background:#123456"></i>TM</span><span><i style="background:#35D6FF"></i>AIA</span><span><i style="background:#9FB4C4"></i>Parts</span></div>
+              </div>
+            </div>
+            <div class="rc-actions rc-block">
+              <span class="chip go">Save to Reports</span>
+              <span class="chip">Schedule monthly</span>
+              <span class="chip">Export PDF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AI ADVISORY ============ -->
+  <section id="advise" class="advise dark tex-dots-dark">
+    <div class="wrap advise-grid">
+      <div>
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18.6 15.4l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg>The AI Layer</span>
+        <h2 style="margin:.5em 0 .6em">AI everywhere, not an AI corner</h2>
+        <p class="lede">Intelligence isn't a tab you visit. It's a layer that runs through every screen.</p>
+        <div class="steps">
+          <div class="step"><span class="k">Detect</span><div><h4>Anomalies surface themselves</h4><p>Daily Advise runs benchmark every unit, yard, customer, and invoice cycle against your own thresholds.</p></div></div>
+          <div class="step"><span class="k">Explain</span><div><h4>Every dashboard gets a narrative</h4><p>A concise readout of what changed, why it matters, and what it's costing you, in plain language.</p></div></div>
+          <div class="step"><span class="k">Direct</span><div><h4>Recommendations link to evidence</h4><p>One click opens the exact filtered view or dataset behind any recommendation. Validate, then act, without context switching.</p></div></div>
+          <div class="step"><span class="k">Resolve</span><div><h4>Actions close the loop</h4><p>Assign, act, or dismiss with a reason. The system learns which recommendations your team actually values.</p></div></div>
+        </div>
+      </div>
+      <div class="narr" data-reveal aria-label="Example AI narrative">
+        <div class="stamp"><span>Equipment Utilization · Narrative</span><b>Advise run 06:00</b></div>
+        <dl>
+          <div><dt>What changed</dt><dd>Fleet utilization slipped to 57.0% this month, 8 points under target. The gap is concentrated in Portland tower cranes, which are down 117 idle days.</dd></div>
+          <div><dt>Why it matters</dt><dd>Idle tower inventory represents $1.2M in parked book value while Seattle demand runs 3.2× supply. Every idle month forfeits an estimated $18.4K in recoverable rental revenue.</dd></div>
+          <div><dt>Recommended action</dt><dd>Relocate FCC-004 to Seattle or release at a discounted rate. Review reorder thresholds to prevent repeat idle periods.</dd></div>
+        </dl>
+        <div class="act">
+          <span class="chip go">Open Portland tower cranes</span>
+          <span class="chip">Assign to yard manager</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ COMPETITIVE POSITIONING ============ -->
+  <section id="compare" class="tex-dots">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>Where DDNL Sits</span>
+        <h2>The lane between query bots and build-it-yourself BI</h2>
+        <p class="lede">AI SQL assistants stop at the query. Horizontal analytics platforms hand you powerful parts and leave the operating model to you. DDNL ships the operating model.</p>
+      </div>
+
+      <div class="cat-banner" data-reveal>
+        DDNL is the <b>AI-powered operating system</b> for equipment-heavy and service-driven businesses that need one source of truth across operations, finance, reporting, and executive decision-making.
+      </div>
+
+      <div class="lane-grid">
+        <div class="lane-card" data-reveal>
+          <span class="who">Left of us</span>
+          <strong>AI SQL assistants</strong>
+          <p>AskYourDatabase, BlazeSQL. Fast natural-language queries for analysts, but they stop at query assistance. No domain workflows, no executive views, no recommendations tied to your recurring processes.</p>
+        </div>
+        <div class="lane-card ddnl" data-reveal>
+          <span class="who">The DDNL lane</span>
+          <strong>The BI/AI operating system</strong>
+          <p>Opinionated modules for quote-to-cash, days to invoice, and utilization. AI recommendations tied to source records and next-step owners. Built for daily use by ops, finance, and leadership.</p>
+        </div>
+        <div class="lane-card" data-reveal>
+          <span class="who">Right of us</span>
+          <strong>Horizontal platforms</strong>
+          <p>ThoughtSpot, Wisdom AI, GoodData. Enterprise-grade analytics infrastructure, but broad by design. You still shape it into your own domain operating model.</p>
+        </div>
+      </div>
+      <div class="lane-rail" aria-hidden="true"></div>
+
+      <div class="cmp-wrap" data-reveal>
+        <table class="cmp">
+          <thead>
+            <tr>
+              <th scope="col">Capability</th>
+              <th scope="col" class="col-ddnl">DDNL</th>
+              <th scope="col">AI SQL assistants</th>
+              <th scope="col">Horizontal platforms</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Natural-language data queries</td><td class="col-ddnl"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+            <tr><td>Prebuilt operating modules (Q2C, DTI, utilization)</td><td class="col-ddnl"><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="part">You assemble</span></td></tr>
+            <tr><td>AI recommendations tied to source records and owners</td><td class="col-ddnl"><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="part">Varies</span></td></tr>
+            <tr><td>Executive command views on a daily operating cadence</td><td class="col-ddnl"><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="part">You build</span></td></tr>
+            <tr><td>Turnkey for ops and finance, no analyst required</td><td class="col-ddnl"><span class="yes">✓</span></td><td><span class="part">Analyst tool</span></td><td><span class="no">–</span></td></tr>
+            <tr><td>Start with one workflow, expand to a decision system</td><td class="col-ddnl"><span class="yes">✓</span></td><td><span class="no">–</span></td><td><span class="part">Long setup</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cmp-note">Based on each vendor's public positioning. Every product here is good at its own job; this table shows whose job is yours.</p>
+
+      <div class="switch-grid">
+        <div class="switch-card" data-reveal><div><span class="k">Why buyers switch / 1</span><p>Too many dashboards, no operating narrative.</p></div></div>
+        <div class="switch-card" data-reveal><div><span class="k">Why buyers switch / 2</span><p>Too many reports, no shared definition of truth.</p></div></div>
+        <div class="switch-card" data-reveal><div><span class="k">Why buyers switch / 3</span><p>Data work still depends on spreadsheet heroes.</p></div></div>
+        <div class="switch-card" data-reveal><div><span class="k">Why buyers switch / 4</span><p>AI advice only earns trust when it shows its evidence.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEAMS ============ -->
+  <section id="teams">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8.5" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9.5" r="2.6"/><path d="M16.5 14.4c2.6.4 4.5 2.7 4.5 5.6"/></svg>Built for the Whole Operation</span>
+        <h2>One source of truth, three ways to use it</h2>
+      </div>
+      <div class="personas">
+        <div class="persona" data-reveal>
+          <span class="who">Operators</span>
+          <strong>Run the yard by exception</strong>
+          <p>Start the day with what needs attention: idle equipment, scheduling conflicts, overtime creep. Skip the dashboard safari.</p>
+        </div>
+        <div class="persona" data-reveal>
+          <span class="who">Finance</span>
+          <strong>Compress quote to cash</strong>
+          <p>Watch DSO, days to invoice, unbilled WIP, and AR aging with drill-through to every line. Catch the bottleneck before it becomes the quarter's story.</p>
+        </div>
+        <div class="persona" data-reveal>
+          <span class="who">Leadership</span>
+          <strong>Read the narrative, not forty charts</strong>
+          <p>Executive views open with what changed and what's being done about it. Priority is visible at a glance, evidence is one click deep.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LEAD GEN ============ -->
+  <section id="demo" class="lead dark tex-dots-dark">
+    <div class="wrap lead-grid">
+      <div>
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M8 3v4M16 3v4M3.5 10h17"/><path d="M10.5 13.5l4 2.3-4 2.3z"/></svg>Get a Demo</span>
+        <h2 style="margin:.5em 0 .6em">See your data tell the truth</h2>
+        <p class="lede">Bring a real question about your operation. We'll show you the answer, the evidence behind it, and the recommendation DDNL would make, live on the platform.</p>
+        <ul class="checks">
+          <li>30-minute walkthrough on real workflows, not slides</li>
+          <li>Utilization, quote-to-cash, and invoicing use cases</li>
+          <li>Start with one painful workflow, expand into a full decision system</li>
+          <li>Honest fit assessment. If it's not for you, we'll say so.</li>
+        </ul>
+      </div>
+
+      <!--
+        GOOGLE FORMS SETUP
+        1. Create a Google Form with fields: Name, Work email, Company, What should we look at first?
+        2. Open the form's "Get pre-filled link", fill dummy values, copy the generated URL.
+        3. Paste the form ID into GOOGLE_FORM_ID below and each entry.XXXXXXX id into ENTRY_IDS.
+        Until configured, submissions show the success state and log to console.
+      -->
+      <form id="leadForm" novalidate>
+        <div class="field">
+          <label for="f-name">Name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Jordan Rivers">
+        </div>
+        <div class="field">
+          <label for="f-email">Work email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="jordan@company.com">
+        </div>
+        <div class="field">
+          <label for="f-company">Company</label>
+          <input id="f-company" name="company" type="text" autocomplete="organization" required placeholder="Cascade Crane Co.">
+        </div>
+        <div class="field">
+          <label for="f-msg">What should we look at first?</label>
+          <textarea id="f-msg" name="message" placeholder="Our utilization reporting is scattered across three spreadsheets…"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit" id="submitBtn">Request my demo</button>
+        <p class="form-note">No spam, no drip campaign. One reply from a human.</p>
+        <div class="success" id="successBox">
+          <strong>Request received.</strong> We'll reply within one business day to schedule your walkthrough.
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="wordmark-sm">DATA <span class="grad3">DOES NOT LIE</span></span>
+    <span class="mono">The AI-powered BI operating system</span>
+    <span>© 2026 Data Does Not Lie. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  /* ---------- cycling recommendation card ---------- */
+  const recos = [
+    {sev:"CRITICAL", sevClass:"crit", cat:"EQUIPMENT", id:"FCC-004",
+     body:"Flat Top Tower crane idle 117 days in Portland. Relocate to Seattle where demand is 3.2× supply, or release at a discounted rate. Estimated recovery: $18.4K/mo against $260K book value.",
+     meta:[["yard","Portland"],["idle","117d"],["status","parked"]]},
+    {sev:"WARNING", sevClass:"crit", cat:"FINANCIAL", id:"INV-2214",
+     body:"Days-to-invoice for company 01 spiked to 54 in December, 3.3× the fleet average. 62% of the delay traces to three jobs awaiting cost-line approval. Clearing them recovers ~$412K of unbilled WIP.",
+     meta:[["dept","Billing"],["dti","54d"],["wip","$412K"]]},
+    {sev:"OPPORTUNITY", sevClass:"crit", cat:"CUSTOMER", id:"CUST-A11507",
+     body:"Archaea Energy's billed hours grew 41% quarter over quarter with zero credit memos. Quote velocity suggests readiness for a master service agreement. Estimated annualized value: $1.8M.",
+     meta:[["segment","Energy"],["growth","+41%"],["risk","low"]]}
+  ];
+  const sevColors = {CRITICAL:"#C4304F", WARNING:"#B36F0E", OPPORTUNITY:"#0E9D6C"};
+  const sevBg = {CRITICAL:"rgba(232,93,117,.14)", WARNING:"rgba(242,169,59,.18)", OPPORTUNITY:"rgba(43,227,155,.15)"};
+  const borderColors = {CRITICAL:"var(--coral)", WARNING:"var(--amber)", OPPORTUNITY:"var(--teal)"};
+  let idx = 0;
+  const el = id => document.getElementById(id);
+  function renderReco(i){
+    const r = recos[i];
+    el("recoSev").textContent = r.sev;
+    el("recoSev").style.color = sevColors[r.sev];
+    el("recoSev").style.background = sevBg[r.sev];
+    el("recoCat").textContent = r.cat;
+    el("recoId").textContent = r.id;
+    el("recoBody").textContent = r.body;
+    el("reco").style.borderLeftColor = borderColors[r.sev];
+    el("recoMeta").innerHTML = r.meta.map(([k,v])=>`<div>${k}: <b>${v}</b></div>`).join("");
+    [...el("recoDots").children].forEach((d,n)=>d.classList.toggle("on", n===i));
+  }
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!reduceMotion){
+    setInterval(()=>{ idx = (idx+1) % recos.length; renderReco(idx); }, 6500);
+  }
+
+  /* ---------- scroll reveal ---------- */
+  if(!reduceMotion && "IntersectionObserver" in window){
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("revealed"); io.unobserve(en.target); } });
+    },{threshold:.15});
+    document.querySelectorAll("[data-reveal]").forEach((n,i)=>{ n.style.transitionDelay = (i%4)*70+"ms"; io.observe(n); });
+  }else{
+    document.querySelectorAll("[data-reveal]").forEach(n=>n.classList.add("revealed"));
+  }
+
+  /* ---------- chat showcase sequence ---------- */
+  (function(){
+    const shell = document.getElementById("chatShell");
+    if(!shell) return;
+    const typing = document.getElementById("chatTyping");
+    const log = shell.querySelector(".chat-log");
+    const msgs = ["cm1","cm2","cm3","cm4"].map(id=>document.getElementById(id));
+    const blocks = [...document.querySelectorAll("#reportCard .rc-block")];
+    const showAll = ()=>{ msgs.forEach(m=>m.classList.add("show")); blocks.forEach(b=>b.classList.add("built")); };
+    if(reduceMotion || !("IntersectionObserver" in window)){ showAll(); return; }
+    let played = false;
+    const scrollLog = ()=>{ log.scrollTop = log.scrollHeight; };
+    const t = (fn,ms)=>setTimeout(fn,ms);
+    const buildReport = ()=>blocks.forEach((b,i)=>t(()=>b.classList.add("built"), i*140));
+    const play = ()=>{
+      t(()=>{ msgs[0].classList.add("show"); scrollLog(); }, 300);
+      t(()=>{ typing.classList.add("on"); scrollLog(); }, 900);
+      t(()=>{ typing.classList.remove("on"); msgs[1].classList.add("show"); scrollLog(); }, 2100);
+      t(()=>{ msgs[2].classList.add("show"); scrollLog(); }, 4300);
+      t(()=>{ typing.classList.add("on"); log.appendChild(typing); scrollLog(); }, 4900);
+      t(()=>{ typing.classList.remove("on"); msgs[3].classList.add("show"); scrollLog(); buildReport(); }, 6300);
+    };
+    const io = new IntersectionObserver(es=>{
+      es.forEach(e=>{ if(e.isIntersecting && !played){ played = true; play(); io.disconnect(); } });
+    },{threshold:.35});
+    io.observe(shell);
+  })();
+
+  /* ---------- one-line fit guard for hero text ---------- */
+  function fitHeroLines(){
+    document.querySelectorAll(".wordmark,.hero-tag").forEach(el=>{
+      el.style.fontSize = "";
+      let size = parseFloat(getComputedStyle(el).fontSize);
+      let guard = 40;
+      while(el.scrollWidth > el.clientWidth + 1 && guard-- > 0){
+        size *= .96;
+        el.style.fontSize = size + "px";
+      }
+    });
+  }
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fitHeroLines); }
+  window.addEventListener("load", fitHeroLines);
+  let fitTimer;
+  window.addEventListener("resize", ()=>{ clearTimeout(fitTimer); fitTimer = setTimeout(fitHeroLines, 120); });
+
+  /* ---------- Google Forms lead capture ---------- */
+  const GOOGLE_FORM_ID = ""; // e.g. "1FAIpQLSc...": from your form's URL
+  const ENTRY_IDS = { name:"", email:"", company:"", message:"" }; // e.g. name:"entry.1234567890"
+
+  document.getElementById("leadForm").addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const form = e.target;
+    if(!form.reportValidity()) return;
+    const data = Object.fromEntries(new FormData(form).entries());
+    if(GOOGLE_FORM_ID && ENTRY_IDS.name){
+      const params = new URLSearchParams();
+      for(const [field, entry] of Object.entries(ENTRY_IDS)){
+        if(entry && data[field]) params.append(entry, data[field]);
+      }
+      try{
+        await fetch(`https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`, {
+          method:"POST", mode:"no-cors",
+          headers:{"Content-Type":"application/x-www-form-urlencoded"},
+          body: params.toString()
+        });
+      }catch(err){ console.warn("Form relay failed:", err); }
+    }else{
+      console.log("Lead captured locally (Google Form not configured yet):", data);
+    }
+    document.getElementById("submitBtn").disabled = true;
+    document.getElementById("successBox").style.display = "block";
+    form.reset();
+  });
+</script>
+</body>
+</html>

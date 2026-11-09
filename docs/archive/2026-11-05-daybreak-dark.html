@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Does Not Lie | Daybreak, the AI-powered CRM for retail</title>
+<link rel="icon" type="image/png" href="assets/daybreak-logo.png">
+<meta name="description" content="Daybreak by Data Does Not Lie is the AI-powered CRM for retail. Connect Square or upload a CSV and get clear reports, daily AI recommendations, and one-click email and SMS follow-up.">
+<link rel="canonical" href="https://datadoesnotlie.com/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="Data Does Not Lie">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://datadoesnotlie.com/">
+<meta property="og:title" content="Data Does Not Lie | Daybreak, the AI-powered CRM for retail">
+<meta property="og:description" content="Daybreak by Data Does Not Lie is the AI-powered CRM for retail. Connect Square or upload a CSV and get clear reports, daily AI recommendations, and one-click email and SMS follow-up.">
+<meta property="og:image" content="https://datadoesnotlie.com/assets/og-home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Data Does Not Lie | Daybreak, the AI-powered CRM for retail">
+<meta name="twitter:description" content="Daybreak by Data Does Not Lie is the AI-powered CRM for retail. Connect Square or upload a CSV and get clear reports, daily AI recommendations, and one-click email and SMS follow-up.">
+<meta name="twitter:image" content="https://datadoesnotlie.com/assets/og-home.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://datadoesnotlie.com/#org","name":"Data Does Not Lie","url":"https://datadoesnotlie.com/","logo":{"@type":"ImageObject","url":"https://datadoesnotlie.com/assets/daybreak-logo.png","width":512,"height":512},"slogan":"Your data already knows. Now it tells you.","founder":{"@id":"https://datadoesnotlie.com/#founder"}},{"@type":"Person","@id":"https://datadoesnotlie.com/#founder","name":"Cameron Patalano","jobTitle":"Founder","worksFor":{"@id":"https://datadoesnotlie.com/#org"},"image":"https://datadoesnotlie.com/assets/cameron-patalano.jpg","url":"https://datadoesnotlie.com/#about","sameAs":["https://www.linkedin.com/in/cameronpatalano","https://a.co/d/0gF1U46s"],"description":"Founder of Data Does Not Lie and author of Radical Transparency, an honest, educational approach to sales and marketing. CRM specialist with experience across HubSpot and GoHighLevel, former owner of the marketing agency Revenue Rebranded, and AI & Automation advisor at Stature Advisors, where he develops custom software and helps businesses implement AI systems at scale."},{"@type":"WebSite","@id":"https://datadoesnotlie.com/#website","name":"Data Does Not Lie","url":"https://datadoesnotlie.com/","publisher":{"@id":"https://datadoesnotlie.com/#org"}},{"@type":"SoftwareApplication","name":"Daybreak","alternateName":"Daybreak by Data Does Not Lie","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://datadoesnotlie.com/","description":"Daybreak is the AI-powered CRM for retail by Data Does Not Lie. Connect Square or upload a CSV, and it turns your sales data into clear reports, daily plain-language recommendations, and email and SMS follow-up workflows you launch in one click.","publisher":{"@id":"https://datadoesnotlie.com/#org"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Daybreak?","acceptedAnswer":{"@type":"Answer","text":"Daybreak is the AI-powered CRM for retail by Data Does Not Lie. Connect Square or upload a CSV, and it turns your sales data into clear reports, daily plain-language recommendations, and email and SMS follow-up workflows you launch in one click."}},{"@type":"Question","name":"What data sources does Daybreak support?","acceptedAnswer":{"@type":"Answer","text":"Square connects out of the box, and any CSV export uploads in seconds with columns detected automatically. We can also connect almost any other system by API, like the SPOT point of sale for dry cleaners, for an additional setup charge."}},{"@type":"Question","name":"Do I need an analyst to use Daybreak?","acceptedAnswer":{"@type":"Answer","text":"No. Reports build themselves from your data, the AI explains what changed and why it matters in plain language, and every recommendation comes with a one-click action. It is built for owners, operators, and marketers, not data teams."}},{"@type":"Question","name":"What does the AI actually do?","acceptedAnswer":{"@type":"Answer","text":"Every day it reads your numbers, by store and channel, against your own history. When something deserves attention it tells you what changed, why it matters in dollars, and what to do about it, and it cites the data behind every number. Over MCP, an open standard for connecting AI to software, it can also build reports, workflows, smart lists, email templates, and SMS snippets on request."}},{"@type":"Question","name":"Can Daybreak send email and SMS?","acceptedAnswer":{"@type":"Answer","text":"Yes. Recommendations turn into live email and SMS workflows in one click: sequences with waits and skip rules, customers who come back drop out automatically, and opt-outs are handled on every text."}},{"@type":"Question","name":"What does Daybreak cost?","acceptedAnswer":{"@type":"Answer","text":"We walk through pricing on the demo call. Square and CSV setups are turnkey; connecting another system by API carries an additional setup charge."}},{"@type":"Question","name":"Who is behind Daybreak?","acceptedAnswer":{"@type":"Answer","text":"Data Does Not Lie, which also offers Custom Development (bespoke apps, dashboards, integrations, and AI assistants built on a company's own data) and Website Development: fast marketing sites with SEO and AEO built in, so search engines and AI assistants can find and quote your business."}}]}]}</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* ============ tokens ============ */
+  :root{
+    --bg:#081C30;
+    --surface:#0B2540;
+    --surface-2:#0F2C4A;
+    --border:rgba(234,243,249,.09);
+    --border-strong:rgba(234,243,249,.16);
+    --text:#EAF3F9;
+    --text-dim:rgba(234,243,249,.64);
+    --text-faint:rgba(234,243,249,.42);
+    --accent:#2BE39B;
+    --accent-hover:#3DF0AC;
+    --accent-dim:rgba(43,227,155,.14);
+    --on-accent:#04241E;
+    --amber:#F2A93B;
+    --ink:#081C30;
+    --sans:'Instrument Sans',system-ui,-apple-system,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --max:1120px;
+    --r-sm:6px; --r-md:10px; --r-lg:14px;
+    --ring:0 0 0 2px var(--bg),0 0 0 4px var(--accent);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{font-family:var(--sans);font-size:15.5px;line-height:1.65;font-weight:400;color:var(--text-dim);background:var(--bg);-webkit-font-smoothing:antialiased}
+  img,svg,video{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:rgba(43,227,155,.25)}
+  .wrap{max-width:var(--max);margin:0 auto;padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}
+
+  /* ============ type scale ============ */
+  h1,h2,h3,h4{color:var(--text);font-weight:600;letter-spacing:-.022em;line-height:1.12}
+  h1{font-size:clamp(2.1rem,4.6vw,3.15rem)}
+  h2{font-size:clamp(1.45rem,2.6vw,1.9rem)}
+  h3{font-size:1.08rem;letter-spacing:-.01em}
+  .lede{font-size:1.06rem;color:var(--text-dim);max-width:58ch}
+  .label{display:block;font-size:.72rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+  .label.dim{color:var(--text-faint)}
+  strong{color:var(--text);font-weight:500}
+
+  /* ============ primitives ============ */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;font-weight:500;font-size:.9rem;border-radius:var(--r-sm);padding:.6em 1.15em;border:1px solid transparent;cursor:pointer;transition:background .15s ease,border-color .15s ease,color .15s ease}
+  .btn-primary{background:var(--accent);color:var(--on-accent);font-weight:600}
+  .btn-primary:hover{background:var(--accent-hover)}
+  .btn-secondary{border-color:var(--border-strong);color:var(--text)}
+  .btn-secondary:hover{border-color:rgba(234,243,249,.32);background:rgba(234,243,249,.04)}
+  .btn-lg{font-size:.95rem;padding:.72em 1.4em;border-radius:var(--r-md)}
+  .btn:focus-visible{outline:none;box-shadow:var(--ring)}
+  a:focus-visible{outline:none;box-shadow:var(--ring);border-radius:var(--r-sm)}
+  .badge{display:inline-flex;align-items:center;gap:.4em;font-size:.68rem;font-weight:600;letter-spacing:.04em;padding:.3em .65em;border-radius:999px;border:1px solid var(--border-strong);color:var(--text-dim)}
+  .badge.accent{border-color:rgba(43,227,155,.4);color:var(--accent);background:var(--accent-dim)}
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+  /* tooltips */
+  .tip{position:relative;cursor:help;border-bottom:1px dotted var(--text-faint)}
+  .tip::after{content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(3px);width:max-content;max-width:230px;background:#061625;border:1px solid var(--border-strong);color:var(--text-dim);font-size:.74rem;font-weight:400;line-height:1.45;letter-spacing:0;text-transform:none;font-family:var(--sans);padding:.55em .8em;border-radius:var(--r-sm);box-shadow:0 8px 24px rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .15s ease,transform .15s ease;z-index:30;white-space:normal}
+  .tip:hover::after,.tip:focus-visible::after{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* ============ nav ============ */
+  header{position:sticky;top:0;z-index:50;background:rgba(8,28,48,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+  .nav{display:flex;align-items:center;gap:28px;height:60px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.95rem;color:var(--text)}
+  .mark-d{transition:transform .2s ease}
+  .brand:hover .mark-d{transform:translateY(-1px)}
+  .nav-links{display:flex;gap:4px;font-size:.88rem;color:var(--text-dim);margin-left:8px}
+  .nav-links a{padding:.42em .7em;border-radius:var(--r-sm);transition:color .15s ease,background .15s ease}
+  .nav-links a:hover{color:var(--text);background:rgba(234,243,249,.05)}
+  .nav .btn{margin-left:auto}
+  @media(max-width:820px){.nav-links{display:none}.nav .btn{margin-left:auto}}
+
+  /* ============ hero ============ */
+  .hero{padding:96px 0 0;border-bottom:1px solid var(--border);position:relative}
+  .hero::before{content:"";position:absolute;inset:0 0 auto;height:420px;background:radial-gradient(640px 300px at 50% -80px,rgba(43,227,155,.07),transparent 70%);pointer-events:none}
+  .hero-inner{position:relative;max-width:720px;margin:0 auto;text-align:center;padding:0 24px}
+  .hero .badge{margin-bottom:26px}
+  .hero h1{max-width:19ch;margin:0 auto}
+  .hero p.sub{margin:1.3em auto 2em;font-size:1.08rem;max-width:52ch}
+  .hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .hero-video{position:relative;max-width:640px;margin:64px auto 0;padding:0 24px}
+  .hero-video video{width:100%;aspect-ratio:1/1;border-radius:var(--r-lg) var(--r-lg) 0 0;border:1px solid var(--border-strong);border-bottom:0;background:var(--surface);box-shadow:0 -1px 0 rgba(43,227,155,.2),0 24px 80px rgba(0,0,0,.5)}
+  .video-note{margin-top:0;padding:.9em 0;font-size:.72rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint);text-align:center}
+
+  /* feature strip */
+  .strip{border-bottom:1px solid var(--border)}
+  .strip-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+  .strip-item{padding:22px 24px;border-left:1px solid var(--border);font-size:.86rem;color:var(--text-dim)}
+  .strip-item:first-child{border-left:0}
+  .strip-item b{display:block;color:var(--text);font-weight:600;font-size:.9rem;margin-bottom:.15em}
+  @media(max-width:860px){.strip-grid{grid-template-columns:repeat(2,1fr)}.strip-item:nth-child(3){border-left:0}.strip-item:nth-child(n+3){border-top:1px solid var(--border)}}
+  @media(max-width:480px){.strip-grid{grid-template-columns:1fr}.strip-item{border-left:0;border-top:1px solid var(--border)}.strip-item:first-child{border-top:0}}
+
+  /* ============ sections ============ */
+  section{padding:112px 0;border-bottom:1px solid var(--border)}
+  section:last-of-type{border-bottom:0}
+  .sec-head{max-width:640px;margin-bottom:64px}
+  .sec-head .label{margin-bottom:14px}
+  .sec-head h2{margin-bottom:.5em}
+
+  /* ============ how it works ============ */
+  .how-row{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:center;padding:56px 0;border-top:1px solid var(--border)}
+  .how-row.flip .how-text{order:2}
+  .how-row.flip .how-mock{order:1}
+  .how-num{font-size:.78rem;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;display:block;margin-bottom:1em}
+  .how-text h3{font-size:1.25rem;margin-bottom:.55em}
+  .how-text p{max-width:42ch}
+  .how-note{margin-top:1em;font-size:.82rem;color:var(--text-faint)}
+  @media(max-width:860px){
+    .how-row{grid-template-columns:1fr;gap:28px;padding:40px 0}
+    .how-row.flip .how-text{order:1}
+    .how-row.flip .how-mock{order:2}
+  }
+  .demo-note{padding-top:28px;border-top:1px solid var(--border);font-size:.78rem;color:var(--text-faint)}
+
+  /* ============ UI mocks (flat, bordered) ============ */
+  .ui{background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--r-lg);padding:20px;color:var(--text);transition:border-color .2s ease}
+  .ui:hover{border-color:rgba(234,243,249,.24)}
+  .ui-head{display:flex;align-items:baseline;gap:10px;margin-bottom:16px}
+  .ui-kicker{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  .ui-title{font-weight:600;font-size:1rem;color:var(--text)}
+  .ui-right{margin-left:auto;font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint)}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px}
+  .kpi{background:rgba(234,243,249,.04);border:1px solid var(--border);border-radius:var(--r-md);padding:10px 12px}
+  .kpi span{font-family:var(--mono);font-size:.55rem;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint);display:block;margin-bottom:2px}
+  .kpi b{font-weight:600;font-size:1.05rem;font-variant-numeric:tabular-nums;color:var(--text)}
+  .kpi b.warn{color:var(--amber)}
+  .panel{background:rgba(234,243,249,.04);border:1px solid var(--border);border-radius:var(--r-md);padding:12px}
+  .panel small{font-family:var(--mono);font-size:.56rem;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);display:block;margin-bottom:10px}
+  .bars{display:flex;align-items:flex-end;gap:5px;height:68px}
+  .bars i{flex:1;border-radius:2px 2px 0 0;background:var(--accent);opacity:.92}
+  .upload-pill{display:flex;align-items:center;gap:12px;background:rgba(234,243,249,.04);border:1px solid rgba(43,227,155,.35);border-radius:var(--r-md);padding:13px 16px;font-size:.9rem;color:var(--text)}
+  .upload-pill .ok{width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-weight:600;font-size:.7rem;flex:none}
+  .upload-pill b{font-family:var(--mono);font-size:.76rem;font-weight:500}
+  .upload-pill .rows{margin-left:auto;font-family:var(--mono);font-size:.68rem;color:var(--accent)}
+  .maps{display:grid;gap:6px;margin-top:12px}
+  .maps .mrow{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;font-family:var(--mono);font-size:.64rem;color:var(--text-faint)}
+  .maps .mrow .to{color:var(--accent)}
+  .maps .mrow b{color:var(--text-dim);font-weight:400}
+  /* about the founder */
+  .about-grid{display:grid;grid-template-columns:260px 1fr;gap:56px;align-items:start}
+  .about-photo{width:100%;height:auto;border-radius:var(--r-lg);border:1px solid var(--border-strong);box-shadow:0 16px 48px rgba(0,0,0,.35)}
+  .about-label{display:inline-block;margin-bottom:1.2em}
+  .about-text p{max-width:64ch}
+  .about-text p+p{margin-top:1em}
+  .about-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:1.6em}
+  @media(max-width:860px){
+    .about-grid{grid-template-columns:1fr;gap:26px}
+    .about-photo{max-width:240px}
+  }
+
+  /* product mock reveal animations */
+  [data-anim] .upload-pill{opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform .4s ease}
+  [data-anim].anim .upload-pill{opacity:1;transform:none}
+  [data-anim] .upload-pill .ok{transform:scale(0);transition:transform .35s cubic-bezier(.34,1.56,.64,1) .35s}
+  [data-anim].anim .upload-pill .ok{transform:scale(1)}
+  [data-anim] .maps .mrow{opacity:0;transform:translateX(-8px);transition:opacity .35s ease var(--md,.5s),transform .35s ease var(--md,.5s)}
+  [data-anim].anim .maps .mrow{opacity:1;transform:none}
+  .maps .mrow:nth-child(1){--md:.55s}.maps .mrow:nth-child(2){--md:.75s}.maps .mrow:nth-child(3){--md:.95s}
+  [data-anim] .maps .mrow .to{transition:color .3s ease calc(var(--md,.5s) + .3s);color:var(--text-faint)}
+  [data-anim].anim .maps .mrow .to{color:var(--accent)}
+
+  [data-anim] .kpi{opacity:0;transform:translateY(6px);transition:opacity .4s ease var(--kd,0s),transform .4s ease var(--kd,0s)}
+  [data-anim].anim .kpi{opacity:1;transform:none}
+  .kpis .kpi:nth-child(1){--kd:.05s}.kpis .kpi:nth-child(2){--kd:.15s}.kpis .kpi:nth-child(3){--kd:.25s}.kpis .kpi:nth-child(4){--kd:.35s}
+  [data-anim] .bars i{transform:scaleY(0);transform-origin:bottom;transition:transform .5s cubic-bezier(.2,.8,.25,1) var(--bd,.4s)}
+  [data-anim].anim .bars i{transform:scaleY(1)}
+  .bars i:nth-child(1){--bd:.45s}.bars i:nth-child(2){--bd:.5s}.bars i:nth-child(3){--bd:.55s}.bars i:nth-child(4){--bd:.6s}.bars i:nth-child(5){--bd:.65s}.bars i:nth-child(6){--bd:.7s}.bars i:nth-child(7){--bd:.75s}.bars i:nth-child(8){--bd:.8s}.bars i:nth-child(9){--bd:.85s}.bars i:nth-child(10){--bd:.9s}.bars i:nth-child(11){--bd:.95s}.bars i:nth-child(12){--bd:1s}
+  [data-anim] .also{opacity:0;transition:opacity .4s ease 1.15s}
+  [data-anim].anim .also{opacity:1}
+
+  [data-anim] .filters .fchip{opacity:0;transform:scale(.92);transition:opacity .3s ease var(--fd,.1s),transform .3s ease var(--fd,.1s)}
+  [data-anim].anim .filters .fchip{opacity:1;transform:scale(1)}
+  .filters .fchip:nth-child(2){--fd:.25s}
+  [data-anim] .cust-row{opacity:0;transform:translateY(5px);transition:opacity .35s ease var(--rd,.3s),transform .35s ease var(--rd,.3s)}
+  [data-anim].anim .cust-row{opacity:1;transform:none}
+  .cust-table .cust-row:nth-child(1){--rd:.4s}.cust-table .cust-row:nth-child(2){--rd:.52s}.cust-table .cust-row:nth-child(3){--rd:.64s}.cust-table .cust-row:nth-child(4){--rd:.76s}
+  [data-anim] .cust-row .chk{transform:scale(0);transition:transform .3s cubic-bezier(.34,1.56,.64,1) calc(var(--rd,.3s) + .5s)}
+  [data-anim].anim .cust-row .chk{transform:scale(1)}
+  [data-anim] .tagchip{opacity:0;transition:opacity .3s ease calc(var(--rd,.3s) + .65s)}
+  [data-anim].anim .tagchip{opacity:1}
+  [data-anim] .cust-foot{opacity:0;transition:opacity .4s ease 1.65s}
+  [data-anim].anim .cust-foot{opacity:1}
+
+  [data-anim].narr .stamp{opacity:0;transition:opacity .35s ease}
+  [data-anim].narr.anim .stamp{opacity:1}
+  [data-anim].narr h3{opacity:0;transform:translateY(4px);transition:opacity .4s ease .15s,transform .4s ease .15s}
+  [data-anim].narr.anim h3{opacity:1;transform:none}
+  [data-anim].narr dl div{opacity:0;transform:translateY(5px);transition:opacity .4s ease var(--dd,.35s),transform .4s ease var(--dd,.35s)}
+  [data-anim].narr.anim dl div{opacity:1;transform:none}
+  .narr dl div:nth-child(1){--dd:.35s}.narr dl div:nth-child(2){--dd:.55s}.narr dl div:nth-child(3){--dd:.75s}
+  [data-anim].narr .act{opacity:0;transition:opacity .4s ease .85s}
+  [data-anim].narr.anim .act{opacity:1}
+
+  [data-anim] .wf-nodes::before{transform:scaleY(0);transform-origin:top;transition:transform .9s ease .25s}
+  [data-anim].anim .wf-nodes::before{transform:scaleY(1)}
+  [data-anim] .wf-node{opacity:0;transform:translateY(8px);transition:opacity .45s cubic-bezier(.2,.8,.25,1) var(--wd,.15s),transform .45s cubic-bezier(.2,.8,.25,1) var(--wd,.15s)}
+  [data-anim].anim .wf-node{opacity:1;transform:none}
+  .wf-nodes .wf-node:nth-child(1){--wd:.2s}.wf-nodes .wf-node:nth-child(2){--wd:.45s}.wf-nodes .wf-node:nth-child(3){--wd:.7s}
+  [data-anim] .wf-result{opacity:0;transform:translateY(6px) scale(.97);transition:opacity .45s cubic-bezier(.34,1.56,.64,1) 1.05s,transform .45s cubic-bezier(.34,1.56,.64,1) 1.05s}
+  [data-anim].anim .wf-result{opacity:1;transform:none}
+
+  /* hero DAYBREAK wordmark */
+  .hero-logo{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:30px}
+  .hl-mark{width:clamp(58px,8vw,84px);height:auto;margin-bottom:6px;filter:drop-shadow(0 6px 24px rgba(43,227,155,.25))}
+  .svc-logo{position:absolute;top:20px;right:20px;width:44px;height:44px;z-index:2;opacity:.95}
+  @media(max-width:860px){.svc-logo{width:36px;height:36px;top:16px;right:16px}}
+  .hl-row{display:flex;align-items:center;justify-content:center;font-size:clamp(2.3rem,6vw,3.6rem);min-height:1.1em}
+  .hl-type{font-family:var(--mono);font-weight:700;letter-spacing:.18em;line-height:1;white-space:nowrap;color:#fff}
+  .hl-by{font-family:var(--mono);font-size:.64rem;font-weight:600;letter-spacing:.3em;color:var(--text-faint)}
+
+  /* advisory workflow sketch */
+  .narr button.chip{appearance:none;-webkit-appearance:none;font:inherit;cursor:pointer}
+  .wf-sketch{display:none}
+  .narr.sketching .adv-h,.narr.sketching dl,.narr.sketching .act{display:none}
+  .sk-h{display:none}
+  .narr.sketching .sk-h{display:block}
+  .narr.sketching .wf-sketch{display:block;animation:chatIn .3s ease both}
+  .wf-sketch svg{width:100%;height:auto;display:block;margin-top:4px}
+  .wf-sketch rect.nd,.wf-sketch polygon.nd{fill:#FBFDFE;stroke:#0E2A47;stroke-width:1.4}
+  .wf-sketch .goal rect.nd{stroke:#0A7A55;fill:rgba(43,227,155,.09)}
+  .wf-sketch text.k{font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;fill:#0A7A55;font-weight:700}
+  .wf-sketch text.k.amb{fill:#B45309}
+  .wf-sketch text.t{font-size:12px;fill:#0E2A47;font-weight:500}
+  .wf-sketch text.bl{font-family:var(--mono);font-size:9px;font-weight:700}
+  .wf-sketch text.bl.y{fill:#0A7A55}
+  .wf-sketch text.bl.n{fill:#B45309}
+  .wf-sketch path.ln{fill:none;stroke:rgba(14,42,71,.45);stroke-width:1.4}
+  .wf-sketch .wpill rect{fill:#F1F6FA;stroke:rgba(14,42,71,.22);stroke-width:1}
+  .wf-sketch .wpill text{font-family:var(--mono);font-size:8.5px;fill:#486581}
+  .wsk{opacity:0;transition:opacity .25s ease var(--d),transform .35s cubic-bezier(.2,.8,.25,1) var(--d)}
+  g.wsk{transform:translateY(6px)}
+  .narr.drawing .wsk{opacity:1}
+  .narr.drawing g.wsk{transform:translateY(0)}
+  path.wsk{stroke-dasharray:1;stroke-dashoffset:1;transition:opacity .2s ease var(--d),stroke-dashoffset .45s ease var(--d)}
+  .narr.drawing path.wsk{stroke-dashoffset:0}
+  .wf-sketch .skf{display:flex;align-items:center;gap:10px;margin-top:16px;opacity:0;transition:opacity .4s ease 3.5s;font-size:.88rem;color:#0E2A47;font-weight:500}
+  .narr.drawing .skf{opacity:1}
+  .skf .ok{width:20px;height:20px;flex:none;border-radius:50%;background:var(--accent);color:#06121F;display:grid;place-items:center;font-size:.65rem;font-weight:700}
+  .skf .back{margin-left:auto;appearance:none;border:0;background:none;font:inherit;font-size:.8rem;color:#0A7A55;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+  /* chat mock (Talk to your data) */
+  .ui.chat{padding:0;display:flex;flex-direction:column;overflow:hidden}
+  .chat-top{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--border);background:rgba(234,243,249,.03)}
+  .chat-ava{width:30px;height:30px;flex:none;border-radius:9px;background:linear-gradient(135deg,#2BE39B,#52B9E9);color:#06121F;font-weight:700;font-size:.85rem;display:grid;place-items:center}
+  .chat-ava.sm{width:22px;height:22px;border-radius:7px;font-size:.62rem;margin-top:3px}
+  .chat-who{display:flex;flex-direction:column;gap:3px}
+  .chat-who b{font-size:.88rem;font-weight:600;color:var(--text);line-height:1}
+  .chat-who span{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:.56rem;letter-spacing:.05em;color:var(--text-faint)}
+  .chat-who .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px rgba(43,227,155,.8)}
+  .chat-thread{display:flex;flex-direction:column;justify-content:flex-end;gap:12px;min-height:552px;padding:16px}
+  @keyframes chatIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .chat-user-row{display:none;flex-direction:column;align-items:flex-end;gap:4px}
+  .chat-user-row.on{display:flex;animation:chatIn .35s cubic-bezier(.2,.8,.25,1) both}
+  .chat-msg.user{max-width:85%;background:linear-gradient(135deg,rgba(43,227,155,.18),rgba(82,185,233,.12));border:1px solid rgba(43,227,155,.3);color:var(--text);border-radius:14px 14px 4px 14px;padding:10px 14px;font-size:.84rem;line-height:1.5}
+  .chat-meta{font-family:var(--mono);font-size:.54rem;letter-spacing:.05em;color:var(--text-faint);padding-right:2px}
+  .chat-bot-row{display:none;gap:9px;align-items:flex-start}
+  .chat-bot-row.on{display:flex;animation:chatIn .3s cubic-bezier(.2,.8,.25,1) both}
+  .chat-think{display:flex;gap:5px;padding:13px 15px;background:rgba(234,243,249,.045);border:1px solid var(--border);border-radius:4px 14px 14px 14px}
+  .chat-think i{width:6px;height:6px;border-radius:50%;background:var(--text-faint);animation:thinkDot 1s ease-in-out infinite}
+  .chat-think i:nth-child(2){animation-delay:.15s}
+  .chat-think i:nth-child(3){animation-delay:.3s}
+  @keyframes thinkDot{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+  .chat-msg.bot{flex:1;min-width:0;background:rgba(234,243,249,.045);border:1px solid var(--border);border-radius:4px 14px 14px 14px;padding:12px 14px;color:var(--text-dim)}
+  .bot-name{display:block;font-family:var(--mono);font-size:.54rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:7px}
+  .chat-msg.bot p{margin:0 0 12px;font-size:.83rem;line-height:1.55;color:var(--text-dim)}
+  .chat-msg.bot p b{color:var(--text);font-weight:600}
+  /* elaborate chart */
+  .chat-chart2{background:rgba(8,28,48,.55);border:1px solid var(--border);border-radius:var(--r-md);padding:12px 12px 10px}
+  .cc-head{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
+  .cc-title{font-family:var(--mono);font-size:.56rem;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint)}
+  .cc-delta{margin-left:auto;font-family:var(--mono);font-size:.58rem;font-weight:700;color:var(--accent);background:rgba(43,227,155,.12);border-radius:999px;padding:.25em .6em}
+  .cc-plot{position:relative;height:132px;margin:4px 0 18px}
+  .cc-area{position:absolute;top:4px;right:2px;bottom:0;left:40px}
+  .cc-gridline{position:absolute;left:0;right:0;border-top:1px dashed rgba(234,243,249,.09)}
+  .cc-gridline span{position:absolute;left:-40px;top:-4px;width:34px;text-align:right;font-family:var(--mono);font-size:.52rem;color:var(--text-faint)}
+  .cc-bars{position:absolute;inset:0;display:flex;align-items:flex-end;gap:9px}
+  .ccb{flex:1;position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end}
+  .ccb i{display:block;width:100%;height:var(--h);border-radius:3px 3px 0 0;transform:scaleY(0);transform-origin:bottom;transition:transform .55s cubic-bezier(.2,.8,.25,1)}
+  .ccb:nth-child(1) i{transition-delay:.05s}.ccb:nth-child(2) i{transition-delay:.12s}.ccb:nth-child(3) i{transition-delay:.19s}.ccb:nth-child(4) i{transition-delay:.26s}.ccb:nth-child(5) i{transition-delay:.33s}.ccb:nth-child(6) i{transition-delay:.4s}
+  .chat.grown .ccb i{transform:scaleY(1)}
+  .ccb.a i{background:rgba(124,224,255,.22);border:1px solid rgba(124,224,255,.28);border-bottom:none}
+  .ccb.p i{background:linear-gradient(180deg,#2BE39B,rgba(43,227,155,.45))}
+  .ccb b{position:absolute;bottom:calc(var(--h) + 9px);left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.54rem;font-weight:500;color:var(--text);white-space:nowrap;opacity:0;transition:opacity .4s .7s}
+  .chat.grown .ccb b{opacity:1}
+  .ccb span{position:absolute;top:100%;margin-top:5px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:.52rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text-faint)}
+  .cc-trend{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+  .cc-trend path{fill:none;stroke:rgba(234,243,249,.75);stroke-width:1.4;vector-effect:non-scaling-stroke;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 1s .45s ease}
+  .chat.grown .cc-trend path{stroke-dashoffset:0}
+  .cc-dot{position:absolute;width:6px;height:6px;border-radius:50%;background:#EAF3F9;border:1.5px solid #0B2540;transform:translate(-50%,50%);opacity:0;transition:opacity .3s}
+  .cc-dot:nth-of-type(1){transition-delay:.55s}.cc-dot:nth-of-type(2){transition-delay:.7s}.cc-dot:nth-of-type(3){transition-delay:.85s}.cc-dot:nth-of-type(4){transition-delay:1s}.cc-dot:nth-of-type(5){transition-delay:1.15s}.cc-dot:nth-of-type(6){transition-delay:1.3s}
+  .cc-dot.end{background:var(--accent);box-shadow:0 0 0 3px rgba(43,227,155,.25),0 0 10px rgba(43,227,155,.6)}
+  .chat.grown .cc-dot{opacity:1}
+  .cc-legend{display:flex;align-items:center;gap:14px;margin-top:2px}
+  .cc-legend .lg{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:.54rem;letter-spacing:.05em;color:var(--text-faint)}
+  .cc-legend .lg i{width:8px;height:8px;border-radius:2px}
+  .cc-legend .lg.a i{background:rgba(124,224,255,.35)}
+  .cc-legend .lg.p i{background:var(--accent)}
+  .cc-total{margin-left:auto;font-family:var(--mono);font-size:.56rem;color:var(--text)}
+  .chat-src{display:flex;align-items:center;gap:8px;margin-top:12px;padding-top:11px;border-top:1px solid var(--border)}
+  .chat-src .mcpb{font-family:var(--mono);font-size:.55rem;font-weight:700;letter-spacing:.07em;padding:.3em .65em;border-radius:999px;background:rgba(43,227,155,.14);color:var(--accent);flex:none}
+  .chat-src .srcnote{font-family:var(--mono);font-size:.58rem;color:var(--text-faint)}
+  .chat-chips{display:flex;flex-wrap:wrap;gap:8px;padding-left:31px;opacity:0;transform:translateY(5px);pointer-events:none;transition:opacity .4s .9s,transform .4s .9s}
+  .chat.grown .chat-chips{opacity:1;transform:none;pointer-events:auto}
+  .chat-chips button{font-family:inherit;font-size:.72rem;color:var(--text-dim);border:1px solid var(--border-strong);border-radius:999px;padding:.45em 1em;background:rgba(234,243,249,.03);cursor:pointer;transition:border-color .15s ease,color .15s ease}
+  .chat-chips button:hover{border-color:rgba(43,227,155,.55);color:var(--text)}
+  .chat-ava svg{width:64%;height:64%}
+  .hbars{display:flex;flex-direction:column;gap:10px;margin:2px 0 2px}
+  .hb{display:grid;grid-template-columns:74px 1fr 52px;gap:10px;align-items:center}
+  .hb.wide{grid-template-columns:118px 1fr 56px}
+  .hb .hl{font-family:var(--mono);font-size:.56rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hb .ht{height:16px;border-radius:4px;background:rgba(234,243,249,.06);overflow:hidden}
+  .hb .ht i{display:block;height:100%;width:0;border-radius:4px;background:rgba(124,224,255,.4);transition:width .65s cubic-bezier(.2,.8,.25,1)}
+  .hb .ht i.p{background:linear-gradient(90deg,#2BE39B,rgba(43,227,155,.5))}
+  .hb:nth-child(2) .ht i{transition-delay:.12s}
+  .hb:nth-child(3) .ht i{transition-delay:.24s}
+  .chat.grown .hb .ht i{width:var(--w)}
+  .hb .hv{font-family:var(--mono);font-size:.6rem;color:var(--text);text-align:right;font-variant-numeric:tabular-nums}
+  .hb .hv.pos{color:var(--accent)}
+  .cc-note{margin-top:10px;font-family:var(--mono);font-size:.54rem;letter-spacing:.04em;color:var(--text-faint)}
+  .chat-input{display:flex;align-items:center;margin:0 16px 16px;background:rgba(234,243,249,.05);border:1px solid var(--border-strong);border-radius:12px;padding:11px 14px;font-size:.82rem}
+  .chat-type{color:var(--text);white-space:nowrap;overflow:hidden}
+  .chat-caret{width:1.5px;height:15px;background:var(--accent);margin-left:1px;opacity:0;flex:none}
+  .chat.typing .chat-caret{opacity:1;animation:caretBlink .9s step-end infinite}
+  @keyframes caretBlink{50%{opacity:0}}
+  .chat-ph{color:var(--text-faint)}
+  .chat-ph.hide{display:none}
+  .chat-send{margin-left:auto;width:26px;height:26px;flex:none;border-radius:8px;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-size:.8rem;font-weight:600;transition:transform .15s ease,opacity .15s ease;opacity:.55}
+  .chat.typing .chat-send{opacity:1}
+  .chat.sent .chat-send{transform:scale(.82)}
+  @media(max-width:620px){
+    .cc-bars{gap:5px}
+    .ccb b{font-size:.48rem}
+    .chat-thread{min-height:600px;padding:13px}
+    .cc-title{font-size:.5rem}
+    .cc-delta{white-space:nowrap;font-size:.52rem}
+    .cc-legend{gap:8px}
+    .cc-legend .lg,.cc-total{white-space:nowrap;font-size:.5rem}
+    .hb{grid-template-columns:60px 1fr 46px;gap:7px}
+    .hb.wide{grid-template-columns:94px 1fr 50px;gap:7px}
+  }
+
+  /* skeleton loader */
+  .also{margin-top:12px}
+  .also small{font-family:var(--mono);font-size:.56rem;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);display:block;margin-bottom:8px}
+  .skel-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .skel{background:rgba(234,243,249,.04);border:1px solid var(--border);border-radius:var(--r-md);padding:10px 12px;font-size:.74rem;color:var(--text-dim)}
+  .skel .bar{height:7px;border-radius:4px;margin-top:8px;background:linear-gradient(90deg,rgba(234,243,249,.07) 25%,rgba(234,243,249,.16) 50%,rgba(234,243,249,.07) 75%);background-size:200% 100%;animation:shimmer 1.6s linear infinite}
+  @keyframes shimmer{to{background-position:-200% 0}}
+  /* customers table */
+  .filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+  .fchip{font-family:var(--mono);font-size:.6rem;padding:.4em .75em;border-radius:999px;border:1px solid var(--border);color:var(--text-faint)}
+  .fchip.on{border-color:rgba(43,227,155,.45);color:var(--accent)}
+  .cust-table{border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden}
+  .cust-row{display:grid;grid-template-columns:20px 1fr auto auto;gap:12px;align-items:center;padding:8px 12px;font-size:.82rem;color:var(--text);border-top:1px solid var(--border)}
+  .cust-row:first-child{border-top:0}
+  .cust-row:nth-child(odd){background:rgba(234,243,249,.025)}
+  .cust-row .chk{width:14px;height:14px;border-radius:4px;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-size:.55rem;font-weight:600}
+  .cust-row .lv{font-family:var(--mono);font-size:.68rem;color:var(--text-faint);font-variant-numeric:tabular-nums}
+  .tagchip{font-family:var(--mono);font-size:.56rem;padding:.3em .65em;border-radius:999px;background:rgba(242,169,59,.14);color:var(--amber);border:1px solid rgba(242,169,59,.3)}
+  .cust-foot{margin-top:12px;display:flex;align-items:center;gap:10px;font-size:.8rem;color:var(--text-dim)}
+  .chip{font-size:.76rem;font-weight:500;border-radius:var(--r-sm);padding:.42em .85em;border:1px solid var(--border-strong);color:var(--text);cursor:default;transition:border-color .15s ease}
+  .chip:hover{border-color:rgba(234,243,249,.3)}
+  .chip.go{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:600}
+  .chip.go:hover{background:var(--accent-hover)}
+
+  /* ============ advisory card (the white showcase) ============ */
+  .narr{background:#FFFFFF;color:var(--ink);border:1px solid rgba(43,227,155,.5);border-radius:var(--r-lg);padding:30px;box-shadow:0 24px 70px rgba(0,0,0,.45)}
+  .narr .stamp{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+  .narr .stamp .right{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(8,28,48,.45)}
+  .narr .badges{display:flex;gap:6px}
+  .narr .nbadge{font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.07em;padding:.35em .7em;border-radius:999px}
+  .narr .nbadge.adv{background:rgba(43,227,155,.16);color:#0A7A55}
+  .narr .nbadge.mcp{background:rgba(14,42,71,.08);color:rgba(8,28,48,.6)}
+  .narr .nbadge.tip{border-bottom:0}
+  .narr h3{color:var(--ink);font-size:1.3rem;font-weight:600;margin-bottom:16px;letter-spacing:-.015em}
+  .narr dl{display:grid;gap:14px}
+  .narr dt{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#0A7A55;margin-bottom:.25em}
+  .narr dd{font-size:.93rem;color:rgba(8,28,48,.8);border-left:2px solid rgba(43,227,155,.4);padding-left:14px;line-height:1.55}
+  .narr .src{margin-top:16px;padding-top:14px;border-top:1px solid rgba(14,42,71,.1);font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;color:rgba(8,28,48,.45)}
+  .narr .act{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+  .narr .chip{border-color:rgba(14,42,71,.18);color:var(--ink)}
+  .narr .chip:hover{border-color:rgba(14,42,71,.4)}
+  .narr .chip.go{border-color:var(--accent);color:var(--on-accent)}
+  .narr.compact{padding:22px}
+  .narr.compact h3{font-size:1.08rem;margin-bottom:12px}
+
+  .advise-grid{display:grid;grid-template-columns:5fr 7fr;gap:72px;align-items:center}
+  .steps{border-top:1px solid var(--border)}
+  .step{display:grid;grid-template-columns:92px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--border)}
+  .step .k{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding-top:.25em}
+  .step h4{font-size:.95rem;font-weight:600;margin-bottom:.2em}
+  .step p{font-size:.88rem;color:var(--text-dim)}
+  @media(max-width:960px){.advise-grid{grid-template-columns:1fr;gap:40px}}
+
+  /* ============ workflow ============ */
+  .wf-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+  @media(max-width:900px){.wf-grid{grid-template-columns:1fr;gap:40px}}
+  .wf{background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--r-lg);padding:24px;color:var(--text);transition:border-color .2s ease}
+  .wf:hover{border-color:rgba(234,243,249,.24)}
+  .wf-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .wf-head .ui-kicker{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  .wf-head .live{margin-left:auto;display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;color:var(--accent)}
+  .wf-head .sw{width:30px;height:17px;border-radius:999px;background:var(--accent);position:relative}
+  .wf-head .sw::after{content:"";position:absolute;right:2.5px;top:2.5px;width:12px;height:12px;border-radius:50%;background:var(--on-accent)}
+  .wf-title{font-weight:600;font-size:1.05rem;margin-bottom:18px;color:var(--text)}
+  .wf-nodes{position:relative;display:grid;gap:8px;padding-left:18px}
+  .wf-nodes::before{content:"";position:absolute;left:4px;top:14px;bottom:14px;width:1.5px;background:linear-gradient(180deg,var(--accent),rgba(43,227,155,.15))}
+  .wf-node{position:relative;background:rgba(234,243,249,.04);border:1px solid var(--border);border-radius:var(--r-md);padding:10px 14px;display:grid;grid-template-columns:1fr auto;gap:2px;align-items:center;transition:border-color .15s ease}
+  .wf-node:hover{border-color:var(--border-strong)}
+  .wf-node::before{content:"";position:absolute;left:-17px;top:50%;transform:translateY(-50%);width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  .wf-node .t{font-family:var(--mono);font-size:.56rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+  .wf-node .d{font-size:.86rem;color:var(--text);grid-column:1}
+  .wf-node .meta{grid-row:1/3;grid-column:2;font-family:var(--mono);font-size:.6rem;color:var(--text-faint);align-self:center;font-variant-numeric:tabular-nums}
+  .wf-result{margin-top:16px;display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(43,227,155,.4);background:var(--accent-dim);color:var(--text);border-radius:999px;padding:8px 15px;font-size:.84rem;font-weight:500}
+  .wf-result .ok{width:17px;height:17px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-size:.58rem;font-weight:700}
+  .checks{list-style:none;display:grid;gap:.85em;margin-top:1.6em;font-size:.95rem}
+  .checks li{padding-left:1.7em;position:relative;color:var(--text-dim)}
+  .checks li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:600}
+
+  /* ============ who it's for ============ */
+  .personas{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+  .persona{padding:34px 32px;border-left:1px solid var(--border);transition:background .2s ease}
+  .persona:first-child{border-left:0}
+  .persona:hover{background:rgba(234,243,249,.025)}
+  .persona .who{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:1.1em;display:block}
+  .persona strong{display:block;font-size:1.02rem;font-weight:600;color:var(--text);margin-bottom:.5em}
+  .persona p{font-size:.9rem}
+  @media(max-width:820px){
+    .personas{grid-template-columns:1fr}
+    .persona{border-left:0;border-top:1px solid var(--border)}
+    .persona:first-child{border-top:0}
+  }
+  .pains{margin-top:56px;padding-top:40px;border-top:1px solid var(--border)}
+  .pains .label{margin-bottom:20px}
+  .pain-list{display:grid;grid-template-columns:1fr 1fr;gap:14px 48px;list-style:none}
+  .pain-list li{font-size:1rem;font-weight:500;color:var(--text);padding-left:1.5em;position:relative}
+  .pain-list li::before{content:"";position:absolute;left:0;top:.52em;width:7px;height:7px;border-radius:2px;background:var(--amber)}
+  .pain-list li span{display:block;font-size:.86rem;font-weight:400;color:var(--text-dim)}
+  @media(max-width:700px){.pain-list{grid-template-columns:1fr}}
+
+  /* ============ services ============ */
+  .svc-grid{display:grid;grid-template-columns:7fr 5fr;gap:20px;align-items:stretch}
+  .svc{border-radius:var(--r-lg);padding:44px;display:flex;flex-direction:column;border:1px solid var(--border);transition:border-color .2s ease}
+  .svc .who{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:1.2em}
+  .svc h3{font-size:1.5rem;margin-bottom:.5em}
+  .svc p{font-size:.95rem}
+  .svc ul{list-style:none;display:grid;gap:.6em;margin:1.3em 0 1.8em;font-size:.92rem}
+  .svc li{padding-left:1.6em;position:relative;color:var(--text-dim)}
+  .svc .btn{margin-top:auto;align-self:flex-start}
+  .svc-main{background:var(--surface);border-color:rgba(43,227,155,.35);position:relative;overflow:hidden}
+  .svc-main:hover{border-color:rgba(43,227,155,.55)}
+  .svc-main .who{color:var(--accent)}
+  .lockup{display:block;font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint);margin-bottom:1.1em}
+  .svc-main .btn{margin-top:0;position:relative;z-index:2}
+  .svc-shot{position:absolute;right:-28px;bottom:-26px;width:min(500px,84%);background:var(--bg);border:1px solid var(--border-strong);border-radius:var(--r-lg);padding:16px 18px;box-shadow:0 24px 60px rgba(0,0,0,.5);transform:rotate(-3deg);transform-origin:100% 100%;transition:transform .4s cubic-bezier(.2,.8,.25,1);z-index:1}
+  .svc-main:hover .svc-shot{transform:rotate(-1deg) translate(-4px,-6px)}
+  .ss-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+  .ss-kicker{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  .ss-live{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.56rem;letter-spacing:.08em;color:var(--accent)}
+  .ss-live i{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:ssPulse 2.4s ease-in-out infinite}
+  @keyframes ssPulse{0%,100%{box-shadow:0 0 0 0 rgba(43,227,155,.5)}50%{box-shadow:0 0 0 5px rgba(43,227,155,0)}}
+  .ss-title{font-weight:600;font-size:.95rem;color:var(--text);margin-bottom:10px}
+  .ss-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px}
+  .ss-kpi{background:rgba(234,243,249,.04);border:1px solid var(--border);border-radius:8px;padding:7px 9px}
+  .ss-kpi span{font-family:var(--mono);font-size:.5rem;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint);display:block}
+  .ss-kpi b{font-weight:600;font-size:.88rem;font-variant-numeric:tabular-nums;color:var(--text)}
+  .ss-kpi b.warn{color:var(--amber)}
+  .ss-split{display:grid;grid-template-columns:1.35fr 1fr;gap:9px;align-items:stretch}
+  .ss-split .ss-panel:first-child{display:flex;flex-direction:column}
+  .ss-panel{background:rgba(234,243,249,.04);border:1px solid var(--border);border-radius:10px;padding:9px 11px}
+  .ss-panel small{font-family:var(--mono);font-size:.52rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);display:block;margin-bottom:6px}
+  .ss-chart{position:relative;flex:1;min-height:110px}
+  .ss-trend{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .ss-trend .tline{stroke-dasharray:320;stroke-dashoffset:320;transition:stroke-dashoffset 1.1s cubic-bezier(.2,.8,.25,1) .35s}
+  .ss-trend .thead{opacity:0;transition:opacity .3s ease 1.3s}
+  .svc-main.revealed .ss-trend .tline{stroke-dashoffset:0}
+  .svc-main.revealed .ss-trend .thead{opacity:1}
+  .ss-col{display:grid;gap:9px}
+  .ss-donut-row{display:flex;align-items:center;gap:10px}
+  .ss-donut-row small{margin-bottom:3px}
+  .ss-donut{width:52px;height:52px;border-radius:50%;flex:none;position:relative;transform:scale(.6);opacity:0;transition:transform .5s cubic-bezier(.2,.8,.25,1) .5s,opacity .4s ease .5s}
+  .svc-main.revealed .ss-donut{transform:scale(1);opacity:1}
+  .ss-donut.d1{background:conic-gradient(var(--accent) 0 46%,#52B9E9 46% 78%,#F2A93B 78% 100%)}
+  .ss-donut.d2{background:conic-gradient(var(--accent) 0 34%,rgba(234,243,249,.28) 34% 100%)}
+  .ss-donut::after{content:"";position:absolute;inset:14px;border-radius:50%;background:#0D2237}
+  .ss-leg{display:grid;gap:2px;font-family:var(--mono);font-size:.5rem;color:var(--text-dim)}
+  .ss-leg i{display:inline-block;width:6px;height:6px;border-radius:2px;margin-right:5px}
+  .ss-bars{position:absolute;inset:0;display:flex;align-items:flex-end;gap:4px}
+  .ss-bars i{flex:1;border-radius:2px 2px 0 0;background:var(--accent);opacity:.9;transform:scaleY(0);transform-origin:bottom;transition:transform .7s cubic-bezier(.2,.8,.25,1)}
+  .svc-main.revealed .ss-bars i{transform:scaleY(1)}
+  .svc-main.revealed .ss-bars i:nth-child(2){transition-delay:.04s}.svc-main.revealed .ss-bars i:nth-child(3){transition-delay:.08s}.svc-main.revealed .ss-bars i:nth-child(4){transition-delay:.12s}.svc-main.revealed .ss-bars i:nth-child(5){transition-delay:.16s}.svc-main.revealed .ss-bars i:nth-child(6){transition-delay:.2s}.svc-main.revealed .ss-bars i:nth-child(7){transition-delay:.24s}.svc-main.revealed .ss-bars i:nth-child(8){transition-delay:.28s}.svc-main.revealed .ss-bars i:nth-child(9){transition-delay:.32s}.svc-main.revealed .ss-bars i:nth-child(10){transition-delay:.36s}.svc-main.revealed .ss-bars i:nth-child(11){transition-delay:.4s}.svc-main.revealed .ss-bars i:nth-child(12){transition-delay:.44s}
+  @media(max-width:860px){.svc-shot{display:none}}}
+  .svc-main li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:600}
+  .svc-side{background:transparent}
+  .svc-side:hover{border-color:var(--border-strong)}
+  .svc-side .who{color:var(--text-faint)}
+  .svc-side h3{font-size:1.15rem}
+  .svc-side li::before{content:"→";position:absolute;left:0;color:var(--text-faint)}
+  .svc-col{display:flex;flex-direction:column;gap:20px}
+  .svc-col .svc{flex:1}
+  .aeo-badge{display:inline-block;vertical-align:middle;margin-left:10px;font-size:.62rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:.35em .7em;border-radius:999px;border:1px solid rgba(43,227,155,.4);color:var(--accent);background:var(--accent-dim)}
+  .svc-side li strong{color:var(--accent)}
+  @media(max-width:860px){.svc-grid{grid-template-columns:1fr}.svc{padding:30px 26px}}
+
+  /* ============ blog cards ============ */
+  .posts{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .post-card{border:1px solid var(--border);border-radius:var(--r-lg);padding:32px;display:flex;flex-direction:column;transition:border-color .2s ease,background .2s ease}
+  a.post-card:hover{border-color:rgba(43,227,155,.45);background:rgba(234,243,249,.02)}
+  .post-meta{display:flex;gap:12px;align-items:center;margin-bottom:1.1em;font-size:.72rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--text-faint)}
+  .svc-tag{padding:.32em .75em;border-radius:999px;font-weight:600;border:1px solid}
+  .svc-tag.crm{border-color:rgba(43,227,155,.4);color:var(--accent);background:var(--accent-dim)}
+  .svc-tag.custom{border-color:rgba(234,243,249,.2);color:var(--text-dim);background:rgba(234,243,249,.04)}
+  .post-card h3{font-size:1.15rem;margin-bottom:.55em}
+  .post-card p{font-size:.9rem;color:var(--text-dim)}
+  .post-card .more{margin-top:1.4em;font-weight:500;font-size:.88rem;color:var(--accent);transition:color .15s ease}
+  a.post-card:hover .more{color:var(--accent-hover)}
+  .card-img{width:calc(100% + 64px);max-width:none;margin:-32px -32px 24px;border-radius:var(--r-lg) var(--r-lg) 0 0;border-bottom:1px solid var(--border);aspect-ratio:2/1;object-fit:cover}
+  .shot{margin:1.8em 0}
+  .shot img{width:100%;border:1px solid var(--border-strong);border-radius:var(--r-lg)}
+  .shot figcaption{margin-top:12px;font-size:.84rem;color:var(--text-faint);line-height:1.5}
+  .post-card.soon{border-style:dashed}
+  .post-card.soon h3{color:var(--text-dim)}
+  @media(max-width:820px){.posts{grid-template-columns:1fr}}
+
+  /* ============ faq ============ */
+  .faq{max-width:760px}
+  .faq details{border-top:1px solid var(--border)}
+  .faq details:last-of-type{border-bottom:1px solid var(--border)}
+  .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:19px 0;font-weight:600;color:var(--text);font-size:1rem;transition:color .15s ease}
+  .faq summary:hover{color:var(--accent)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pl{color:var(--text-faint);font-weight:400;font-size:1.2rem;transition:transform .2s ease;flex:none}
+  .faq details[open] summary .pl{transform:rotate(45deg)}
+  .faq details p{padding:0 0 20px;margin:0;color:var(--text-dim);font-size:.93rem;max-width:62ch}
+
+  /* ============ lead ============ */
+  .lead-grid{display:grid;grid-template-columns:5fr 6fr;gap:72px;align-items:start}
+  .lead form{background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--r-lg);padding:32px;display:grid;gap:16px}
+  .field label{display:block;font-size:.76rem;font-weight:500;color:var(--text-dim);margin-bottom:.45em}
+  .field input,.field textarea{width:100%;background:rgba(8,28,48,.6);border:1px solid var(--border-strong);border-radius:var(--r-sm);color:var(--text);padding:.65em .9em;font:inherit;font-size:.92rem;transition:border-color .15s ease,box-shadow .15s ease}
+  .field input::placeholder,.field textarea::placeholder{color:var(--text-faint)}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(43,227,155,.18)}
+  .field textarea{resize:vertical;min-height:92px}
+  .form-note{font-size:.78rem;color:var(--text-faint)}
+  .success{display:none;background:var(--accent-dim);border:1px solid rgba(43,227,155,.4);border-radius:var(--r-md);padding:18px;font-size:.92rem;color:var(--text)}
+  @media(max-width:900px){.lead-grid{grid-template-columns:1fr;gap:40px}}
+
+  /* ============ footer ============ */
+  footer{border-top:1px solid var(--border);padding:40px 0;font-size:.84rem;color:var(--text-faint)}
+  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  .foot nav{display:flex;gap:4px}
+  .foot nav a{padding:.4em .7em;border-radius:var(--r-sm);transition:color .15s ease}
+  .foot nav a:hover{color:var(--text)}
+  .foot .tagline{color:var(--text-dim)}
+  .foot .tagline b{color:var(--text);font-weight:600}
+
+  /* ============ article (blog) ============ */
+  .post-hero{padding:80px 0 56px;border-bottom:1px solid var(--border)}
+  .post-hero h1{max-width:22ch;margin:.5em 0 .5em}
+  .post-hero .byline{font-size:.92rem;color:var(--text-dim)}
+  .stat-strip{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-top:40px}
+  .stat{padding:22px 26px;border-left:1px solid var(--border)}
+  .stat:first-child{border-left:0}
+  .stat b{display:block;font-size:1.65rem;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .stat span{font-size:.74rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint)}
+  @media(max-width:700px){.stat-strip{grid-template-columns:1fr}.stat{border-left:0;border-top:1px solid var(--border)}.stat:first-child{border-top:0}}
+  article{max-width:720px;margin:0 auto;padding:72px 24px 88px}
+  article h2{font-size:1.5rem;margin:2em 0 .7em}
+  article h3{font-size:1.1rem;margin:1.8em 0 .5em}
+  article p{margin:.9em 0;color:var(--text-dim)}
+  article ul{margin:.9em 0 .9em 1.3em;color:var(--text-dim)}
+  article li{margin:.35em 0}
+  .fig{margin:1.8em 0;border:1px dashed var(--border-strong);border-radius:var(--r-lg);background:var(--surface);padding:16px}
+  .fig .ph{display:grid;place-items:center;height:140px;border-radius:var(--r-md);background:rgba(234,243,249,.03);font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint)}
+  .fig figcaption{margin-top:12px;font-size:.84rem;color:var(--text-faint);line-height:1.5}
+  .fig-live{margin:1.8em 0}
+  .fig-live figcaption{margin-top:12px;font-size:.84rem;color:var(--text-faint);line-height:1.5}
+  .callout{margin:1.6em 0;border:1px solid rgba(43,227,155,.3);background:var(--accent-dim);border-radius:var(--r-md);padding:18px 22px;font-size:.93rem;color:var(--text-dim)}
+  .back-link{font-weight:500;font-size:.88rem;color:var(--accent)}
+  .back-link:hover{color:var(--accent-hover)}
+  .post-cta{border:1px solid var(--border-strong);background:var(--surface);border-radius:var(--r-lg);padding:44px;margin:0 auto;max-width:720px;text-align:center}
+  .post-cta h3{font-size:1.3rem;margin-bottom:.4em}
+  .post-cta p{color:var(--text-dim);margin-bottom:1.6em}
+
+  /* chat mock */
+  .chat-shell{background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--r-lg);overflow:hidden}
+  .chat-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--border)}
+  .dot{width:8px;height:8px;border-radius:50%;background:rgba(234,243,249,.18)}
+  .chat-bar .title{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);margin-left:auto}
+  .chat-log{padding:20px;display:flex;flex-direction:column;gap:12px}
+  .msg{max-width:88%;border-radius:12px;padding:12px 15px;font-size:.88rem;line-height:1.55}
+  .msg.user{align-self:flex-end;background:var(--accent);color:var(--on-accent);font-weight:500;border-bottom-right-radius:4px}
+  .msg.ai{align-self:flex-start;background:rgba(234,243,249,.05);border:1px solid var(--border);border-bottom-left-radius:4px;color:var(--text)}
+  .msg.ai b{font-weight:600}
+  .msg .src{margin-top:10px;padding-top:9px;border-top:1px dashed var(--border-strong);font-family:var(--mono);font-size:.6rem;letter-spacing:.05em;color:rgba(43,227,155,.7)}
+
+  /* ============ reveal + motion prefs ============ */
+  [data-reveal]{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.25,1)}
+  [data-reveal].revealed{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    [data-reveal]{opacity:1;transform:none;transition:none}
+    .skel .bar{animation:none}
+    .ss-live i{animation:none}
+    .ss-bars i,.svc-shot,.ss-donut,.ss-trend .tline,.ss-trend .thead{transition:none;transform:none}
+    .svc-main .ss-bars i{transform:scaleY(1)}
+    .svc-main .ss-donut{opacity:1;transform:scale(1)}
+    .svc-main .ss-trend .tline{stroke-dashoffset:0}
+    .svc-main .ss-trend .thead{opacity:1}
+    .ss-bars i{animation:none !important}
+    .chat-user-row.on,.chat-bot-row.on{animation:none}
+    .chat-think i{animation:none}
+    .ccb i,.ccb b,.cc-dot,.cc-trend path,.chat-chips,.hb .ht i{transition:none}
+    [data-anim] .upload-pill,[data-anim] .upload-pill .ok,[data-anim] .maps .mrow,[data-anim] .maps .mrow .to,[data-anim] .kpi,[data-anim] .bars i,[data-anim] .also,[data-anim] .filters .fchip,[data-anim] .cust-row,[data-anim] .cust-row .chk,[data-anim] .tagchip,[data-anim] .cust-foot,[data-anim].narr .stamp,[data-anim].narr h3,[data-anim].narr dl div,[data-anim].narr .act,[data-anim] .wf-nodes::before,[data-anim] .wf-node,[data-anim] .wf-result{transition:none}
+    .wsk,path.wsk,.wf-sketch .skf{transition:none}
+    .narr.sketching .wf-sketch{animation:none}
+    *{scroll-behavior:auto}
+  }
+
+  /* mobile guards */
+  .advise-grid>*,.wf-grid>*,.lead-grid>*,.svc-grid>*,.posts>*,.how-row>*,.kpis>*,.strip-grid>*{min-width:0}
+  @media(max-width:640px){
+    section{padding:76px 0}
+    .hero{padding-top:64px}
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .narr{padding:22px}
+    .lead form{padding:24px 20px}
+    article{padding:52px 24px 64px}
+    .post-cta{padding:32px 22px}
+    .hero-video{margin-top:44px}
+  }
+  .nav-signin{margin-left:auto;color:var(--text-dim);font-size:.9rem;font-weight:500;padding:.6em .5em;transition:color .15s ease}
+  .nav-signin:hover{color:var(--text)}
+  .nav .nav-signin + .btn{margin-left:10px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Data Does Not Lie home">
+      <img class="mark-d" src="assets/daybreak-logo.png" alt="" width="30" height="30">
+      <span>Data Does Not Lie</span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#advise">AI advisory</a>
+      <a href="#workflows">Workflows</a>
+      <a href="#services">Services</a>
+      <a href="blog.html">Use cases</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="nav-signin" href="sign-in.html">Sign in</a>
+    <a class="btn btn-primary" href="index.html#demo">Get a demo</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-logo" aria-label="Daybreak by Data Does Not Lie">
+        <img class="hl-mark" src="assets/daybreak-logo.png" alt="" width="512" height="512">
+        <span class="hl-row"><span class="hl-type" id="hlType">DAYBREAK</span></span>
+        <span class="hl-by">BY DATA DOES NOT LIE</span>
+      </div>
+      <h1>Upload your data. Know exactly what to do next.</h1>
+      <p class="sub">Connect Square or upload a CSV. Daybreak turns your sales data into clear reports, plain-language recommendations, and email and SMS follow-up that runs itself.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary btn-lg" href="#demo">Get a demo</a>
+        <a class="btn btn-secondary btn-lg" href="#how">See how it works</a>
+      </div>
+    </div>
+    <div class="hero-video">
+      <video autoplay muted loop playsinline preload="metadata"
+             poster="DATA"
+             aria-label="45-second product tour: connect Square, a custom API, or a CSV, and watch reports, customer tags, an AI recommendation, and a live win-back workflow build themselves">
+        <source src="DATA" type="video/mp4">
+      </video>
+    </div>
+    <div class="video-note">45-second product tour · Illustrative demo data</div>
+  </div>
+
+  <!-- ============ FEATURE STRIP ============ -->
+  <div class="strip" aria-label="What DDNL does">
+    <div class="wrap strip-grid">
+      <div class="strip-item"><b>Square or CSV</b>Connect live or upload any export</div>
+      <div class="strip-item"><b>Tag and save views</b>Your whole team sees the same list</div>
+      <div class="strip-item"><b>Daily recommendations</b>What changed, why, and what to do</div>
+      <div class="strip-item"><b>One-click follow-up</b>Email and SMS workflows, opt-outs handled</div>
+    </div>
+  </div>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">How it works</span>
+        <h2>From a CSV to customers walking back in</h2>
+        <p class="lede">Five steps, no setup project, no analyst required. The same flow you see in the video above.</p>
+      </div>
+
+      <div class="how-row" data-reveal>
+        <div class="how-text">
+          <span class="how-num">01</span>
+          <h3>Connect or upload your data</h3>
+          <p>Connect Square and your sales sync on their own. Or drop in any CSV export: orders, customers, products. Daybreak detects the columns and maps them for you.</p>
+          <p class="how-note">On another system? We can connect to almost any database by API for an additional setup charge.</p>
+        </div>
+        <div class="how-mock"><div class="ui" data-anim>
+          <div class="upload-pill"><span class="ok">✓</span><b>Imported orders_2026.csv</b><span class="rows" data-count="47996" data-suffix=" rows">47,996 rows</span></div>
+          <div class="maps" aria-hidden="true">
+            <div class="mrow"><b>order_date</b><span class="to">→</span><span>Date</span></div>
+            <div class="mrow"><b>cust_email</b><span class="to">→</span><span>Customer</span></div>
+            <div class="mrow"><b>total_amt</b><span class="to">→</span><span>Order value</span></div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="how-row flip" data-reveal>
+        <div class="how-text">
+          <span class="how-num">02</span>
+          <h3>Reports build themselves</h3>
+          <p>A Sales Overview appears instantly, with Customers, Locations, and Channels reports behind it. The numbers you run the business on, without building a single chart.</p>
+        </div>
+        <div class="how-mock"><div class="ui" data-anim>
+          <div class="ui-head"><span class="ui-kicker">Auto-generated</span><span class="ui-title">Sales Overview</span><span class="ui-right">All stores · 12M</span></div>
+          <div class="kpis">
+            <div class="kpi"><span>Revenue</span><b data-count="2.84" data-decimals="2" data-prefix="$" data-suffix="M">$2.84M</b></div>
+            <div class="kpi"><span>Orders</span><b data-count="48212">48,212</b></div>
+            <div class="kpi"><span>Avg order</span><b data-count="58.91" data-decimals="2" data-prefix="$">$58.91</b></div>
+            <div class="kpi"><span class="tip" tabindex="0" data-tip="The share of customers who came back for a second order in the period.">Repeat rate</span><b class="warn" data-count="33.8" data-decimals="1" data-suffix="%">33.8%</b></div>
+          </div>
+          <div class="panel"><small>Revenue by month</small>
+            <div class="bars" aria-hidden="true"><i style="height:52%"></i><i style="height:56%"></i><i style="height:61%"></i><i style="height:66%"></i><i style="height:68%"></i><i style="height:72%"></i><i style="height:65%"></i><i style="height:70%"></i><i style="height:63%"></i><i style="height:74%"></i><i style="height:82%"></i><i style="height:76%"></i></div>
+          </div>
+          <div class="also"><small>Also generating</small>
+            <div class="skel-row" aria-hidden="true">
+              <div class="skel">Customers<span class="bar" style="width:80%"></span></div>
+              <div class="skel">Locations<span class="bar" style="width:65%"></span></div>
+              <div class="skel">Channels<span class="bar" style="width:72%"></span></div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="how-row" data-reveal>
+        <div class="how-text">
+          <span class="how-num">03</span>
+          <h3>Filter, tag, and save views</h3>
+          <p>Slice by location or date. Select the customers who matter, tag them, and save the view so your whole team sees the same list tomorrow.</p>
+        </div>
+        <div class="how-mock"><div class="ui" data-anim>
+          <div class="ui-head"><span class="ui-kicker">Downtown · Last 90 days</span><span class="ui-title">Customers</span><span class="ui-right">Save view</span></div>
+          <div class="filters" aria-hidden="true"><span class="fchip on">Last order &gt; 60 days</span><span class="fchip on">Lifetime value: top 20%</span></div>
+          <div class="cust-table">
+            <div class="cust-row"><span class="chk">✓</span><span>M. Chen</span><span class="lv">$1,240</span><span class="tagchip">Lapsed VIP</span></div>
+            <div class="cust-row"><span class="chk">✓</span><span>R. Patel</span><span class="lv">$1,105</span><span class="tagchip">Lapsed VIP</span></div>
+            <div class="cust-row"><span class="chk">✓</span><span>S. Okafor</span><span class="lv">$980</span><span class="tagchip">Lapsed VIP</span></div>
+            <div class="cust-row"><span class="chk">✓</span><span>D. Rivera</span><span class="lv">$915</span><span class="tagchip">Lapsed VIP</span></div>
+          </div>
+          <div class="cust-foot"><span class="chip go">Tag</span><span><span data-count="312">312</span> customers tagged Lapsed VIP</span></div>
+        </div></div>
+      </div>
+
+      <div class="how-row flip" data-reveal>
+        <div class="how-text">
+          <span class="how-num">04</span>
+          <h3>The AI tells you what to do</h3>
+          <p>Every day, Daybreak reads your numbers and flags what deserves attention: what changed, why it matters, and what to do about it. It connects to the tools you already use, so its advice is grounded in your real data.</p>
+          <p class="how-note">Connections run on MCP, an open standard for linking AI to software.</p>
+        </div>
+        <div class="how-mock"><div class="narr compact" data-anim>
+          <div class="stamp"><span class="badges"><span class="nbadge adv">ADVISE</span></span><span class="right">Daily run · 06:00</span></div>
+          <h3>Downtown's repeat customers are slipping</h3>
+          <dl>
+            <div><dt>What changed</dt><dd>Repeat rate fell to 26.0% over the last 90 days, 8 points under its 12-month average.</dd></div>
+          </dl>
+          <div class="act"><span class="chip go">Create win-back workflow →</span><span class="chip">Dismiss</span></div>
+        </div></div>
+      </div>
+
+      <div class="how-row" data-reveal>
+        <div class="how-text">
+          <span class="how-num">05</span>
+          <h3>Workflows act on it</h3>
+          <p>One click turns the recommendation into a live email and SMS workflow and enrolls the matching customers. The follow-up you kept meaning to send, sent.</p>
+        </div>
+        <div class="how-mock"><div class="wf" style="box-shadow:none" data-anim>
+          <div class="wf-title" style="margin-bottom:14px">Win-back · Lapsed VIPs</div>
+          <div class="wf-nodes">
+            <div class="wf-node"><span class="t">Trigger</span><span class="d">Tag added: Lapsed VIP</span><span class="meta">312 match</span></div>
+            <div class="wf-node"><span class="t">Email</span><span class="d">We saved your spot: 15% off</span><span class="meta">Now</span></div>
+            <div class="wf-node"><span class="t">Wait + SMS</span><span class="d">2 days later, skip if they order</span><span class="meta">Day 2</span></div>
+          </div>
+          <div class="wf-result"><span class="ok">✓</span>Workflow live · 312 contacts enrolled</div>
+        </div></div>
+      </div>
+
+      <p class="demo-note">All numbers and customers shown are illustrative demo data.</p>
+    </div>
+  </section>
+
+  <!-- ============ AI ADVISORY ============ -->
+  <section id="advise">
+    <div class="wrap advise-grid">
+      <div>
+        <span class="label">The AI advisory layer</span>
+        <h2 style="margin:.6em 0 .6em">Advice that shows its work</h2>
+        <p class="lede">Not a dashboard you have to decode. An advisor that reads your real numbers every day, speaks plainly, and answers what you ask.</p>
+        <div class="steps" style="margin-top:2em">
+          <div class="step"><span class="k">Watch</span><div><h4>It checks your numbers daily</h4><p>Sales, repeat rates, customer activity, by store and channel, against your own history.</p></div></div>
+          <div class="step"><span class="k">Explain</span><div><h4>It says what changed and why it matters</h4><p>In plain language, with the dollars at stake. No chart-reading required.</p></div></div>
+          <div class="step"><span class="k">Recommend</span><div><h4>It suggests the next move</h4><p>Every recommendation comes with a concrete action and the customer list behind it.</p></div></div>
+          <div class="step"><span class="k">Prove</span><div><h4>It cites its sources</h4><p>Every number traces back to your data. Agree, act, or dismiss with a reason. You stay in charge.</p></div></div>
+        </div>
+      </div>
+      <div class="narr" id="advCard" data-reveal aria-label="Example AI recommendation">
+        <div class="stamp">
+          <span class="badges"><span class="nbadge adv">ADVISE</span><span class="nbadge mcp tip" tabindex="0" data-tip="DDNL connects to the tools you already use through MCP, an open standard for linking AI to software.">VIA MCP</span></span>
+          <span class="right">Daily run · 06:00</span>
+        </div>
+        <h3 class="adv-h">Downtown's repeat customers are slipping</h3>
+        <h3 class="sk-h">Win-back workflow · Lapsed VIPs</h3>
+        <dl>
+          <div><dt>What changed</dt><dd>Repeat rate fell to 26.0% over the last 90 days, 8 points under its 12-month average.</dd></div>
+          <div><dt>Why it matters</dt><dd>312 high-value customers haven't ordered in 60+ days. At $410 a year each, about $128K is at risk.</dd></div>
+          <div><dt>Recommended action</dt><dd>Start a win-back workflow: email today, SMS follow-up in 2 days.</dd></div>
+        </dl>
+        <div class="act"><button type="button" class="chip go" id="advGo">Create win-back workflow →</button><span class="chip">Dismiss with reason</span></div>
+        <div class="wf-sketch" aria-label="Win-back workflow being sketched out">
+          <svg viewBox="0 0 520 470" role="img" aria-hidden="true">
+            <defs><marker id="skArr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L8,4 L0,8 Z" fill="rgba(14,42,71,.55)"/></marker></defs>
+            <g class="wsk" style="--d:0s"><rect class="nd" x="20" y="12" width="220" height="44" rx="10"/><text class="k" x="130" y="30" text-anchor="middle">TRIGGER</text><text class="t" x="130" y="46" text-anchor="middle">Tag added: Lapsed VIP</text></g>
+            <path class="wsk ln" pathLength="1" style="--d:.25s" d="M130,56 V84" marker-end="url(#skArr)"/>
+            <g class="wsk" style="--d:.45s"><rect class="nd" x="20" y="84" width="220" height="44" rx="10"/><text class="k" x="130" y="102" text-anchor="middle">EMAIL</text><text class="t" x="130" y="118" text-anchor="middle">We saved your spot</text></g>
+            <path class="wsk ln" pathLength="1" style="--d:.7s" d="M130,128 V156" marker-end="url(#skArr)"/>
+            <g class="wsk wpill" style="--d:.85s"><rect x="158" y="131" width="78" height="19" rx="9.5"/><text x="197" y="144" text-anchor="middle">wait 2 days</text></g>
+            <g class="wsk" style="--d:.95s"><polygon class="nd" points="130,156 215,186 130,216 45,186"/><text class="t" x="130" y="190" text-anchor="middle">Ordered?</text></g>
+            <path class="wsk ln" pathLength="1" style="--d:1.2s" d="M215,186 H300" marker-end="url(#skArr)"/>
+            <text class="wsk bl y" style="--d:1.3s" x="250" y="178" text-anchor="middle">YES</text>
+            <g class="wsk goal" style="--d:1.45s"><rect class="nd" x="300" y="164" width="200" height="44" rx="10"/><text class="k" x="400" y="182" text-anchor="middle">GOAL REACHED</text><text class="t" x="400" y="198" text-anchor="middle">Customer ordered · exit</text></g>
+            <path class="wsk ln" pathLength="1" style="--d:1.65s" d="M130,216 V244" marker-end="url(#skArr)"/>
+            <text class="wsk bl n" style="--d:1.75s" x="146" y="236">NO</text>
+            <g class="wsk" style="--d:1.9s"><rect class="nd" x="20" y="244" width="220" height="44" rx="10"/><text class="k amb" x="130" y="262" text-anchor="middle">SMS</text><text class="t" x="130" y="278" text-anchor="middle">15% code · opt-outs handled</text></g>
+            <path class="wsk ln" pathLength="1" style="--d:2.15s" d="M130,288 V316" marker-end="url(#skArr)"/>
+            <g class="wsk wpill" style="--d:2.3s"><rect x="158" y="291" width="78" height="19" rx="9.5"/><text x="197" y="304" text-anchor="middle">wait 3 days</text></g>
+            <g class="wsk" style="--d:2.4s"><polygon class="nd" points="130,316 215,346 130,376 45,346"/><text class="t" x="130" y="350" text-anchor="middle">Ordered?</text></g>
+            <path class="wsk ln" pathLength="1" style="--d:2.65s" d="M215,346 H400 V208" marker-end="url(#skArr)"/>
+            <text class="wsk bl y" style="--d:2.8s" x="300" y="338" text-anchor="middle">YES</text>
+            <path class="wsk ln" pathLength="1" style="--d:2.95s" d="M130,376 V412" marker-end="url(#skArr)"/>
+            <text class="wsk bl n" style="--d:3.05s" x="146" y="398">NO</text>
+            <g class="wsk" style="--d:3.15s"><rect class="nd" x="20" y="412" width="220" height="44" rx="10"/><text class="k" x="130" y="430" text-anchor="middle">FALLBACK</text><text class="t" x="130" y="446" text-anchor="middle">Pause + flag for review</text></g>
+          </svg>
+          <div class="skf"><span class="ok">✓</span>Workflow live · 312 Lapsed VIPs enrolled<button type="button" class="back" id="advBack">↺ Back to the recommendation</button></div>
+        </div>
+        <div class="src">grounded in: orders_2026.csv · view: Lapsed VIPs · Downtown · illustrative demo data</div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="how-row flip" data-reveal>
+        <div class="how-text">
+          <h3>Talk to your data</h3>
+          <p>Advice comes to you daily. Questions work the other way: ask in plain English, the way you would ask an analyst, and Daybreak queries your live numbers over MCP and answers with the chart or table, not a link to go build one.</p>
+          <p class="how-note">The demo is live: when the follow-up chips appear, click one and it answers that too.</p>
+        </div>
+        <div class="how-mock"><div class="ui chat" id="chatMock" aria-label="Example chat: asking Daybreak for Q4 profit projections">
+          <div class="chat-top">
+            <span class="chat-ava"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="#06121F" stroke-width="2" stroke-linecap="round" fill="none"><line x1="12" y1="3.5" x2="12" y2="6.5"/><line x1="5.2" y1="7.2" x2="7.3" y2="9.3"/><line x1="18.8" y1="7.2" x2="16.7" y2="9.3"/></g><path d="M5.5 16.5 a6.5 6.5 0 0 1 13 0 Z" fill="#06121F"/><line x1="3" y1="16.5" x2="21" y2="16.5" stroke="#06121F" stroke-width="2" stroke-linecap="round"/><line x1="7" y1="20" x2="17" y2="20" stroke="#06121F" stroke-width="2" stroke-linecap="round" opacity=".55"/></svg></span>
+            <div class="chat-who"><b>Daybreak</b><span><i class="dot"></i>Online · connected over MCP</span></div>
+            <span class="ui-right">AI analyst</span>
+          </div>
+          <div class="chat-thread">
+            <div class="chat-user-row">
+              <div class="chat-msg user">What are our Q4 profit projections?</div>
+              <span class="chat-meta">You · just now</span>
+            </div>
+            <div class="chat-bot-row think-row" aria-hidden="true"><span class="chat-ava sm"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="#06121F" stroke-width="2" stroke-linecap="round" fill="none"><line x1="12" y1="3.5" x2="12" y2="6.5"/><line x1="5.2" y1="7.2" x2="7.3" y2="9.3"/><line x1="18.8" y1="7.2" x2="16.7" y2="9.3"/></g><path d="M5.5 16.5 a6.5 6.5 0 0 1 13 0 Z" fill="#06121F"/><line x1="3" y1="16.5" x2="21" y2="16.5" stroke="#06121F" stroke-width="2" stroke-linecap="round"/><line x1="7" y1="20" x2="17" y2="20" stroke="#06121F" stroke-width="2" stroke-linecap="round" opacity=".55"/></svg></span><div class="chat-think"><i></i><i></i><i></i></div></div>
+            <div class="chat-bot-row reply-row">
+              <span class="chat-ava sm"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="#06121F" stroke-width="2" stroke-linecap="round" fill="none"><line x1="12" y1="3.5" x2="12" y2="6.5"/><line x1="5.2" y1="7.2" x2="7.3" y2="9.3"/><line x1="18.8" y1="7.2" x2="16.7" y2="9.3"/></g><path d="M5.5 16.5 a6.5 6.5 0 0 1 13 0 Z" fill="#06121F"/><line x1="3" y1="16.5" x2="21" y2="16.5" stroke="#06121F" stroke-width="2" stroke-linecap="round"/><line x1="7" y1="20" x2="17" y2="20" stroke="#06121F" stroke-width="2" stroke-linecap="round" opacity=".55"/></svg></span>
+              <div class="chat-msg bot">
+                <span class="bot-name">Daybreak · AI analyst</span>
+                <p>I pulled your Sales Overview and ran the 12-month trend. Q4 projects <b>$412K profit, up 9% on Q3</b>, with December pacing the quarter at $150K.</p>
+                <div class="chat-chart2" aria-hidden="true">
+                  <div class="cc-head"><span class="cc-title">Profit by month · Jul–Dec</span><span class="cc-delta">▲ 9% vs Q3</span></div>
+                  <div class="cc-plot"><div class="cc-area">
+                    <div class="cc-gridline" style="bottom:93.75%"><span>$150K</span></div>
+                    <div class="cc-gridline" style="bottom:62.5%"><span>$100K</span></div>
+                    <div class="cc-gridline" style="bottom:31.25%"><span>$50K</span></div>
+                    <div class="cc-bars">
+                      <div class="ccb a" style="--h:73.75%"><i style="--h:73.75%"></i><span>Jul</span></div>
+                      <div class="ccb a" style="--h:77.5%"><i style="--h:77.5%"></i><span>Aug</span></div>
+                      <div class="ccb a" style="--h:85%"><i style="--h:85%"></i><span>Sep</span></div>
+                      <div class="ccb p" style="--h:80%"><b>$128K</b><i style="--h:80%"></i><span>Oct</span></div>
+                      <div class="ccb p" style="--h:83.75%"><b>$134K</b><i style="--h:83.75%"></i><span>Nov</span></div>
+                      <div class="ccb p" style="--h:93.75%"><b>$150K</b><i style="--h:93.75%"></i><span>Dec</span></div>
+                    </div>
+                    <svg class="cc-trend" viewBox="0 0 100 100" preserveAspectRatio="none"><path pathLength="100" d="M8.3,26.3 L25,22.5 L41.7,15 L58.3,20 L75,16.3 L91.7,6.3"/></svg>
+                    <i class="cc-dot" style="left:8.3%;bottom:73.75%"></i><i class="cc-dot" style="left:25%;bottom:77.5%"></i><i class="cc-dot" style="left:41.7%;bottom:85%"></i><i class="cc-dot" style="left:58.3%;bottom:80%"></i><i class="cc-dot" style="left:75%;bottom:83.75%"></i><i class="cc-dot end" style="left:91.7%;bottom:93.75%"></i>
+                  </div></div>
+                  <div class="cc-legend"><span class="lg a"><i></i>Q3 actual</span><span class="lg p"><i></i>Q4 projected</span><span class="cc-total">Q4 total · $412K</span></div>
+                </div>
+                <div class="chat-src"><span class="mcpb">VIA MCP</span><span class="srcnote">orders_2026.csv · Sales Overview · 12-month history</span></div>
+              </div>
+            </div>
+            <div class="chat-bot-row reply-row">
+              <span class="chat-ava sm"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="#06121F" stroke-width="2" stroke-linecap="round" fill="none"><line x1="12" y1="3.5" x2="12" y2="6.5"/><line x1="5.2" y1="7.2" x2="7.3" y2="9.3"/><line x1="18.8" y1="7.2" x2="16.7" y2="9.3"/></g><path d="M5.5 16.5 a6.5 6.5 0 0 1 13 0 Z" fill="#06121F"/><line x1="3" y1="16.5" x2="21" y2="16.5" stroke="#06121F" stroke-width="2" stroke-linecap="round"/><line x1="7" y1="20" x2="17" y2="20" stroke="#06121F" stroke-width="2" stroke-linecap="round" opacity=".55"/></svg></span>
+              <div class="chat-msg bot">
+                <span class="bot-name">Daybreak · AI analyst</span>
+                <p>Here is Q4 by store. <b>Downtown leads at $176K</b>, about 43% of the quarter, and the mall kiosk is the fastest grower at +12% over Q3.</p>
+                <div class="chat-chart2" aria-hidden="true">
+                  <div class="cc-head"><span class="cc-title">Q4 projected · by store</span><span class="cc-delta">3 stores</span></div>
+                  <div class="hbars">
+                    <div class="hb"><span class="hl">Downtown</span><span class="ht"><i class="p" style="--w:100%"></i></span><span class="hv">$176K</span></div>
+                    <div class="hb"><span class="hl">Westside</span><span class="ht"><i style="--w:76%"></i></span><span class="hv">$134K</span></div>
+                    <div class="hb"><span class="hl">Mall kiosk</span><span class="ht"><i style="--w:58%"></i></span><span class="hv">$102K</span></div>
+                  </div>
+                  <div class="cc-note">Mall kiosk +12% vs Q3, fastest of the three</div>
+                </div>
+                <div class="chat-src"><span class="mcpb">VIA MCP</span><span class="srcnote">orders_2026.csv · by location · Q4 projection</span></div>
+              </div>
+            </div>
+            <div class="chat-bot-row reply-row">
+              <span class="chat-ava sm"><svg viewBox="0 0 24 24" aria-hidden="true"><g stroke="#06121F" stroke-width="2" stroke-linecap="round" fill="none"><line x1="12" y1="3.5" x2="12" y2="6.5"/><line x1="5.2" y1="7.2" x2="7.3" y2="9.3"/><line x1="18.8" y1="7.2" x2="16.7" y2="9.3"/></g><path d="M5.5 16.5 a6.5 6.5 0 0 1 13 0 Z" fill="#06121F"/><line x1="3" y1="16.5" x2="21" y2="16.5" stroke="#06121F" stroke-width="2" stroke-linecap="round"/><line x1="7" y1="20" x2="17" y2="20" stroke="#06121F" stroke-width="2" stroke-linecap="round" opacity=".55"/></svg></span>
+              <div class="chat-msg bot">
+                <span class="bot-name">Daybreak · AI analyst</span>
+                <p><b>December's $150K</b> is November's $134K plus three pushes. The biggest is holiday gifting, with gift cards running about twice their November pace.</p>
+                <div class="chat-chart2" aria-hidden="true">
+                  <div class="cc-head"><span class="cc-title">December vs November · drivers</span><span class="cc-delta">+$16K</span></div>
+                  <div class="hbars">
+                    <div class="hb wide"><span class="hl">Holiday gifting</span><span class="ht"><i class="p" style="--w:100%"></i></span><span class="hv pos">+$9.8K</span></div>
+                    <div class="hb wide"><span class="hl">Win-backs return</span><span class="ht"><i class="p" style="--w:47%"></i></span><span class="hv pos">+$4.6K</span></div>
+                    <div class="hb wide"><span class="hl">Organic growth</span><span class="ht"><i class="p" style="--w:16%"></i></span><span class="hv pos">+$1.6K</span></div>
+                  </div>
+                  <div class="cc-note">Gift cards at 2.1x their November average</div>
+                </div>
+                <div class="chat-src"><span class="mcpb">VIA MCP</span><span class="srcnote">orders_2026.csv · December cohorts · vs November</span></div>
+              </div>
+            </div>
+            <div class="chat-chips"><button type="button">Q4 profit projections</button><button type="button">Break it down by store</button><button type="button">What's driving December?</button></div>
+          </div>
+          <div class="chat-input" aria-hidden="true"><span class="chat-type"></span><span class="chat-caret"></span><span class="chat-ph">Ask about your data</span><span class="chat-send">↑</span></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORKFLOWS ============ -->
+  <section id="workflows">
+    <div class="wrap wf-grid">
+      <div>
+        <span class="label">CRM workflows · Email + SMS</span>
+        <h2 style="margin:.6em 0 .6em">From "we should follow up" to followed up</h2>
+        <p class="lede">Recommendations end in action, not in a to-do list. One click builds the workflow, writes the first draft, and enrolls the right customers. You approve it, it runs.</p>
+        <ul class="checks">
+          <li>Email and SMS in one sequence, with waits and skip rules</li>
+          <li>Customers who come back drop out automatically</li>
+          <li>Opt-outs handled on every text, "Reply STOP" built in</li>
+        </ul>
+      </div>
+      <div class="wf" data-reveal data-anim>
+        <div class="wf-head"><span class="ui-kicker">CRM workflow · Email + SMS</span><span class="live"><span class="sw" aria-hidden="true"></span>LIVE</span></div>
+        <div class="wf-title">Win-back · Lapsed VIPs</div>
+        <div class="wf-nodes">
+          <div class="wf-node"><span class="t">Trigger</span><span class="d">Tag added: Lapsed VIP</span><span class="meta">312 match</span></div>
+          <div class="wf-node"><span class="t">Email</span><span class="d">We saved your spot: 15% off</span><span class="meta">Now</span></div>
+          <div class="wf-node"><span class="t">Wait</span><span class="d">2 days, skip if they order</span><span class="meta">48h</span></div>
+          <div class="wf-node"><span class="t">SMS</span><span class="d"><span class="tip" tabindex="0" data-tip="Every text DDNL sends includes opt-out handling, so you stay compliant by default.">15% off ends Sunday. Reply STOP to opt out.</span></span><span class="meta">Day 2</span></div>
+        </div>
+        <div class="wf-result"><span class="ok">✓</span>Workflow live · 312 contacts enrolled</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHO IT'S FOR ============ -->
+  <section id="teams">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">Who it's for</span>
+        <h2>Built for the people who run the store</h2>
+      </div>
+      <div class="personas" data-reveal>
+        <div class="persona">
+          <span class="who">Owners</span>
+          <strong>Know where you stand in one glance</strong>
+          <p>Open Daybreak, see revenue, orders, and repeat customers across every location. The morning gut-check, without the spreadsheet.</p>
+        </div>
+        <div class="persona">
+          <span class="who">Operators &amp; managers</span>
+          <strong>Catch problems while they're small</strong>
+          <p>A location slipping, a quiet weekday, a channel going cold. Daybreak flags it and hands you the fix, not just the chart.</p>
+        </div>
+        <div class="persona">
+          <span class="who">Marketing</span>
+          <strong>Send to the right people, automatically</strong>
+          <p>Real segments built from real purchases: lapsed VIPs, first-timers, big spenders. Tag them once and the workflows do the rest.</p>
+        </div>
+      </div>
+      <div class="pains" data-reveal>
+        <span class="label dim">Sound familiar?</span>
+        <ul class="pain-list">
+          <li>Your data is stuck in the register.<span>Sales happen all day; the numbers stay locked in the POS.</span></li>
+          <li>Reports take hours and still don't say what to do.<span>A chart is not a decision.</span></li>
+          <li>Good customers slip away before anyone notices.<span>By the time it shows in revenue, they're gone.</span></li>
+          <li>Follow-up only happens when someone remembers.<span>And someone is usually busy.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">Services</span>
+        <h2>Three ways to work with us</h2>
+      </div>
+      <div class="svc-grid">
+        <div class="svc svc-main" data-reveal>
+          <img class="svc-logo" src="assets/daybreak-logo.png" alt="" width="512" height="512">
+          <span class="who">Key offering</span>
+          <h3 style="margin-bottom:.1em">Daybreak</h3>
+          <span class="lockup">By Data Does Not Lie</span>
+          <p>The product above: your sales data in, clear reports and customer segments out, with an AI advisor that tells you what to do and workflows that do it.</p>
+          <ul>
+            <li>Direct Square integration, or CSV upload</li>
+            <li>Reports build themselves from your sales data</li>
+            <li>Filter, tag, and save customer views for your team</li>
+            <li>Daily AI recommendations grounded in your data</li>
+            <li>One-click email + SMS follow-up workflows</li>
+            <li>Connects to the tools you already use</li>
+            <li>API connection to almost any database, for an additional setup charge</li>
+          </ul>
+          <a class="btn btn-primary" href="#demo">Get a demo</a>
+          <div class="svc-shot" aria-hidden="true">
+            <div class="ss-head"><span class="ss-kicker">Auto-generated report</span><span class="ss-live"><i></i>LIVE</span></div>
+            <div class="ss-title">Sales Overview</div>
+            <div class="ss-kpis">
+              <div class="ss-kpi"><span>Revenue</span><b>$2.84M</b></div>
+              <div class="ss-kpi"><span>Orders</span><b>48,212</b></div>
+              <div class="ss-kpi"><span>Repeat</span><b class="warn">33.8%</b></div>
+            </div>
+            <div class="ss-split">
+              <div class="ss-panel">
+                <small>Revenue by month</small>
+                <div class="ss-chart">
+                  <div class="ss-bars"><i style="height:38%"></i><i style="height:45%"></i><i style="height:42%"></i><i style="height:52%"></i><i style="height:49%"></i><i style="height:58%"></i><i style="height:55%"></i><i style="height:64%"></i><i style="height:60%"></i><i style="height:70%"></i><i style="height:78%"></i><i style="height:86%"></i></div>
+                  <svg class="ss-trend" viewBox="0 0 232 92" preserveAspectRatio="none">
+                    <path class="tline" d="M8 62 C50 58 80 54 116 44 S190 24 216 14" fill="none" stroke="#7CE0FF" stroke-width="2.6" stroke-linecap="round"/>
+                    <path class="thead" d="M204 10 L218 13 L212 26" fill="none" stroke="#7CE0FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="ss-col">
+                <div class="ss-panel ss-donut-row">
+                  <div class="ss-donut d1"></div>
+                  <div><small>Channel mix</small><div class="ss-leg"><span><i style="background:var(--accent)"></i>In-store 46%</span><span><i style="background:#52B9E9"></i>Online 32%</span><span><i style="background:#F2A93B"></i>Other 22%</span></div></div>
+                </div>
+                <div class="ss-panel ss-donut-row">
+                  <div class="ss-donut d2"></div>
+                  <div><small>Customers</small><div class="ss-leg"><span><i style="background:var(--accent)"></i>Repeat 34%</span><span><i style="background:rgba(234,243,249,.3)"></i>New 66%</span></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="svc-col">
+          <div class="svc svc-side" data-reveal>
+            <span class="who">Also available</span>
+            <h3>Custom Development</h3>
+            <p>When off-the-shelf doesn't fit: bespoke apps, dashboards, integrations, and AI assistants built on your own data.</p>
+            <ul>
+              <li>Custom dashboards and reporting platforms</li>
+              <li>Integrations with the systems you run on</li>
+              <li>AI assistants over your own database</li>
+            </ul>
+            <a class="btn btn-secondary" href="blog-construction-case-study.html">Read a case study →</a>
+          </div>
+          <div class="svc svc-side" data-reveal>
+            <span class="who">Also available</span>
+            <h3>Website Development <span class="aeo-badge">AEO built in</span></h3>
+            <p>Fast, hand-built marketing sites, made to be found. This site is one.</p>
+            <ul>
+              <li><strong>AEO, answer engine optimization:</strong> structured answers, FAQ schema, and llms.txt so AI assistants like ChatGPT and Claude can find, quote, and recommend your business</li>
+              <li>SEO foundations: structured data, sitemaps, social cards</li>
+              <li>Lead capture wired in from day one</li>
+            </ul>
+            <a class="btn btn-secondary" href="#demo">Start a project →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ USE CASES ============ -->
+  <section id="usecases">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">Use cases</span>
+        <h2>Real work, written up</h2>
+        <p class="lede">What we've built and what came of it. <a href="blog.html" class="back-link">See all use cases →</a></p>
+      </div>
+      <div class="posts">
+        <a class="post-card" href="blog-construction-case-study.html" data-reveal>
+          <img class="card-img" src="DATA" alt="" aria-hidden="true">
+          <div class="post-meta"><span class="svc-tag custom">Custom Development</span><span>November 2026</span></div>
+          <h3>Replacing a Spreadsheet That Ran a Construction Company</h3>
+          <p>One Excel workbook forecast an entire construction business. We rebuilt it as a tested web platform with a live Procore integration and an AI layer that answers plain-English questions, and gave the CEO back 8 to 10 hours a month.</p>
+          <span class="more">Read the case study →</span>
+        </a>
+        <div class="post-card soon" data-reveal>
+          <div class="post-meta"><span class="svc-tag crm">Daybreak</span><span>Coming soon</span></div>
+          <h3>More use cases on the way</h3>
+          <p>We're writing up how retail teams use Daybreak to spot slipping locations and win back lapsed customers. Check back soon.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="wrap about-grid" data-reveal>
+      <img class="about-photo" src="assets/cameron-patalano.jpg" alt="Cameron Patalano, founder of Data Does Not Lie" width="640" height="640" loading="lazy">
+      <div class="about-text">
+        <span class="label about-label">About the founder</span>
+        <p>Data Does Not Lie was founded by Cameron Patalano, a founder and author who builds tools that help small businesses automate with ease. His CRM background runs deep: years of hands-on work in HubSpot and GoHighLevel, owner of Revenue Rebranded, a marketing agency that sold a white-label version of HighLevel, and CRM projects for small businesses as an independent contractor.</p>
+        <p>Today he is an AI &amp; Automation advisor at Stature Advisors, where he develops custom software and helps businesses implement AI systems at scale. He built Daybreak after seeing the same gap across retail: businesses sitting on years of sales data with nothing telling them what to do about it.</p>
+        <p>He is also the author of <em>Radical Transparency</em>, an honest, educational approach to sales and marketing.</p>
+        <div class="about-links">
+          <a class="btn btn-secondary" href="https://a.co/d/0gF1U46s" target="_blank" rel="noopener">Radical Transparency on Amazon →</a>
+          <a class="btn btn-secondary" href="https://www.linkedin.com/in/cameronpatalano" target="_blank" rel="noopener">Connect on LinkedIn →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head" style="margin-bottom:40px">
+        <span class="label">FAQ</span>
+        <h2>Common questions</h2>
+      </div>
+      <div class="faq">
+        <details><summary>What is Daybreak?<span class="pl" aria-hidden="true">+</span></summary><p>Daybreak is the AI-powered CRM for retail by Data Does Not Lie. Connect Square or upload a CSV, and it turns your sales data into clear reports, daily plain-language recommendations, and email and SMS follow-up workflows you launch in one click.</p></details>
+        <details><summary>What data sources does Daybreak support?<span class="pl" aria-hidden="true">+</span></summary><p>Square connects out of the box, and any CSV export uploads in seconds with columns detected automatically. We can also connect almost any other system by API, like the SPOT point of sale for dry cleaners, for an additional setup charge.</p></details>
+        <details><summary>Do I need an analyst to use Daybreak?<span class="pl" aria-hidden="true">+</span></summary><p>No. Reports build themselves from your data, the AI explains what changed and why it matters in plain language, and every recommendation comes with a one-click action. It is built for owners, operators, and marketers, not data teams.</p></details>
+        <details><summary>What does the AI actually do?<span class="pl" aria-hidden="true">+</span></summary><p>Every day it reads your numbers, by store and channel, against your own history. When something deserves attention it tells you what changed, why it matters in dollars, and what to do about it, and it cites the data behind every number. Over MCP, an open standard for connecting AI to software, it can also build reports, workflows, smart lists, email templates, and SMS snippets on request.</p></details>
+        <details><summary>Can Daybreak send email and SMS?<span class="pl" aria-hidden="true">+</span></summary><p>Yes. Recommendations turn into live email and SMS workflows in one click: sequences with waits and skip rules, customers who come back drop out automatically, and opt-outs are handled on every text.</p></details>
+        <details><summary>What does Daybreak cost?<span class="pl" aria-hidden="true">+</span></summary><p>We walk through pricing on the demo call. Square and CSV setups are turnkey; connecting another system by API carries an additional setup charge.</p></details>
+        <details><summary>Who is behind Daybreak?<span class="pl" aria-hidden="true">+</span></summary><p>Data Does Not Lie, which also offers Custom Development (bespoke apps, dashboards, integrations, and AI assistants built on a company's own data) and Website Development: fast marketing sites with SEO and AEO built in, so search engines and AI assistants can find and quote your business.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LEAD GEN ============ -->
+  <section id="demo">
+    <div class="wrap lead-grid lead">
+      <div>
+        <span class="label">Get a demo</span>
+        <h2 style="margin:.6em 0 .6em">See your own data tell the truth</h2>
+        <p class="lede">On Square, we'll connect your store live. Otherwise bring a sales export, and we'll load it on the spot, show you the reports it builds, and the first recommendation it makes.</p>
+        <ul class="checks">
+          <li>30-minute walkthrough on your data, not slides</li>
+          <li>Works for stores, restaurants, and service shops</li>
+          <li>Honest fit assessment. If it's not for you, we'll say so.</li>
+        </ul>
+      </div>
+
+      <!--
+        GOOGLE FORMS SETUP
+        1. Create a Google Form with fields: Name, Work email, Business name, What should we look at first?
+        2. Open the form's "Get pre-filled link", fill dummy values, copy the generated URL.
+        3. Paste the form ID into GOOGLE_FORM_ID below and each entry.XXXXXXX id into ENTRY_IDS.
+        Until configured, submissions show the success state and log to console.
+      -->
+      <form id="leadForm" novalidate>
+        <div class="field">
+          <label for="f-name">Name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Jordan Rivers">
+        </div>
+        <div class="field">
+          <label for="f-email">Work email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="jordan@yourstore.com">
+        </div>
+        <div class="field">
+          <label for="f-company">Business name</label>
+          <input id="f-company" name="company" type="text" autocomplete="organization" required placeholder="Rivers Coffee Co.">
+        </div>
+        <div class="field">
+          <label for="f-msg">What should we look at first?</label>
+          <textarea id="f-msg" name="message" placeholder="We have three locations and our customer list lives in the register…"></textarea>
+        </div>
+        <button class="btn btn-primary btn-lg" type="submit" id="submitBtn">Request my demo</button>
+        <p class="form-note">No spam, no drip campaign. One reply from a human.</p>
+        <div class="success" id="successBox">
+          <strong>Request received.</strong> We'll reply within one business day to schedule your walkthrough.
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="tagline"><b>Data Does Not Lie</b> · Your data already knows. Now it tells you.</span>
+    <nav aria-label="Footer"><a href="index.html">Home</a><a href="blog.html">Use cases</a><a href="index.html#about">About</a><a href="index.html#demo">Get a demo</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+    <span>© 2026 Data Does Not Lie</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(!reduceMotion && "IntersectionObserver" in window){
+      const io = new IntersectionObserver(es=>{
+        es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("revealed"); io.unobserve(en.target); } });
+      },{threshold:.12});
+      document.querySelectorAll("[data-reveal]").forEach(n=>io.observe(n));
+    }else{
+      document.querySelectorAll("[data-reveal]").forEach(n=>n.classList.add("revealed"));
+    }
+  })();
+
+  (function(){
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const els = document.querySelectorAll("[data-anim]");
+    if(!els.length) return;
+    function counters(root){
+      root.querySelectorAll("[data-count]").forEach(el=>{
+        if(el.dataset.done) return; el.dataset.done = "1";
+        const target = parseFloat(el.dataset.count), dec = +(el.dataset.decimals||0);
+        const pre = el.dataset.prefix||"", suf = el.dataset.suffix||"";
+        const fmt = v => pre + (dec ? v.toFixed(dec) : Math.round(v).toLocaleString("en-US")) + suf;
+        if(reduce){ el.textContent = fmt(target); return; }
+        const t0 = performance.now(), dur = 1250;
+        requestAnimationFrame(function tick(t){
+          const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+          el.textContent = fmt(target * e);
+          if(p < 1) requestAnimationFrame(tick);
+        });
+      });
+    }
+    if(reduce || !("IntersectionObserver" in window)){
+      els.forEach(el=>{ el.classList.add("anim"); counters(el); });
+      return;
+    }
+    const io = new IntersectionObserver(es=>{
+      es.forEach(en=>{
+        if(en.isIntersecting){ en.target.classList.add("anim"); counters(en.target); io.unobserve(en.target); }
+      });
+    },{threshold:.3});
+    els.forEach(el=>io.observe(el));
+  })();
+
+  (function(){
+    const el = document.getElementById("hlType");
+    if(!el) return;
+    const word = "DAYBREAK";
+    if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+      el.textContent = word; return;
+    }
+    el.textContent = "";
+    let i = 0;
+    setTimeout(function step(){
+      i++; el.textContent = word.slice(0, i);
+      if(i < word.length) setTimeout(step, 115);
+    }, 450);
+  })();
+
+  (function(){
+    const card = document.getElementById("advCard");
+    if(!card) return;
+    const go = document.getElementById("advGo"), back = document.getElementById("advBack");
+    if(go) go.addEventListener("click", ()=>{
+      card.classList.add("sketching");
+      requestAnimationFrame(()=>requestAnimationFrame(()=>card.classList.add("drawing")));
+    });
+    if(back) back.addEventListener("click", ()=>{ card.classList.remove("sketching"); card.classList.remove("drawing"); });
+  })();
+
+  (function(){
+    const chat = document.getElementById("chatMock");
+    if(!chat) return;
+    const turns = [
+      "What are our Q4 profit projections?",
+      "Break it down by store",
+      "What's driving December?"
+    ];
+    const typeEl = chat.querySelector(".chat-type");
+    const ph = chat.querySelector(".chat-ph");
+    const userRow = chat.querySelector(".chat-user-row");
+    const userMsg = chat.querySelector(".chat-msg.user");
+    const thinkRow = chat.querySelector(".think-row");
+    const replies = Array.from(chat.querySelectorAll(".reply-row"));
+    const chips = Array.from(chat.querySelectorAll(".chat-chips button"));
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let timers = [], current = -1;
+    function clearTimers(){ timers.forEach(t=>{ clearTimeout(t); clearInterval(t); }); timers = []; }
+    function wait(fn, ms){ timers.push(setTimeout(fn, ms)); }
+    function updateChips(idx){ chips.forEach((c,i)=>{ c.style.display = (i===idx) ? "none" : ""; }); }
+    function showTurn(idx){
+      clearTimers(); current = idx;
+      userMsg.textContent = turns[idx];
+      userRow.classList.add("on");
+      replies.forEach((r,i)=>r.classList.toggle("on", i===idx));
+      thinkRow.classList.remove("on");
+      chat.classList.add("grown");
+      updateChips(idx);
+    }
+    if(reduce || !("IntersectionObserver" in window)){
+      showTurn(0);
+      chips.forEach((c,i)=>c.addEventListener("click", ()=>showTurn(i)));
+      return;
+    }
+    function play(idx){
+      clearTimers(); current = idx;
+      userRow.classList.remove("on"); thinkRow.classList.remove("on");
+      replies.forEach(r=>r.classList.remove("on"));
+      chat.classList.remove("grown"); chat.classList.remove("sent");
+      updateChips(idx);
+      userMsg.textContent = turns[idx];
+      typeEl.textContent = ""; ph.classList.add("hide"); chat.classList.add("typing");
+      const q = turns[idx];
+      let i = 0;
+      const t = setInterval(()=>{
+        i++; typeEl.textContent = q.slice(0, i);
+        if(i >= q.length){
+          clearInterval(t);
+          wait(()=>{
+            chat.classList.add("sent");
+            wait(()=>{
+              chat.classList.remove("typing"); chat.classList.remove("sent");
+              typeEl.textContent = ""; ph.classList.remove("hide");
+              userRow.classList.add("on");
+              wait(()=>{
+                thinkRow.classList.add("on");
+                wait(()=>{
+                  thinkRow.classList.remove("on"); replies[idx].classList.add("on");
+                  requestAnimationFrame(()=>requestAnimationFrame(()=>chat.classList.add("grown")));
+                  wait(()=>play((idx+1)%turns.length), 6500);
+                }, 1100);
+              }, 350);
+            }, 240);
+          }, 350);
+        }
+      }, 34);
+      timers.push(t);
+    }
+    chips.forEach((c,i)=>c.addEventListener("click", ()=>{ if(i!==current) play(i); }));
+    const io = new IntersectionObserver(es=>{
+      es.forEach(en=>{
+        if(en.isIntersecting){ io.disconnect(); setTimeout(()=>play(0), 400); }
+      });
+    },{threshold:.35});
+    io.observe(chat);
+  })();
+
+  const GOOGLE_FORM_ID = "1FAIpQLSfa9CtHvBQI-y2EgTQ2nXJ-xQbM8VJCfgtkZCV927HiXuhjNQ"; // Daybreak Demo Requests
+  const ENTRY_IDS = { name:"entry.91645865", email:"entry.492368119", company:"entry.497609646", message:"entry.259026376" };
+
+  document.getElementById("leadForm").addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const form = e.target;
+    if(!form.reportValidity()) return;
+    const data = Object.fromEntries(new FormData(form).entries());
+    if(GOOGLE_FORM_ID && ENTRY_IDS.name){
+      const params = new URLSearchParams();
+      for(const [field, entry] of Object.entries(ENTRY_IDS)){
+        if(entry && data[field]) params.append(entry, data[field]);
+      }
+      try{
+        await fetch(`https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`, {
+          method:"POST", mode:"no-cors",
+          headers:{"Content-Type":"application/x-www-form-urlencoded"},
+          body: params.toString()
+        });
+      }catch(err){ console.warn("Form relay failed:", err); }
+    }else{
+      console.log("Lead captured locally (Google Form not configured yet):", data);
+    }
+    document.getElementById("submitBtn").disabled = true;
+    document.getElementById("successBox").style.display = "block";
+    form.reset();
+  });
+
+</script>
+</body>
+</html>
