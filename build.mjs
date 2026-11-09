@@ -25,7 +25,7 @@ const ARROW = `<svg class="arrow" width="18" height="18" aria-hidden="true" view
 
 // ---------- plans ----------
 function cta(p) {
-  if (p.id === "partner") return `<a class="btn btn-ghost btn-block" href="partners.html#apply">Apply to partner</a><p class="alt muted">Accounts open in the order we receive applications</p>`;
+  if (p.id === "partner") return `<a class="btn btn-primary btn-block" href="${APP}/api/billing/checkout?plan=partner">Start free month ${ARROW}</a><p class="alt"><a class="link" href="partners.html">See the partner program</a></p>`;
   if (p.salesLed) return `<a class="btn btn-ghost btn-block" href="index.html?plan=enterprise#demo">Book a call</a><p class="alt muted">Custom pricing for your stores</p>`;
   const primary = p.id === "growth" ? "btn-primary" : "btn-primary";
   const alt = p.id === "premier" ? `<p class="alt"><a class="link" href="index.html?plan=premier#demo">or book a call first</a></p>` : `<p class="alt muted">Cancel any time</p>`;
@@ -33,7 +33,7 @@ function cta(p) {
 }
 function setupLine(p) {
   if (p.salesLed) return "Setup quoted with your plan";
-  return `${$(p.setupCents)} one-time setup, then ${p.freeDays} days free`;
+  return p.setupCents ? `${$(p.setupCents)} one-time setup, then ${p.freeDays} days free` : `No setup fee, then ${p.freeDays} days free`;
 }
 function planCard(p, { compact = false } = {}) {
   const featured = p.id === "growth";
@@ -70,7 +70,7 @@ function compareTable() {
         <tbody>
           ${group("Price")}
           ${row("Monthly", (p) => (p.salesLed ? `From ${$(p.monthlyCents)}` : $(p.monthlyCents)))}
-          ${row("Setup, one time", (p) => (p.salesLed ? "Quoted" : $(p.setupCents)))}
+          ${row("Setup, one time", (p) => (p.salesLed ? "Quoted" : p.setupCents ? $(p.setupCents) : "None"))}
           ${row("Free period", (p) => `${p.freeDays} days`)}
           ${group("Usage")}
           ${row("Stores included", stores)}
@@ -110,7 +110,7 @@ function softwareLd() {
     return {
       "@type": "Offer",
       name: `Daybreak ${p.name}`,
-      description: `${p.tagline}. ${p.salesLed ? "Priced on a call." : `${$(p.setupCents)} one-time setup, then ${p.freeDays} days free, then ${$(p.monthlyCents)} a month.`}`,
+      description: `${p.tagline}. ${p.salesLed ? "Priced on a call." : `${setupLine(p)}, then ${$(p.monthlyCents)} a month.`}`,
       price: (p.monthlyCents / 100).toFixed(2),
       priceCurrency: "USD",
       priceSpecification: spec,
@@ -246,7 +246,7 @@ function footer() {
       </div>
       <div><h4>Daybreak</h4><ul><li><a href="index.html#how">How it works</a></li><li><a href="index.html#ask">Ask Daybreak</a></li><li><a href="index.html#integrations">Connections</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="sign-in.html">Sign in</a></li></ul></div>
       <div><h4>Company</h4><ul><li><a href="index.html#about">About</a></li><li><a href="partners.html">Partner program</a></li><li><a href="index.html#services">Services</a></li><li><a href="blog.html">Use cases</a></li></ul></div>
-      <div><h4>Get in touch</h4><ul><li><a href="index.html#demo">Book a demo</a></li><li><a href="partners.html#apply">Apply to partner</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li></ul></div>
+      <div><h4>Get in touch</h4><ul><li><a href="index.html#demo">Book a demo</a></li><li><a href="partners.html">Partner program</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li></ul></div>
     </div>
     <div class="foot-mark" aria-hidden="true"></div>
     <div class="foot-base"><span>&copy; 2026 Data Does Not Lie</span><span>Product screens show illustrative demo data.</span></div>
@@ -289,16 +289,16 @@ Text credit packs (one time, never expire): ${data.creditPacks.map((c) => `${n(c
 
 Add-ons: ${data.addOns.map((a) => `${a.name} ${$(a.monthlyCents)} a month${a.setupCents ? ` plus ${$(a.setupCents)} setup` : ""} (${a.blurb})`).join("; ")}.
 
-How to buy: Growth and Premier start online at ${SITE}/pricing.html (Stripe checkout). Enterprise is priced on a call: ${SITE}/index.html#demo. Partners apply at ${SITE}/partners.html#apply.
+How to buy: Growth and Premier start online at ${SITE}/pricing.html (Stripe checkout). Partners start online too (no setup fee). Enterprise is priced on a call: ${SITE}/index.html#demo.
 
 ## Partner program
 
 - For agencies, consultants and marketers who want to sell an AI CRM to local businesses under their own brand.
-- Partner plan: ${$(p("partner").monthlyCents)} a month plus ${$(p("partner").setupCents)} setup, ${p("partner").freeDays} days free. Includes ${p("partner").clientsIncluded} client businesses; each extra client is ${$(p("partner").extraClientCents)} a month (${$(p("partner").extraClientCentsFrom11)} from the 11th).
+- Partner plan: ${$(p("partner").monthlyCents)} a month, no setup fee, ${p("partner").freeDays} days free, self-serve signup. Includes ${p("partner").clientsIncluded} client businesses; each extra client is ${$(p("partner").extraClientCents)} a month (${$(p("partner").extraClientCentsFrom11)} from the 11th).
 - Your logo, colors and web address. You set your own prices and bill your clients.
 - Text credits at ${data.partnerTextCents} cents a text to resell at your own price.
 - 20% commission on add-ons your clients buy directly.
-- Applications are open now: ${SITE}/partners.html#apply
+- Sign up online: ${SITE}/partners.html
 
 ## Services
 

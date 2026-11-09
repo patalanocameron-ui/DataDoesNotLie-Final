@@ -20,7 +20,7 @@ Every plan starts with 30 days free. Self-serve plans charge the setup fee at si
 - Growth: $497 a month plus a $497 one-time setup fee, with the first 30 days free. For retailers with 1 to 4 stores who want setup and support included. 3 stores included; AI marketing assistant included; 2,000 texts and 25,000 emails a month; Done-with-you setup; Every feature included.
 - Premier: $997 a month plus a $2,497 one-time setup fee, with the first 30 days free. For retailers with 5 to 20 stores who want it done for them. 10 stores included; AI marketing assistant included; 10,000 texts and 100,000 emails a month; Done-for-you setup and data migration; Dedicated support.
 - Enterprise: from $2,500 a month, priced on a call. For chains with 20+ stores and franchise groups. Unlimited stores; AI marketing assistant included; Custom text and email volume; Several brands in one account; Dedicated team.
-- Partner: $297 a month plus a $197 one-time setup fee, with the first 30 days free. For agencies and consultants who want to sell an AI CRM under their own brand. Your brand, logo and colors on every screen; 2 client businesses included, $79 per extra client; AI marketing assistant for every client; Resell text credits at your own price; 20% commission on add-ons your clients buy.
+- Partner: $1,297 a month plus a $0 one-time setup fee, with the first 30 days free. For agencies and consultants who want to sell an AI CRM under their own brand. Your brand, logo and colors on every screen; 2 client businesses included, $79 per extra client; AI marketing assistant for every client; Resell text credits at your own price; 20% commission on add-ons your clients buy.
 
 More stores: Growth $97 per store a month beyond 3; Premier $49 per store a month beyond 10.
 
@@ -28,16 +28,16 @@ Text credit packs (one time, never expire): 2,500 texts for $99; 10,000 texts fo
 
 Add-ons: Managed campaigns $297 a month (We plan, write and run your monthly promotions, with a monthly results video); White label $199 a month (Your own brand and web address (Premier)); Custom data connection $99 a month plus $1,500 setup (Connect a database or a POS we don't support yet); Extra emails $10 a month (10,000 more emails a month).
 
-How to buy: Growth and Premier start online at https://datadoesnotlie.com/pricing.html (Stripe checkout). Enterprise is priced on a call: https://datadoesnotlie.com/index.html#demo. Partners apply at https://datadoesnotlie.com/partners.html#apply.
+How to buy: Growth and Premier start online at https://datadoesnotlie.com/pricing.html (Stripe checkout). Partners start online too (no setup fee). Enterprise is priced on a call: https://datadoesnotlie.com/index.html#demo.
 
 ## Partner program
 
 - For agencies, consultants and marketers who want to sell an AI CRM to local businesses under their own brand.
-- Partner plan: $297 a month plus $197 setup, 30 days free. Includes 2 client businesses; each extra client is $79 a month ($59 from the 11th).
+- Partner plan: $1,297 a month, no setup fee, 30 days free, self-serve signup. Includes 2 client businesses; each extra client is $79 a month ($59 from the 11th).
 - Your logo, colors and web address. You set your own prices and bill your clients.
 - Text credits at 2 cents a text to resell at your own price.
 - 20% commission on add-ons your clients buy directly.
-- Applications are open now: https://datadoesnotlie.com/partners.html#apply
+- Sign up online: https://datadoesnotlie.com/partners.html
 
 ## Services
 
