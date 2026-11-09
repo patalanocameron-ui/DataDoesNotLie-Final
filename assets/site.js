@@ -1,55 +1,357 @@
-// Small, dependency-free behavior for the marketing site.
+// Data Does Not Lie / Daybreak marketing site. Dependency-free behavior.
+// Every motion here demonstrates the product or orients the reader, and all of it
+// stands down under prefers-reduced-motion (final states are shown instead).
 (function () {
+  "use strict";
+  var doc = document, root = doc.documentElement;
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var hasIO = "IntersectionObserver" in window;
+  var $ = function (s, r) { return (r || doc).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || doc).querySelectorAll(s)); };
 
-  // Header border once the page scrolls.
-  var header = document.querySelector(".site-header");
+  // Run fn when el is on screen (once unless keep), with an optional pause callback.
+  function onView(el, fn, opts) {
+    opts = opts || {};
+    if (!el) return;
+    if (!hasIO) { fn(true); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { fn(true); if (!opts.keep) io.unobserve(el); }
+        else if (opts.keep) fn(false);
+      });
+    }, { threshold: opts.threshold || 0.25, rootMargin: opts.margin || "0px" });
+    io.observe(el);
+  }
+
+  /* ---------------- header ---------------- */
+  var header = $(".site-header");
   if (header) {
     var onScroll = function () { header.classList.toggle("scrolled", window.scrollY > 8); };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
-  // Mobile menu.
-  var btn = document.querySelector(".menu-btn");
-  var menu = document.querySelector(".mobile-nav");
-  if (btn && menu) {
-    btn.addEventListener("click", function () {
-      var open = menu.classList.toggle("open");
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
+  // Dropdowns: hover with a small intent delay on pointer devices, click and keyboard everywhere.
+  var items = $$("[data-menu]");
+  function closeAll(except) {
+    items.forEach(function (it) {
+      if (it === except) return;
+      it.classList.remove("open");
+      var b = $("button", it); if (b) b.setAttribute("aria-expanded", "false");
     });
-    menu.addEventListener("click", function (e) { if (e.target.closest("a")) { menu.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); } });
+  }
+  items.forEach(function (it) {
+    var btn = $("button", it), t;
+    var open = function () { closeAll(it); it.classList.add("open"); btn.setAttribute("aria-expanded", "true"); };
+    var close = function () { it.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); };
+    btn.addEventListener("click", function () { it.classList.contains("open") ? close() : open(); });
+    it.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") { clearTimeout(t); t = setTimeout(open, 60); } });
+    it.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") { clearTimeout(t); t = setTimeout(close, 160); } });
+    it.addEventListener("keydown", function (e) { if (e.key === "Escape") { close(); btn.focus(); } });
+    it.addEventListener("focusout", function (e) { if (!it.contains(e.relatedTarget)) close(); });
+  });
+  doc.addEventListener("click", function (e) { if (!e.target.closest("[data-menu]")) closeAll(); });
+
+  var mbtn = $(".menu-btn"), mnav = $(".mobile-nav");
+  if (mbtn && mnav) {
+    var setMenu = function (open) {
+      mnav.classList.toggle("open", open);
+      mbtn.setAttribute("aria-expanded", open ? "true" : "false");
+      doc.body.style.overflow = open ? "hidden" : "";
+    };
+    mbtn.addEventListener("click", function () { setMenu(!mnav.classList.contains("open")); });
+    mnav.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+    doc.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
   }
 
-  // Entrance animations.
-  var items = document.querySelectorAll(".reveal");
-  if (!reduce && "IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-    items.forEach(function (el) { io.observe(el); });
-  } else {
-    items.forEach(function (el) { el.classList.add("in"); });
+  /* ---------------- reveals ---------------- */
+  var reveals = $$(".reveal, [data-pain]");
+  if (reduce || !hasIO) reveals.forEach(function (el) { el.classList.add("in"); });
+  else {
+    var rio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); rio.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+    reveals.forEach(function (el) { rio.observe(el); });
   }
 
-  // Product videos play only while on screen, and never with reduced motion.
-  var vids = document.querySelectorAll("video[data-autoplay]");
-  if (reduce) {
-    vids.forEach(function (v) { v.removeAttribute("autoplay"); v.pause(); v.setAttribute("controls", ""); });
-  } else if ("IntersectionObserver" in window) {
-    var vo = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        var v = e.target;
-        if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else { v.pause(); }
+  /* ---------------- mock choreography + counters ---------------- */
+  function count(el) {
+    if (el.dataset.done) return; el.dataset.done = "1";
+    var target = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    var pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+    var fmt = function (v) { return pre + (dec ? v.toFixed(dec) : Math.round(v).toLocaleString("en-US")) + suf; };
+    if (reduce) { el.textContent = fmt(target); return; }
+    var t0 = performance.now(), dur = 1300;
+    requestAnimationFrame(function tick(t) {
+      var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(target * e);
+      if (p < 1) requestAnimationFrame(tick);
+    });
+  }
+  $$("[data-anim]").forEach(function (m) {
+    var go = function () { m.classList.add("play"); $$("[data-count]", m).forEach(count); };
+    if (reduce || !hasIO) go(); else onView(m, go, { threshold: 0.3 });
+  });
+
+  /* ---------------- hero showcase ---------------- */
+  var show = $("[data-showcase]");
+  if (show) {
+    var tabs = $$("[data-tab]", show), imgs = $$(".screens img", show), floats = $$("[data-for]", show);
+    var stage = $("[data-stage]", show);
+    var cur = 0, DUR = 6500, t0 = 0, raf = 0, running = false, pausedAt = 0;
+    var select = function (i, user) {
+      cur = i;
+      tabs.forEach(function (b, k) { b.setAttribute("aria-selected", k === i ? "true" : "false"); var bar = $(".bar-p i", b); if (bar) bar.style.transform = "scaleX(0)"; });
+      imgs.forEach(function (im, k) { im.classList.toggle("on", k === i); if (k === i && im.loading === "lazy") im.loading = "eager"; });
+      floats.forEach(function (f) { f.classList.remove("on"); });
+      var mine = floats.filter(function (f) { return +f.dataset.for === i; });
+      mine.forEach(function (f, k) { setTimeout(function () { if (cur === i) f.classList.add("on"); }, reduce ? 0 : 450 + k * 260); });
+      t0 = performance.now(); pausedAt = 0;
+      if (user) running = !reduce;
+    };
+    var loop = function (now) {
+      if (!running) return;
+      var p = Math.min(1, (now - t0) / DUR);
+      var bar = $("[aria-selected=true] .bar-p i", show); if (bar) bar.style.transform = "scaleX(" + p + ")";
+      if (p >= 1) select((cur + 1) % tabs.length);
+      raf = requestAnimationFrame(loop);
+    };
+    tabs.forEach(function (b, i) {
+      b.addEventListener("click", function () { select(i, true); });
+      b.addEventListener("keydown", function (e) {
+        var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+        if (d) { e.preventDefault(); var n = (i + d + tabs.length) % tabs.length; tabs[n].focus(); select(n, true); }
       });
-    }, { threshold: 0.25 });
-    vids.forEach(function (v) { vo.observe(v); });
+    });
+    // preload the other screens after first paint
+    window.addEventListener("load", function () { imgs.forEach(function (im) { im.loading = "eager"; }); });
+    select(0);
+    if (!reduce) {
+      onView(show, function (vis) {
+        if (vis) { if (!running) { running = true; t0 = performance.now() - pausedAt; raf = requestAnimationFrame(loop); } }
+        else if (running) { running = false; pausedAt = performance.now() - t0; cancelAnimationFrame(raf); }
+      }, { keep: true, threshold: 0.15 });
+      // tilt flattens as you scroll into the product, a slight lean follows the pointer
+      var heroEl = $("[data-hero]"), lean = 0;
+      var applyTilt = function () {
+        var r = show.getBoundingClientRect(), vh = window.innerHeight;
+        var p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.9)));
+        stage.style.setProperty("--tilt", (14 * (1 - p)).toFixed(2) + "deg");
+        stage.style.setProperty("--scale", (0.96 + 0.04 * p).toFixed(4));
+        stage.style.setProperty("--lift", (-10 * p).toFixed(1) + "px");
+        stage.style.transform = "rotateX(" + (14 * (1 - p)).toFixed(2) + "deg) rotateY(" + lean.toFixed(2) + "deg) translateY(" + (-10 * p).toFixed(1) + "px) scale(" + (0.96 + 0.04 * p).toFixed(4) + ")";
+        if (heroEl) heroEl.style.setProperty("--sun", (0.75 + p * 0.25).toFixed(3));
+      };
+      var ticking = false;
+      var req = function () { if (!ticking) { ticking = true; requestAnimationFrame(function () { applyTilt(); ticking = false; }); } };
+      window.addEventListener("scroll", req, { passive: true });
+      window.addEventListener("resize", req);
+      if (window.matchMedia("(pointer:fine)").matches) {
+        show.addEventListener("pointermove", function (e) { var r = show.getBoundingClientRect(); lean = ((e.clientX - r.left) / r.width - 0.5) * 3; req(); });
+        show.addEventListener("pointerleave", function () { lean = 0; req(); });
+      }
+      applyTilt();
+    }
   }
 
-  // Lead forms post to a Google Form (no backend). Partner applications are marked in the message.
+  /* ---------------- the story: clock, chapters, dawn ---------------- */
+  var story = $("[data-story]");
+  if (story) {
+    var chapters = $$("[data-chapter]", story), lis = $$(".chapters li", story);
+    var clock = $("[data-clock]", story), ap = $("[data-ap]", story), sub = $("[data-clock-sub]", story);
+    var fill = $(".chapters .fill", story), sky = $(".story-sky", story);
+    var active = -1;
+    var setChapter = function (i) {
+      if (i === active) return; active = i;
+      var c = chapters[i];
+      lis.forEach(function (li, k) { li.classList.toggle("on", k === i); li.classList.toggle("done", k < i); });
+      var swap = function () { clock.textContent = c.dataset.time; ap.textContent = c.dataset.ap; sub.textContent = c.dataset.sub; clock.style.opacity = 1; };
+      if (reduce) swap(); else { clock.style.transition = "opacity .2s"; clock.style.opacity = 0; setTimeout(swap, 180); }
+      if (fill) fill.style.setProperty("--prog", (i / (chapters.length - 1)) * 100 + "%");
+      var dawn = parseFloat(c.dataset.dawn || 0);
+      if (sky) { sky.style.setProperty("--dawn-amber", (dawn * 0.22).toFixed(3)); sky.style.setProperty("--dawn-mint", (dawn * 0.16).toFixed(3)); }
+    };
+    if (hasIO) {
+      var cio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) setChapter(chapters.indexOf(e.target)); });
+      }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+      chapters.forEach(function (c) { cio.observe(c); });
+    }
+    setChapter(0);
+  }
+
+  /* ---------------- Ask Daybreak chat ---------------- */
+  var chat = $("#chat");
+  if (chat) {
+    var turns = ["Which VIPs haven't been back since summer?", "How did October do against last year, by store?", "Draft a win-back for them"];
+    var typed = $("[data-typed]", chat), umsg = $("[data-umsg]", chat), urow = $(".u-row", chat);
+    var think = $(".think-row", chat), replies = $$(".reply", chat), chipsWrap = $("[data-chips]", chat), chips = $$("[data-chips] button", chat);
+    var timers = [], curT = -1;
+    var clear = function () { timers.forEach(function (t) { clearTimeout(t); clearInterval(t); }); timers = []; };
+    var later = function (fn, ms) { timers.push(setTimeout(fn, ms)); };
+    var showChips = function (i) { chips.forEach(function (c, k) { c.hidden = k === i; }); chipsWrap.classList.add("on"); };
+    var final = function (i) {
+      clear(); curT = i; umsg.textContent = turns[i]; urow.classList.add("on"); think.classList.remove("on");
+      replies.forEach(function (r, k) { r.classList.toggle("on", k === i); r.classList.toggle("grown", k === i); });
+      showChips(i);
+    };
+    var play = function (i) {
+      clear(); curT = i;
+      urow.classList.remove("on"); think.classList.remove("on"); chipsWrap.classList.remove("on");
+      replies.forEach(function (r) { r.classList.remove("on", "grown"); });
+      chat.classList.remove("sent"); chat.classList.add("typing"); typed.textContent = "";
+      var q = turns[i], n = 0;
+      var iv = setInterval(function () {
+        n++; typed.textContent = q.slice(0, n);
+        if (n >= q.length) {
+          clearInterval(iv);
+          later(function () {
+            chat.classList.add("sent");
+            later(function () {
+              chat.classList.remove("typing", "sent"); typed.textContent = "";
+              umsg.textContent = q; urow.classList.add("on");
+              later(function () {
+                think.classList.add("on");
+                later(function () {
+                  think.classList.remove("on"); replies[i].classList.add("on");
+                  requestAnimationFrame(function () { requestAnimationFrame(function () { replies[i].classList.add("grown"); }); });
+                  later(function () { showChips(i); }, 900);
+                  later(function () { play((i + 1) % turns.length); }, 8000);
+                }, 1100);
+              }, 320);
+            }, 220);
+          }, 320);
+        }
+      }, 32);
+      timers.push(iv);
+    };
+    chips.forEach(function (c) { c.addEventListener("click", function () { var i = +c.dataset.q; reduce ? final(i) : play(i); }); });
+    if (reduce || !hasIO) final(0);
+    else {
+      var started = false;
+      onView(chat, function (vis) {
+        if (vis && !started) { started = true; later(function () { play(0); }, 300); }
+        else if (!vis && started) { clear(); started = false; final(curT < 0 ? 0 : curT); started = false; }
+      }, { keep: true, threshold: 0.35 });
+    }
+  }
+
+  /* ---------------- phone demo ---------------- */
+  var phone = $("[data-phone]");
+  if (phone) {
+    var scenes = $$("[data-scene]", phone), steps = $$("[data-ps]"), tap = $("[data-tap]", phone), sheet = $("[data-sheet]", phone), ptime = $("[data-ptime]", phone);
+    // per scene: how long it holds, the clock, and where the tap lands (in % of the screen) before moving on
+    var plan = [
+      { ms: 3600, time: "6:02", tap: [50, 52] },
+      { ms: 3400, time: "6:03", tap: [50, 78] },
+      { ms: 3800, time: "6:03", tap: [72, 56] },
+      { ms: 4600, time: "6:04", tap: [72, 93], sheetAt: 1500 },
+      { ms: 5200, time: "7:15" }
+    ];
+    var si = 0, ptimers = [], prun = false, pStart = 0, praf = 0;
+    var pclear = function () { ptimers.forEach(clearTimeout); ptimers = []; cancelAnimationFrame(praf); };
+    var setScene = function (i, animate) {
+      scenes.forEach(function (s, k) { s.classList.toggle("on", k === i); s.classList.toggle("out", k === (i - 1 + scenes.length) % scenes.length && animate); });
+      steps.forEach(function (s, k) { s.classList.toggle("on", k === i); var b = $(".pb i", s); if (b) b.style.transform = "scaleX(0)"; });
+      if (ptime) ptime.textContent = plan[i].time;
+      if (sheet) sheet.classList.remove("up");
+      si = i;
+    };
+    var doTap = function (xy) {
+      if (!tap || !xy) return;
+      tap.style.left = "calc(" + xy[0] + "% - 22px)"; tap.style.top = "calc(" + xy[1] + "% - 22px)";
+      tap.classList.remove("go"); void tap.offsetWidth; tap.classList.add("go");
+    };
+    var run = function (i) {
+      pclear(); setScene(i, true); pStart = performance.now();
+      var p = plan[i];
+      if (p.sheetAt && sheet) ptimers.push(setTimeout(function () { doTap([72, 93]); sheet.classList.add("up"); }, p.sheetAt - 500));
+      if (p.tap) ptimers.push(setTimeout(function () { doTap(p.tap); }, p.ms - 650));
+      ptimers.push(setTimeout(function () { run((i + 1) % scenes.length); }, p.ms));
+      var bar = $(".pb i", steps[i]);
+      var tick = function (now) { var q = Math.min(1, (now - pStart) / p.ms); if (bar) bar.style.transform = "scaleX(" + q + ")"; if (q < 1 && prun) praf = requestAnimationFrame(tick); };
+      praf = requestAnimationFrame(tick);
+    };
+    steps.forEach(function (s, k) { s.addEventListener("click", function () { if (reduce) { setScene(k); if (k === 3 && sheet) sheet.classList.add("up"); } else run(k); }); });
+    if (reduce || !hasIO) { setScene(2); }
+    else onView(phone, function (vis) {
+      if (vis && !prun) { prun = true; run(si); }
+      else if (!vis && prun) { prun = false; pclear(); }
+    }, { keep: true, threshold: 0.3 });
+  }
+
+  /* ---------------- tabs (Also in Daybreak) ---------------- */
+  $$("[data-more]").forEach(function (list) {
+    var tabs2 = $$("[role=tab]", list);
+    var pick = function (i, focus) {
+      tabs2.forEach(function (t, k) {
+        var on = k === i; t.setAttribute("aria-selected", on ? "true" : "false"); t.tabIndex = on ? 0 : -1;
+        var panel = doc.getElementById(t.getAttribute("aria-controls")); if (panel) panel.hidden = !on;
+      });
+      if (focus) tabs2[i].focus();
+    };
+    tabs2.forEach(function (t, i) {
+      t.addEventListener("click", function () { pick(i); });
+      t.addEventListener("keydown", function (e) {
+        var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+        if (d) { e.preventDefault(); pick((i + d + tabs2.length) % tabs2.length, true); }
+      });
+    });
+  });
+
+  /* ---------------- white label: the same app, a partner's brand ---------------- */
+  var wl = $("[data-wl]");
+  if (wl && !reduce) {
+    var brands = [
+      { name: "Daybreak", url: "daybreak.datadoesnotlie.com", accent: "#2BE39B", letter: "D", client: "Seaside, 3 stores" },
+      { name: "Northwind Insights", url: "app.northwindinsights.com", accent: "#9B8CFF", letter: "N", client: "Corner Bakery, 2 stores" },
+      { name: "Harbor Local", url: "portal.harborlocal.co", accent: "#F2A93B", letter: "H", client: "Bayside Florist" }
+    ];
+    var bi = 0, wt = 0;
+    var swapBrand = function () {
+      bi = (bi + 1) % brands.length; var b = brands[bi];
+      wl.classList.add("swap");
+      setTimeout(function () {
+        $("[data-wl-name]", wl).textContent = b.name; $("[data-wl-url]", wl).textContent = b.url;
+        $("[data-wl-logo]", wl).textContent = b.letter; $("[data-wl-client]", wl).textContent = b.client;
+        wl.style.setProperty("--accent", b.accent); wl.classList.remove("swap");
+      }, 300);
+    };
+    onView(wl, function (vis) { clearInterval(wt); if (vis) wt = setInterval(swapBrand, 3200); }, { keep: true, threshold: 0.4 });
+  }
+
+  /* ---------------- tour video modal ---------------- */
+  var modal = $("[data-vmodal]"), lastFocus = null;
+  if (modal) {
+    var vid = $("video", modal);
+    var openV = function () {
+      lastFocus = doc.activeElement;
+      if (!vid.src) vid.src = vid.dataset.src;
+      modal.hidden = false; requestAnimationFrame(function () { modal.classList.add("open"); });
+      doc.body.style.overflow = "hidden";
+      var p = vid.play(); if (p && p.catch) p.catch(function () {});
+      $("[data-video-close]", modal).focus();
+    };
+    var closeV = function () {
+      modal.classList.remove("open"); vid.pause(); doc.body.style.overflow = "";
+      setTimeout(function () { modal.hidden = true; }, 300);
+      if (lastFocus) lastFocus.focus();
+    };
+    $$("[data-video-open]").forEach(function (b) { b.addEventListener("click", openV); });
+    $("[data-video-close]", modal).addEventListener("click", closeV);
+    modal.addEventListener("click", function (e) { if (e.target === modal) closeV(); });
+    doc.addEventListener("keydown", function (e) { if (e.key === "Escape" && modal.classList.contains("open")) closeV(); });
+  }
+
+  /* ---------------- product videos on other pages ---------------- */
+  var vids = $$("video[data-autoplay]");
+  if (reduce) vids.forEach(function (v) { v.removeAttribute("autoplay"); v.pause(); v.setAttribute("controls", ""); });
+  else vids.forEach(function (v) { onView(v, function (vis) { if (vis) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause(); }, { keep: true }); });
+
+  /* ---------------- lead forms (Google Form, no backend) ---------------- */
   var GOOGLE_FORM_ID = "1FAIpQLSfa9CtHvBQI-y2EgTQ2nXJ-xQbM8VJCfgtkZCV927HiXuhjNQ";
   var ENTRY_IDS = { name: "entry.91645865", email: "entry.492368119", company: "entry.497609646", message: "entry.259026376" };
-  document.querySelectorAll("form[data-lead]").forEach(function (form) {
+  $$("form[data-lead]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!form.reportValidity()) return;
@@ -64,19 +366,20 @@
       params.append(ENTRY_IDS.company, data.company || "");
       params.append(ENTRY_IDS.message, message);
       var submit = form.querySelector("[type=submit]");
-      if (submit) submit.disabled = true;
+      if (submit) { submit.disabled = true; submit.textContent = "Sending"; }
       fetch("https://docs.google.com/forms/d/e/" + GOOGLE_FORM_ID + "/formResponse", {
         method: "POST", mode: "no-cors", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: params.toString()
       }).catch(function () {}).then(function () {
         var ok = form.querySelector(".form-ok");
         if (ok) ok.style.display = "block";
+        if (submit) submit.textContent = "Sent";
         form.reset();
       });
     });
   });
 
-  // Preselect a plan in the demo form when a "Book a call" link names one.
-  var plan = new URLSearchParams(location.search).get("plan");
-  var sel = document.querySelector("select[name=plan]");
-  if (plan && sel) { for (var i = 0; i < sel.options.length; i++) if (sel.options[i].value === plan) sel.selectedIndex = i; }
+  // Preselect a plan in the demo form when a link names one (?plan=enterprise#demo).
+  var planQ = new URLSearchParams(location.search).get("plan");
+  var sel = $("select[name=plan]");
+  if (planQ && sel) for (var i = 0; i < sel.options.length; i++) if (sel.options[i].value === planQ) sel.selectedIndex = i;
 })();
