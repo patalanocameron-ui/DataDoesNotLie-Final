@@ -1324,3 +1324,4 @@ main > article .fig-live figcaption{margin-top:10px}
 .p-steps .pst{display:block;width:100%;text-align:left;border:0;background:none;font:inherit;color:inherit;cursor:pointer}
 .p-steps .pst.on{background:rgba(234,243,249,.04)}
 .p-steps .pst:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.vmodal .vbox{width:min(1100px,100%)}.vmodal video{aspect-ratio:16/10;max-height:80vh}
