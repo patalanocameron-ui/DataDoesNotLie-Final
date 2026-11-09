@@ -401,7 +401,8 @@
   }
   /* ============ sign in ============ */
   .signin{min-height:calc(100vh - 220px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 20px 80px;text-align:center}
-  .signin img{width:44px;height:44px}
+  .signin img{width:44px;height:44px;margin-bottom:22px}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .signin h1{font-size:1.6rem;letter-spacing:-0.02em;margin:16px 0 6px}
   .signin .sub{color:var(--text-dim);font-size:.95rem;margin:0 0 28px}
   #sign-in{min-height:360px;display:flex;justify-content:center;width:100%}
@@ -437,8 +438,7 @@
 <main id="top">
 <div class="signin">
   <img src="assets/daybreak-logo.png" alt="" width="44" height="44">
-  <h1>Sign in to Daybreak</h1>
-  <p class="sub">Your reports, customers and workflows, right where you left them.</p>
+  <h1 class="sr-only">Sign in to Daybreak</h1>
   <div id="sign-in"><span class="wait" id="signInStatus">Loading sign in...</span></div>
   <p class="alt">Trouble signing in? Go straight to <a href="https://daybreak.datadoesnotlie.com/sign-in">daybreak.datadoesnotlie.com</a>.</p>
 </div>
