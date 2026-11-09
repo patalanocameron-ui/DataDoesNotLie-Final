@@ -467,3 +467,8 @@
     f.addEventListener("submit", function () { if (f.checkValidity()) send("generate_lead", { form: f.getAttribute("data-lead") }); });
   });
 })();
+
+// Phones: the founder bio opens on request.
+document.querySelectorAll("[data-more-bio]").forEach(function (b) {
+  b.addEventListener("click", function () { var f = b.closest(".founder"); f.classList.add("open"); b.setAttribute("aria-expanded", "true"); });
+});

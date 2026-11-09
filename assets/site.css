@@ -1324,4 +1324,65 @@ main > article .fig-live figcaption{margin-top:10px}
 .p-steps .pst{display:block;width:100%;text-align:left;border:0;background:none;font:inherit;color:inherit;cursor:pointer}
 .p-steps .pst.on{background:rgba(234,243,249,.04)}
 .p-steps .pst:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
-.vmodal .vbox{width:min(1100px,100%)}.vmodal video{aspect-ratio:16/10;max-height:80vh}
+.vmodal .vbox{width:min(760px,100%,calc(80vh - 10px))}.vmodal video{aspect-ratio:1/1;max-height:none}
+/* ---------- phones: less scrolling (Nov 9) ---------- */
+.swipe-hint{display:none}
+@media (max-width:720px){
+  .section{padding:60px 0}
+  .section-head{margin-bottom:26px}
+  .lede{font-size:1rem}
+  /* hero source rail: one swipeable row, no ticker */
+  .rail-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding-bottom:6px;scrollbar-width:none}
+  .rail-grid::-webkit-scrollbar{display:none}
+  .rail-grid > *{flex:0 0 auto;padding:12px 14px!important;border:1px solid var(--line)!important;border-radius:12px;scroll-snap-align:start;max-width:230px}
+  .rail-grid > :first-child{border:0!important;padding-left:0!important;max-width:none;align-self:center}
+  .rail-item p,.rail-item > :not(.top){display:none}
+  .ticker{display:none}
+  /* pains: tight list */
+  .pain{padding:16px 0;gap:6px}
+  .pain p{font-size:.95rem}
+  /* story: swipe through the five chapters */
+  .clock-rail{display:none}
+  .chapters-body{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 -20px;padding:0 20px 10px;scrollbar-width:none;align-items:flex-start}
+  .chapters-body::-webkit-scrollbar{display:none}
+  .chapter{flex:0 0 88%;scroll-snap-align:center;padding:18px 16px!important;border:1px solid var(--line);border-radius:18px;background:rgba(10,19,34,.72);min-height:0;align-self:stretch;align-content:start}
+  .chapter .ui{margin-left:-6px;margin-right:-6px}
+  .chapter .ch-head p{font-size:.95rem}
+  .m-discover .people,.m-act .side-stack,.m-measure > .ui:nth-child(2){display:none}
+  .chapter .fig{display:none}
+  .swipe-hint{display:flex;align-items:center;gap:8px;margin:0 0 14px;font-size:.8rem;color:var(--faint);letter-spacing:.02em}
+  .swipe-hint svg{width:16px;height:16px}
+  /* ask + phone sections */
+  .ask-list{display:none}
+  .pst > span:not(.pb){display:none}
+  .pst{padding:10px 12px!important}
+  /* audiences: 2 x 2 */
+  .aud{grid-template-columns:1fr 1fr!important}
+  .aud > div{padding:16px 12px 16px 0!important;border-top:0!important}
+  .aud > div p{display:none}
+  .aud h3{font-size:1rem}
+  /* home pricing preview: swipe the plans */
+  .plans{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;background:none;border:0;box-shadow:none;border-radius:0;margin:0 -20px;padding:0 20px 12px;scrollbar-width:none}
+  .plans::-webkit-scrollbar{display:none}
+  .plan{flex:0 0 84%;scroll-snap-align:center;background:#fff;border:1px solid var(--paper-line)!important;border-radius:16px;box-shadow:0 20px 50px -30px rgba(11,34,54,.3)}
+  .plan + .plan{border-top:1px solid var(--paper-line)}
+  .compare td,.compare th{padding:9px 12px!important;font-size:.88rem}
+  /* partner band: facts, no mockup */
+  .partner-band .wl,.partner-band .wl + .fig{display:none}
+  .partner-band .facts{grid-template-columns:1fr 1fr!important}
+  .partner-band .facts b{font-size:1.15rem}
+  .partner-band .facts > div{padding:14px!important}
+  /* company */
+  .founder p:first-of-type{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+  .founder p + p{display:none}
+  .founder.open p:first-of-type{display:block}
+  .founder.open p + p{display:block}
+  .founder.open .more-bio{display:none}
+  .founder .more-bio{display:inline-block}
+  /* footer */
+  .foot-mark{display:none}
+  .site-footer .foot-grid{grid-template-columns:1fr 1fr;gap:28px 16px}
+  .site-footer .foot-grid > :first-child{grid-column:1/-1}
+  .site-footer .foot-grid > :last-child{display:none}
+}
+.founder .more-bio{display:none;margin-top:8px;background:none;border:0;padding:0;color:var(--sky,#4fb2ff);font:inherit;font-size:.9rem;cursor:pointer}
