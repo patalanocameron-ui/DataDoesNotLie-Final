@@ -20,6 +20,7 @@
       "highlights": [
         "Your brand, logo and colors on every screen",
         "2 client businesses included, $79 per extra client",
+        "AI marketing assistant for every client",
         "Resell text credits at your own price",
         "20% commission on add-ons your clients buy"
       ]
@@ -40,6 +41,7 @@
       "salesLed": false,
       "highlights": [
         "3 stores included",
+        "AI marketing assistant included",
         "2,000 texts and 25,000 emails a month",
         "Done-with-you setup",
         "Every feature included"
@@ -61,6 +63,7 @@
       "salesLed": false,
       "highlights": [
         "10 stores included",
+        "AI marketing assistant included",
         "10,000 texts and 100,000 emails a month",
         "Done-for-you setup and data migration",
         "Dedicated support"
@@ -82,6 +85,7 @@
       "salesLed": true,
       "highlights": [
         "Unlimited stores",
+        "AI marketing assistant included",
         "Custom text and email volume",
         "Several brands in one account",
         "Dedicated team"
@@ -89,12 +93,6 @@
     }
   ],
   "addOns": [
-    {
-      "id": "ai-assistant",
-      "name": "AI Marketing Assistant",
-      "monthlyCents": 19700,
-      "blurb": "Writes and launches campaigns from your insights, and answers customer texts"
-    },
     {
       "id": "managed-campaigns",
       "name": "Managed campaigns",

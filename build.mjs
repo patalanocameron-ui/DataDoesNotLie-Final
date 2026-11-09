@@ -79,6 +79,7 @@ function compareTable() {
           ${row("Emails", emails)}
           ${group("Product")}
           ${row("Reports, insights, customers, workflows", () => yes)}
+          ${row("AI marketing assistant (drafts campaigns, workflows and emails)", () => yes)}
           ${row("Ask Daybreak (chat with your data)", () => yes)}
           ${row("Your own brand (white label)", wl)}
           ${group("Help")}
@@ -272,7 +273,8 @@ function llms() {
 - Insights: every morning Daybreak checks what changed and writes up to three things worth your attention, in plain language, with the dollars at stake and the customers to reach.
 - Customers: every customer with their lifetime spend, visits, usual gap between visits and whether they can be reached by email or text. Saved views and tags shared with the team.
 - Workflows: email and text sequences with waits, if/else branches and A/B splits. Customers who come back drop out on their own. Text opt-outs and email unsubscribes are honored on every send.
-- Ask Daybreak: chat with your own data to get answers, lists and draft campaigns. Also connects to Claude and other AI tools over MCP.
+- AI marketing assistant, included in every plan: drafts campaigns, workflows and emails from your insights, ready for you to approve.
+- Ask Daybreak: chat with your own data to get answers, lists and draft campaigns. Also connects to Claude and other AI tools over MCP (read only).
 - Works for stores, dry cleaners, restaurants and service shops with one location or many.
 
 ## Pricing (USD)
