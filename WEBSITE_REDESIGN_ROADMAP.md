@@ -85,17 +85,28 @@ Fixed: unreadable add-on cards on pricing; video modal focus and Tab trap; phone
 
 Open from the review: consolidate the layered overrides in `assets/site.css` (backlog 1); merge the closing call to action and the demo form into one ending (kept separate for now so the form isn't cut by the horizon); the AI Marketing Assistant add-on copy (from the app's plans data) says it "launches campaigns and answers customer texts", which Cam should confirm matches how it works.
 
+## Published (Nov 9)
+
+The redesign is live on datadoesnotlie.com (merged to `main`). Production Lighthouse, mobile: performance 96, accessibility 100, best practices 100, SEO 100.
+
+Done after publishing review:
+- Mobile performance: grain is a tiny pre-rendered tile (no SVG filter or blend mode), no drifting lights on phones, below-fold sections render lazily with jump links that re-aim once heights settle, `build.mjs` writes `assets/site.min.css` (edit `site.css`, pages load the min file).
+- Product tour re-recorded from the real app (local Daybreak, Seaside Cleaners demo data): Dashboard, Customers (VIPs view), Workflows, VIP win-back, Sales Overview. `assets/daybreak-tour.mp4` (about 49s, under 1 MB) and poster. Recorded with a puppeteer screencast and an injected cursor; admin links and a test workflow hidden; sped up 1.5x; H.264 veryfast CRF 26.
+- Share images: `assets/og-home.jpg`, `og-pricing.jpg`, `og-partners.jpg`.
+- Pricing changes from Cam: AI marketing assistant included in every plan (no longer a $197 add-on); Partner plan $1,297 a month, no setup fee, self-serve signup through checkout (`/api/billing/checkout?plan=partner`).
+- `_redirects` force-404s `docs/` and this roadmap on the live site.
+
 ## Remaining work and ideas backlog
 
 Priority order.
 
-1. Mobile performance: the preview's throttled mobile run shows high main-thread time (part of it is Netlify's preview toolbar). Next steps: split `site.css` (it carries pass-by-pass overrides; consolidate and minify in `build.mjs`), lazy-render below-fold mocks with `content-visibility:auto`, and re-measure on production.
-2. Re-record the 45-second tour video: it predates the redesign and shows Shopify as connected. Record from the real app with the Daybreak demo tenant.
+1. (Done) Mobile performance. Worth doing later: fold the layered overrides in `site.css` into the base rules.
+2. (Done) Tour video. Re-record when the app UI changes noticeably.
 3. Replace HTML mocks with exact app renders where Cam prefers them (the app could export its own components to static images or an embeddable demo route).
-4. A real interactive "try it on sample data" demo that runs the actual app against the demo tenant.
+4. A real interactive "try it on sample data" demo. Needs Cam's call: a public, sign-in-free, read-only demo business in the app (a new route and an auth exception to build carefully), and whether Ask Daybreak is switched on there (each question costs AI tokens from anonymous visitors).
 5. Customer proof: add real testimonials and logos once customers agree. Nothing invented until then.
 6. Use cases: write the Daybreak retail case study (the placeholder card is still there).
 7. Partner sign-in on custom domains depends on Clerk satellite domains (purchase pending) and VERCEL_TOKEN; until then the partner page promises branded sign-in that works on storeportal.app subdomains only after DNS is live.
-8. OG images: new share images for home, pricing and partners in the new look.
+8. (Done) Share images.
 9. Consider porting the site to Next.js with the app's actual MUI components if Cam wants literal component reuse (today it is a faithful CSS reproduction).
 10. Analytics: no analytics were present before; add privacy-friendly analytics (e.g. Plausible or Netlify Analytics) if wanted, plus conversion events on Start free month and the demo form.
