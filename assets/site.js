@@ -140,9 +140,9 @@
       var sunEl = $("[data-hero] .sun"), lean = 0;
       var applyTilt = function () {
         var r = show.getBoundingClientRect(), vh = window.innerHeight;
-        // A deeper lean that flattens over a longer scroll, so the screens read as curved on arrival.
-        var p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 1.5)));
-        stage.style.transform = "rotateX(" + (22 * (1 - p)).toFixed(2) + "deg) rotateY(" + lean.toFixed(2) + "deg) translateY(" + (-10 * p).toFixed(1) + "px) scale(" + (0.96 + 0.04 * p).toFixed(4) + ")";
+        // The screen tips toward you like a monitor coming off the page, then settles upright as you scroll.
+        var p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 1.2)));
+        stage.style.transform = "rotateX(" + (-12 * (1 - p)).toFixed(2) + "deg) rotateY(" + lean.toFixed(2) + "deg) translateZ(" + (60 * (1 - p)).toFixed(1) + "px) translateY(" + (-10 * p).toFixed(1) + "px) scale(" + (0.97 + 0.03 * p).toFixed(4) + ")";
         if (sunEl) sunEl.style.opacity = (0.75 + p * 0.25).toFixed(3);
       };
       var ticking = false;
