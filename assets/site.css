@@ -43,7 +43,8 @@
   --wrap:1200px;
   --gutter:clamp(20px,4vw,40px);
   --ease:cubic-bezier(.2,.8,.25,1);
-  --pop:cubic-bezier(.34,1.56,.64,1);
+  /* Critically damped (no overshoot): things that just appear settle, they don't bounce. */
+  --pop:cubic-bezier(.22,1,.36,1);
   --edge:linear-gradient(90deg,transparent,rgba(124,224,255,.55),rgba(43,227,155,.7),transparent);
   --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
   color-scheme:dark;
@@ -96,7 +97,7 @@ p{margin:0}
 .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.55em;height:46px;padding:0 20px;border-radius:12px;font-weight:600;font-size:.95rem;letter-spacing:-.005em;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:transform .25s var(--ease),background-color .25s,border-color .25s,box-shadow .3s,color .2s;isolation:isolate}
 .btn .arrow{transition:transform .3s var(--ease)}
 .btn:hover .arrow{transform:translateX(3px)}
-.btn:active{transform:translateY(1px) scale(.99)}
+.btn:active{transform:scale(.97);transition-duration:.1s}
 .btn-primary{background:var(--mint);color:#04140D;box-shadow:0 0 0 1px rgba(43,227,155,.4),0 8px 28px -8px rgba(43,227,155,.55),inset 0 1px 0 rgba(255,255,255,.45)}
 .btn-primary::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);background-size:250% 100%;background-position:120% 0;opacity:0;transition:opacity .2s;z-index:-1;pointer-events:none}
 .btn-primary:hover{background:var(--mint-2);box-shadow:0 0 0 1px rgba(95,240,182,.6),0 12px 36px -8px rgba(43,227,155,.7),inset 0 1px 0 rgba(255,255,255,.5)}
@@ -204,9 +205,9 @@ p{margin:0}
 .sky > .wrap{position:relative;z-index:2}
 .sky-layer{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .sky-layer .light{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;will-change:transform}
-.sky-layer .l1{width:560px;height:560px;top:-220px;right:4%;background:radial-gradient(circle,rgba(43,227,155,.55),transparent 66%);animation:drift 16s ease-in-out infinite alternate}
-.sky-layer .l2{width:520px;height:520px;top:6%;left:-180px;background:radial-gradient(circle,rgba(82,185,233,.42),transparent 66%);animation:drift 21s ease-in-out -7s infinite alternate-reverse}
-.sky-layer .l3{width:380px;height:380px;top:30%;left:46%;background:radial-gradient(circle,rgba(16,185,129,.28),transparent 66%);animation:drift 25s ease-in-out -12s infinite alternate}
+.sky-layer .l1{width:560px;height:560px;top:-220px;right:4%;background:radial-gradient(circle,rgba(43,227,155,.55),transparent 66%);animation:drift 16s var(--ease) 1 both}
+.sky-layer .l2{width:520px;height:520px;top:6%;left:-180px;background:radial-gradient(circle,rgba(82,185,233,.42),transparent 66%);animation:drift 21s var(--ease) 1 both reverse}
+.sky-layer .l3{width:380px;height:380px;top:30%;left:46%;background:radial-gradient(circle,rgba(16,185,129,.28),transparent 66%);animation:drift 25s var(--ease) 1 both}
 @keyframes drift{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(46px,26px,0) scale(1.08)}100%{transform:translate3d(-30px,52px,0) scale(.96)}}
 .sky-layer .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(234,243,249,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(234,243,249,.045) 1px,transparent 1px);background-size:56px 56px;background-position:center top;-webkit-mask-image:radial-gradient(70% 55% at 50% 30%,#000,transparent 78%);mask-image:radial-gradient(70% 55% at 50% 30%,#000,transparent 78%)}
 .sky-layer .grain{position:absolute;inset:-50%;background:var(--noise);opacity:.06;mix-blend-mode:overlay}
@@ -932,6 +933,17 @@ p{margin:0}
 .vmodal video{width:100%;aspect-ratio:1/1;max-height:80vh;object-fit:contain;background:#06121F}
 .vmodal .vcap{display:flex;justify-content:space-between;padding:12px 16px;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
 .vclose{position:absolute;top:10px;right:10px;z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid var(--line-2);background:rgba(6,18,31,.8);cursor:pointer;display:grid;place-items:center}
+
+/* ---------- press feedback (apple-motion: respond on press, instantly) ---------- */
+.nav > a:active,.nav-item > button:active,.header-cta .signin:active,.show-tabs button:active,.chips button:active,.menu-links a:active,.menu-btn:active,.vclose:active,.p-steps .pst:active,.pill:active{transform:scale(.97);transition:transform .1s ease-out}
+
+/* ---------- reduced transparency and increased contrast ---------- */
+@media (prefers-reduced-transparency:reduce){
+  .site-header.scrolled,.menu,.mobile-nav,.pill,.show-tabs,.card-glass,.rail,.clock-rail,.notif{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:var(--surface)!important}
+}
+@media (prefers-contrast:more){
+  :root{--faint:#a9b6c6;--dim:#c9d3df;--line-2:#3a5170;--line-3:#4a6385}
+}
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
