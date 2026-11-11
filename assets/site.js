@@ -260,16 +260,24 @@
       if (sheet) sheet.classList.remove("up");
       si = i;
     };
+    // Taps land on the real thing being tapped in that scene ([data-tap-at]), measured when the tap happens.
+    var tapAt = function (i) {
+      var el = $("[data-tap-at]", scenes[i]);
+      if (!el) return plan[i].tap;
+      var r = phone.getBoundingClientRect(), e = el.getBoundingClientRect();
+      return [((e.left + e.width / 2 - r.left) / r.width) * 100, ((e.top + e.height / 2 - r.top) / r.height) * 100];
+    };
     var doTap = function (xy) {
       if (!tap || !xy) return;
-      tap.style.left = "calc(" + xy[0] + "% - 22px)"; tap.style.top = "calc(" + xy[1] + "% - 22px)";
+      tap.style.left = "calc(" + xy[0].toFixed(2) + "% - 22px)"; tap.style.top = "calc(" + xy[1].toFixed(2) + "% - 22px)";
       tap.classList.remove("go"); void tap.offsetWidth; tap.classList.add("go");
     };
     var run = function (i) {
       pclear(); setScene(i, true); pStart = performance.now();
       var p = plan[i];
-      if (p.sheetAt && sheet) ptimers.push(setTimeout(function () { doTap([72, 93]); sheet.classList.add("up"); }, p.sheetAt - 500));
-      if (p.tap) ptimers.push(setTimeout(function () { doTap(p.tap); }, p.ms - 650));
+      // Scene 4: the win-back sheet slides up first, then "Approve and start" is tapped once it has settled.
+      if (p.sheetAt && sheet) ptimers.push(setTimeout(function () { sheet.classList.add("up"); }, p.sheetAt - 500));
+      if (p.tap) ptimers.push(setTimeout(function () { doTap(tapAt(i)); }, p.ms - 650));
       ptimers.push(setTimeout(function () { run((i + 1) % scenes.length); }, p.ms));
       var bar = $(".pb i", steps[i]);
       var tick = function (now) { var q = Math.min(1, (now - pStart) / p.ms); if (bar) bar.style.transform = "scaleX(" + q + ")"; if (q < 1 && prun) praf = requestAnimationFrame(tick); };
@@ -280,17 +288,18 @@
       s.addEventListener("click", function () { pick(k); });
       s.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(k); } });
     });
-    var pPaused = false, pHold = false, pVis = false, pStage = phone.closest(".phone-grid");
+    var pPaused = false, pVis = false;
     var psync = function () {
-      var want = pVis && !pPaused && !pHold;
+      var want = pVis && !pPaused;
       if (want && !prun) { prun = true; run(si); }
       else if (!want && prun) { prun = false; pclear(); }
     };
     var ppb = $("[data-pause-phone]");
     if (ppb) ppb.addEventListener("click", function () { pPaused = !pPaused; ppb.setAttribute("aria-pressed", pPaused ? "true" : "false"); ppb.textContent = pPaused ? "Play demo" : "Pause demo"; psync(); });
-    if (pStage) { pStage.addEventListener("pointerenter", function () { pHold = true; psync(); }); pStage.addEventListener("pointerleave", function () { pHold = false; psync(); }); }
+    // Plays on its own as soon as it scrolls into view. Hovering doesn't pause it (a mouse resting over the
+    // section while scrolling kept it from starting); Pause demo and picking a step do.
     if (reduce || !hasIO) { setScene(2); if (ppb) ppb.hidden = true; }
-    else onView(phone, function (vis) { pVis = vis; psync(); }, { keep: true, threshold: 0.3 });
+    else onView(phone, function (vis) { pVis = vis; psync(); }, { keep: true, threshold: 0.2 });
   }
 
   /* ---------------- tabs (Also in Daybreak) ---------------- */
