@@ -140,9 +140,11 @@
       var sunEl = $("[data-hero] .sun"), lean = 0;
       var applyTilt = function () {
         var r = show.getBoundingClientRect(), vh = window.innerHeight;
-        // The screen tips toward you like a monitor coming off the page, then settles upright as you scroll.
-        var p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 1.2)));
-        stage.style.transform = "rotateX(" + (-12 * (1 - p)).toFixed(2) + "deg) rotateY(" + lean.toFixed(2) + "deg) translateZ(" + (60 * (1 - p)).toFixed(1) + "px) translateY(" + (-10 * p).toFixed(1) + "px) scale(" + (0.97 + 0.03 * p).toFixed(4) + ")";
+        // A slight forward tip, like a monitor facing you, that settles flat as you scroll.
+        // No scaling or depth offset, and no transform at rest, so the screens stay pin sharp.
+        var p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 1.1)));
+        var tilt = -5 * (1 - p);
+        stage.style.transform = Math.abs(tilt) < 0.05 && Math.abs(lean) < 0.05 ? "none" : "rotateX(" + tilt.toFixed(2) + "deg) rotateY(" + lean.toFixed(2) + "deg)";
         if (sunEl) sunEl.style.opacity = (0.75 + p * 0.25).toFixed(3);
       };
       var ticking = false;
@@ -150,7 +152,7 @@
       window.addEventListener("scroll", req, { passive: true });
       window.addEventListener("resize", req);
       if (window.matchMedia("(pointer:fine)").matches) {
-        show.addEventListener("pointermove", function (e) { var r = show.getBoundingClientRect(); lean = ((e.clientX - r.left) / r.width - 0.5) * 3; req(); });
+        show.addEventListener("pointermove", function (e) { var r = show.getBoundingClientRect(); lean = ((e.clientX - r.left) / r.width - 0.5) * 1.5; req(); });
         show.addEventListener("pointerleave", function () { lean = 0; req(); });
       }
       applyTilt();
